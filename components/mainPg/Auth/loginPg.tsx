@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import LoginForm from "./Form/LoginForm";
 
 export default function LoginPg() {
   const [state, setState] = useState("login");
@@ -16,6 +17,7 @@ export default function LoginPg() {
         <span className=" mt-5 text-xl font-semibold ">
           {state === "login" ? "로그인" : "회원가입"}
         </span>
+        <LoginForm />
         <div className=" text-sm py-1 px-2 bg-blue-400" onClick={CLickHandler}>
           회원가입
         </div>
