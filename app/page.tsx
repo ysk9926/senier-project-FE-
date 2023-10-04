@@ -7,13 +7,16 @@ import ISuffle from "@/icon/ISuffle";
 import IVolCustom from "@/icon/IVolCustom";
 import Logo from "@/icon/logo";
 
+import BgImg from "@/components/mainPg/bgImg";
+import LoginPg from "@/components/mainPg/Auth/loginPg";
+
 export default function Home() {
   return (
-    <div className=" relative">
+    <div className=" relative  w-full h-screen ">
       {/* header */}
-      <div className="flex justify-between mt-4">
+      <div className="flex justify-between pt-3">
         {/* logo - wrapper */}
-        <div className=" flex justify-center items-center w-titleSize min-w-[150px] h-[70px] bg-[#292929]">
+        <div className=" flex justify-center items-center w-titleSize min-w-[220px] h-[70px] bg-[#292929]">
           {/* logo */}
           <div className=" w-52 h-10 flex justify-center items-center">
             <Logo />
@@ -35,7 +38,7 @@ export default function Home() {
         </div>
       </div>
       {/* control - bar */}
-      <div className=" absolute top-20 right-7">
+      <div className=" absolute top-[120px] right-8">
         <div className=" flex flex-col justify-around items-center w-9 h-40 bg-color_main_black rounded-md">
           <div className=" w-[18px] fill-white">
             <ISuffle />
@@ -51,6 +54,15 @@ export default function Home() {
           </div>
         </div>
       </div>
+      {/* background - img */}
+      <BgImg />
+      {/* background */}
+      <div className=" absolute w-full h-full top-0 -z-[99999] bg-[#B87D54]">
+        {/* bg-top */}
+        <div className=" bg-[#BCC7B2] w-full h-[90%]"></div>
+      </div>
+      {/* login */}
+      <LoginPg />
     </div>
   );
 }

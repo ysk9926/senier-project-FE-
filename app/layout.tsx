@@ -16,13 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div className=" fixed w-screen h-screen top-0 -z-[99999] bg-[#B87D54]">
-          {/* bg-top */}
-          <div className=" bg-[#BCC7B2] w-full h-[90%]"></div>
-        </div>
-        {children}
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

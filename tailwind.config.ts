@@ -10,6 +10,10 @@ const config: Config = {
     extend: {
       width: {
         titleSize: "320px",
+        img_2xl: "520px",
+      },
+      height: {
+        img_2xl: "420px",
       },
       colors: {
         color_main_black: "#292929",

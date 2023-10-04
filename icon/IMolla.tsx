@@ -10,8 +10,8 @@ export default function IMolla() {
             transform="translate(-149 -754)"
             fill="none"
             stroke="#fff"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeWidth="2"
           />
           <line
             id="선_19"
@@ -20,8 +20,8 @@ export default function IMolla() {
             transform="translate(0.516 6.006)"
             fill="none"
             stroke="#fff"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeWidth="2"
           />
           <line
             id="선_20"
@@ -31,8 +31,8 @@ export default function IMolla() {
             transform="translate(2.141 5.996)"
             fill="none"
             stroke="#fff"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeWidth="2"
           />
           <line
             id="선_21"
@@ -42,8 +42,8 @@ export default function IMolla() {
             transform="translate(5.538 9.004)"
             fill="none"
             stroke="#fff"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeWidth="2"
           />
           <line
             id="선_22"
@@ -52,8 +52,8 @@ export default function IMolla() {
             transform="translate(7.249 12.011)"
             fill="none"
             stroke="#fff"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeWidth="2"
           />
           <line
             id="선_23"
@@ -63,8 +63,8 @@ export default function IMolla() {
             transform="translate(10.749 3.155)"
             fill="none"
             stroke="#fff"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeWidth="2"
           />
           <line
             id="선_24"
@@ -74,8 +74,8 @@ export default function IMolla() {
             transform="translate(7.353 0.135)"
             fill="none"
             stroke="#fff"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeWidth="2"
           />
         </g>
       </g>
