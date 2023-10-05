@@ -19,6 +19,7 @@ const config: Config = {
       },
       colors: {
         color_main_black: "#292929",
+        color_main_text: "#58644D",
       },
     },
   },

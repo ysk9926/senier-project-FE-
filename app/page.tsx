@@ -1,58 +1,15 @@
-import VolControler from "@/components/mainPg/btnFunction/bgVolBtn";
-import VolMute from "@/components/mainPg/controlers";
-import MenueBtn from "@/components/mainPg/menueBtn";
-import ISetting from "@/icon/ISetting";
-import ISuffle from "@/icon/ISuffle";
-import IVolCustom from "@/icon/IVolCustom";
-import Logo from "@/icon/logo";
-
 import BgImg from "@/components/mainPg/bgImg";
 import LoginPg from "@/components/mainPg/Auth/loginPg";
-import LoginBtn from "@/components/mainPg/btnFunction/loginBtn";
+import HeaderGroup from "@/components/mainPg/headerGroup";
+import ControlbarGroup from "@/components/mainPg/controlbarGroup";
 
 export default function Home() {
   return (
     <div className=" relative  w-full h-screen ">
       {/* header */}
-      <div className="flex justify-between pt-3">
-        {/* logo - wrapper */}
-        <div className=" flex justify-center items-center w-titleSize min-w-[220px] h-[70px] bg-[#292929]">
-          {/* logo */}
-          <div className=" w-52 h-10 flex justify-center items-center">
-            <Logo />
-          </div>
-        </div>
-        {/* 유저 & 시계 */}
-        <div className=" w-titleSize flex justify-center items-start">
-          {/* 유저명 */}
-          <span className=" mr-3">승규님 안녕하세요</span>
-        </div>
-        {/* 음량조절 및 메뉴 */}
-        <div className=" w-titleSize flex justify-between items-center px-8 ">
-          {/* 음량조절 */}
-          <VolControler />
-          {/* 음소거 */}
-          <VolMute />
-          {/* 메뉴 */}
-          <MenueBtn />
-        </div>
-      </div>
+      <HeaderGroup />
       {/* control - bar */}
-      <div className=" absolute top-[120px] right-8">
-        <div className=" flex flex-col justify-around items-center w-9 h-40 bg-color_main_black rounded-md">
-          <div className=" w-[18px] fill-white">
-            <ISuffle />
-          </div>
-          <div className=" w-[18px] fill-white">
-            <IVolCustom />
-          </div>
-          {/* user */}
-          <LoginBtn />
-          <div className=" w-[18px] fill-white">
-            <ISetting />
-          </div>
-        </div>
-      </div>
+      <ControlbarGroup />
       {/* background - img */}
       <BgImg />
       {/* background */}
@@ -62,6 +19,67 @@ export default function Home() {
       </div>
       {/* login */}
       <LoginPg />
+      {/* whitenoise - btn */}
+      <div>
+        {/* car-sound */}
+        <div
+          className="
+        absolute flex justify-center items-center
+        xl:top-[55%] xl:left-[17%]
+        top-[20%] left-[3%]
+        "
+        >
+          <button
+            id="carBtn"
+            className="w-6 h-6 rounded-full border border-white hover:border-2"
+          ></button>
+          <label
+            htmlFor="carBtn"
+            className="ml-3 w-fit h-6 px-3 py-4 rounded-md bg-[#36323130] flex justify-center items-center text-color_main_text hover:scale-[1.1] hover:ml-4"
+          >
+            City Trafic
+          </label>
+        </div>
+        {/* people-sound */}
+        <div
+          className="
+          absolute flex justify-center items-center
+          xl:top-[50%] xl:left-[54%]
+          min-[820px]:top-[50%] min-[820px]:left-[25%]
+          top-[26%] left-[3%]
+        "
+        >
+          <button
+            id="peopleBtn"
+            className="w-6 h-6 rounded-full border border-white hover:border-2"
+          ></button>
+          <label
+            htmlFor="peopleBtn"
+            className="ml-3 w-fit h-6 px-3 py-4 rounded-md bg-[#E5583530] flex justify-center items-center text-color_main_text hover:scale-[1.1] hover:ml-4"
+          >
+            Whispers people
+          </label>
+        </div>
+        {/* cityRain-sound */}
+        <div
+          className="
+        absolute flex justify-center items-center
+        xl:top-[38%] xl:left-[23%]
+        top-[14%] left-[3%]
+        "
+        >
+          <button
+            id="cityRainBtn"
+            className="w-6 h-6 rounded-full border border-white hover:border-2"
+          ></button>
+          <label
+            htmlFor="cityRainBtn"
+            className="ml-3 w-fit h-6 px-3 py-4 rounded-md bg-[#2A6AAA30] flex justify-center items-center text-color_main_text hover:scale-[1.1] hover:ml-4"
+          >
+            City Rain
+          </label>
+        </div>
+      </div>
     </div>
   );
 }

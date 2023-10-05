@@ -2,7 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ApolloWrapper } from "@/lib/apollo-wrapper";
-import RecoilSet from "@/components/Layout/RecoilSet";
+import RecoilSet from "@/components/function/RecoilSet";
 
 const inter = Inter({ subsets: ["latin"] });
 
