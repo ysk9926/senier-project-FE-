@@ -40,7 +40,11 @@ export default function LoginForm() {
             },
           })}
           type="text"
-          className=" focus:outline-0 focus:border-color_accent_text w-LoginInput h-LoginInput border border-color_sub_text rounded-md  p-1 pl-4 placeholder:text-sm "
+          className={` focus:outline-0 focus:border-color_accent_text w-loginInput h-loginInput border border-color_sub_text rounded-md  p-1 pl-4 placeholder:text-sm
+          ${
+            errors.ID?.message &&
+            "border-red-600 border-[3px] placeholder:text-red-600"
+          }`}
           placeholder="아이디"
         />
         {/* 비밀번호 */}
@@ -49,22 +53,44 @@ export default function LoginForm() {
             required: "비밀번호를 입력해주세요",
           })}
           type="password"
-          className=" focus:outline-0  focus:border-color_accent_text  w-LoginInput h-LoginInput border border-color_sub_text rounded-md mt-5 p-1 pl-4 placeholder:text-sm"
+          className={` focus:outline-0  focus:border-color_accent_text  w-loginInput h-loginInput border border-color_sub_text rounded-md mt-5 p-1 pl-4 placeholder:text-sm
+          ${
+            errors.password?.message &&
+            "border-red-600 border-[3px] placeholder:text-red-600"
+          }`}
           placeholder="비밀번호"
         />
         {/* 에러 Form */}
         <div className={` mt-3 flex flex-col items-center `}>
-          <ErrorForm message={errors.ID?.message} />
-          <ErrorForm message={errors.password?.message} />
+          {errors.ID?.message && <ErrorForm message={errors.ID?.message} />}
+          {errors.password?.message && (
+            <ErrorForm message={errors.password?.message} />
+          )}
         </div>
-        {/* 로그인 버튼 */}
-        <div
-          //   type="submit"
-          className=" w-LoginInput h-LoginInput p-1 mt-2 rounded-md text-black bg-color_main_text
-           flex justify-center items-center"
-          // onClick={LoginHandler}
-        >
-          로그인
+        {/* 아이디 비밀번호 찾기 */}
+        <div className=" flex justify-end items-center w-loginInput pr-3">
+          <span className=" text-[11px] text-white">아이디 찾기</span>
+        </div>
+        {/* 로그인 & 회원가입 버튼 */}
+        <div className=" flex justify-between items-center w-loginInput h-loginInput mt-2">
+          {/* 로그인 버튼 */}
+          <div
+            //   type="submit"
+            className=" w-[140px] h-loginInput bg-[#BCC7B2] text-[#32352f] rounded-md font-semibold
+          flex justify-center items-center"
+            // onClick={LoginHandler}
+          >
+            로그인
+          </div>
+          {/* 회원가입 버튼 */}
+          <div
+            //   type="submit"
+            className=" w-[140px] h-loginInput bg-[#BCC7B2] text-[#32352f] rounded-md font-semibold
+          flex justify-center items-center"
+            // onClick={LoginHandler}
+          >
+            회원가입
+          </div>
         </div>
       </form>
     </div>

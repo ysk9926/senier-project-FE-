@@ -1,7 +1,6 @@
 import VolControler from "@/components/mainPg/btnFunction/bgVolBtn";
 import VolMute from "@/components/mainPg/controlers";
 import MenueBtn from "@/components/mainPg/menueBtn";
-import IMolla from "@/icon/IMolla";
 import ISetting from "@/icon/ISetting";
 import ISuffle from "@/icon/ISuffle";
 import IVolCustom from "@/icon/IVolCustom";
@@ -9,6 +8,7 @@ import Logo from "@/icon/logo";
 
 import BgImg from "@/components/mainPg/bgImg";
 import LoginPg from "@/components/mainPg/Auth/loginPg";
+import LoginBtn from "@/components/mainPg/btnFunction/loginBtn";
 
 export default function Home() {
   return (
@@ -46,9 +46,8 @@ export default function Home() {
           <div className=" w-[18px] fill-white">
             <IVolCustom />
           </div>
-          <div className=" w-[18px] fill-white">
-            <IMolla />
-          </div>
+          {/* user */}
+          <LoginBtn />
           <div className=" w-[18px] fill-white">
             <ISetting />
           </div>
