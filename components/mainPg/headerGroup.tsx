@@ -14,10 +14,7 @@ export default function HeaderGroup() {
         </div>
       </div>
       {/* 유저 & 시계 */}
-      <div className=" w-titleSize flex justify-center items-start">
-        {/* 유저명 */}
-        <span className=" mr-3">승규님 안녕하세요</span>
-      </div>
+      <div className=" w-titleSize flex justify-center items-start"></div>
       {/* 음량조절 및 메뉴 */}
       <div className=" w-titleSize flex justify-between items-center px-8 ">
         {/* 음량조절 */}
