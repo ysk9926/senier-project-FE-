@@ -7,6 +7,7 @@ import {
   ILoginData,
   LoginMutation,
 } from "@/documents/mutations/Login.mutation";
+import { logUserIn } from "@/apollo";
 
 // 로그인 폼
 interface ILoginForm {
@@ -43,6 +44,7 @@ export default function LoginForm() {
     }
     if (token) {
       // 로그인 헤더로 전송
+      logUserIn(token);
     }
   };
   const [loginMutation, { loading: loginLoading }] = useMutation(

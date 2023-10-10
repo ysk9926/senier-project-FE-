@@ -2,25 +2,62 @@
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import ErrorForm from "./ErrorForm";
+import { useMutation } from "@apollo/client";
+import {
+  ISignupData,
+  SignupMutation,
+} from "@/documents/mutations/Signup.mutation";
 
 interface ISignupForm {
-  Email: string;
+  userId: string;
   username: string;
   password: string;
   passwordCheck: string;
+  result: string;
 }
 
 export default function SignUpForm() {
   const {
     register,
-    formState: { errors },
+    formState: { errors, isValid },
     handleSubmit,
+    setError,
     watch,
+    getValues,
+    clearErrors,
   } = useForm<ISignupForm>({
     mode: "onChange",
   });
-  const onSubmitValid: SubmitHandler<ISignupForm> = () => {
-    return null;
+
+  const onCompleted = (data: ISignupData) => {
+    const {
+      createAccount: { ok, error },
+    } = data;
+    if (!ok) {
+      return setError("result", {
+        message: error,
+      });
+    }
+  };
+  const [signupMutation, { loading: signupLoading }] = useMutation(
+    SignupMutation,
+    { onCompleted }
+  );
+  const onSubmitValid: SubmitHandler<ISignupForm> = (data) => {
+    if (signupLoading) {
+      return;
+    }
+    const { userId, username, password } = getValues();
+    signupMutation({
+      variables: {
+        userId,
+        username,
+        password,
+      },
+    });
+  };
+  const clearLoginError = () => {
+    clearErrors("result");
   };
   const watchPassword = watch("password", "");
   return (
@@ -30,11 +67,14 @@ export default function SignUpForm() {
         className=" flex flex-col mt-5"
       >
         <input
-          {...register("Email", {
+          {...register("userId", {
             required: "이메일을 입력해주세요",
             pattern: {
               value: /[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/,
               message: "이메일 형식을 지켜서 입력해주세요",
+            },
+            onChange() {
+              clearErrors();
             },
           })}
           type="text"
@@ -44,6 +84,9 @@ export default function SignUpForm() {
         <input
           {...register("username", {
             required: "유저명을 입력해주세요",
+            onChange() {
+              clearErrors();
+            },
           })}
           type="text"
           placeholder="유저명"
@@ -69,14 +112,16 @@ export default function SignUpForm() {
         />
         {/* 에러 Form */}
         <div className={` mt-3 flex flex-col items-center `}>
-          <ErrorForm message={errors.Email?.message} />
+          <ErrorForm message={errors.userId?.message} />
           <ErrorForm message={errors.username?.message} />
           <ErrorForm message={errors.password?.message} />
           <ErrorForm message={errors.passwordCheck?.message} />
         </div>
         <button
           type="submit"
-          className=" w-LoginInput h-LoginInput p-1 mt-2 rounded-md text-white bg-color_main_text"
+          className={` w-LoginInput h-LoginInput p-1 mt-2 rounded-md text-white bg-color_main_text ${
+            isValid ? "" : "pointer-events-none opacity-50"
+          }`}
         >
           회원가입
         </button>
