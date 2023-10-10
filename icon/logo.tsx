@@ -6,8 +6,8 @@ export default function Logo() {
           id="CogniCafe"
           transform="translate(82 127)"
           fill="#bcc7b2"
-          font-size="36"
-          font-family="Qamila"
+          fontSize="36"
+          fontFamily="Qamila"
         >
           <tspan x="0" y="0">
             CogniCafe
@@ -18,8 +18,8 @@ export default function Logo() {
           data-name="”"
           transform="translate(260 137)"
           fill="#bcc7b2"
-          font-size="36"
-          font-family="Qamila"
+          fontSize="36"
+          fontFamily="Qamila"
         >
           <tspan x="0" y="0">
             ”
@@ -30,8 +30,8 @@ export default function Logo() {
           data-name="”"
           transform="translate(61 137)"
           fill="#bcc7b2"
-          font-size="36"
-          font-family="Qamila"
+          fontSize="36"
+          fontFamily="Qamila"
         >
           <tspan x="0" y="0">
             ”
