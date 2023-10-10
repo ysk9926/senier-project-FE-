@@ -3,24 +3,10 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import ErrorForm from "./ErrorForm";
 import { gql, useMutation } from "@apollo/client";
-
-// 뮤테이션
-const LoginMutation = gql`
-  mutation login($userId: String!, $password: String!) {
-    login(userId: $userId, password: $password) {
-      ok
-      error
-      token
-    }
-  }
-`;
-interface ILoginData {
-  login: {
-    ok: boolean;
-    error: string;
-    token: string;
-  };
-}
+import {
+  ILoginData,
+  LoginMutation,
+} from "@/documents/mutations/Login.mutation";
 
 // 로그인 폼
 interface ILoginForm {
