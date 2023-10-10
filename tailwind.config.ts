@@ -11,12 +11,15 @@ const config: Config = {
       width: {
         titleSize: "320px",
         img_2xl: "520px",
+        loginInput: "300px",
       },
       height: {
         img_2xl: "420px",
+        loginInput: "45px",
       },
       colors: {
         color_main_black: "#292929",
+        color_main_text: "#58644D",
       },
     },
   },
