@@ -5,15 +5,15 @@ import {
   IAllInquiryData,
 } from "@/documents/queries/allInquiry.queries";
 import useUser from "./useMe";
-import { useMutation, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import {
   ISeeUnAnswerInquiryData,
-  SeeUnAnswerInquiryMutation,
-} from "@/documents/mutations/seeUnAnswerInquiry.mutation";
+  SeeUnAnswerInquiryQuery,
+} from "@/documents/queries/seeUnAnswerInquiry.mutation";
 import {
   ISeeAnswerInquiryData,
-  SeeAnswerInquiryMutation,
-} from "@/documents/mutations/seeAnswerInquiry.mutation";
+  SeeAnswerInquiryQuery,
+} from "@/documents/queries/seeAnswerInquiry.query";
 import { useEffect } from "react";
 
 // 전체 문의 데이터
@@ -35,34 +35,36 @@ export function useAllInquiry(): IAllInquiryData {
   return allInquiryData;
 }
 
-// 열린 문의 데이터
-export function useSeeUnAnswerInquiry(): ISeeUnAnswerInquiryData | undefined {
+// 열린 문의
+export function useSeeUnAnswerInquiry(): ISeeUnAnswerInquiryData {
   const user = useUser();
-  const [seeUnAnswerInquiry, { data: seeUnAnswerInquiryData }] = useMutation(
-    SeeUnAnswerInquiryMutation
-  );
+  const { data: SeeUnAnswerInquiryData, refetch: refetchSeeUnAnswerInquiry } =
+    useQuery(SeeUnAnswerInquiryQuery, {
+      skip: !user?.me.admin,
+    });
 
   useEffect(() => {
     if (user?.me.admin) {
-      seeUnAnswerInquiry();
+      refetchSeeUnAnswerInquiry();
     }
   }, [user]);
 
-  return seeUnAnswerInquiryData;
+  return SeeUnAnswerInquiryData;
 }
 
-// 닫힌 문의 데이터
-export function useSeeAnswerInquiry(): ISeeAnswerInquiryData | undefined {
+// 닫힌 문의
+export function useSeeAnswerInquiry(): ISeeAnswerInquiryData {
   const user = useUser();
-  const [seeAnswerInquiry, { data: seeAnswerInInquiryData }] = useMutation(
-    SeeAnswerInquiryMutation
-  );
+  const { data: SeeAnswerInquiryData, refetch: refetchSeeAnswerInquiryData } =
+    useQuery(SeeAnswerInquiryQuery, {
+      skip: !user?.me.admin,
+    });
 
   useEffect(() => {
     if (user?.me.admin) {
-      seeAnswerInquiry();
+      refetchSeeAnswerInquiryData();
     }
   }, [user]);
 
-  return seeAnswerInInquiryData;
+  return SeeAnswerInquiryData;
 }

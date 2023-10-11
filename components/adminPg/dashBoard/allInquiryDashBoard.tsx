@@ -5,31 +5,23 @@ import {
   useSeeAnswerInquiry,
   useSeeUnAnswerInquiry,
 } from "@/components/hook/useInquiry";
-import { IAllInquiryData } from "@/documents/queries/allInquiry.queries";
 
 export default function AllInquiryDashBoard() {
   const all = useAllInquiry();
-  const close = useSeeUnAnswerInquiry();
-  const open = useSeeAnswerInquiry();
+  const open = useSeeUnAnswerInquiry();
+  const close = useSeeAnswerInquiry();
 
-  interface ITest {
-    id: number;
-    title: string;
-    contents: string;
-    isClosed: boolean;
-    user: {
-      username: string;
-    };
-  }
   const allArr = all?.allInquiry || [];
+  const openArr = open?.seeUnAnswerInquiry || [];
+  const closeArr = close?.seeAnswerInquiry || [];
 
-  console.log(all, close, open);
+  console.log(allArr, open, close);
 
   return (
     <div>
-      {allArr.map((item) => {
-        return <div> {item.title} </div>;
-      })}
+      {allArr.length}
+      {openArr.length}
+      {closeArr.length}
     </div>
   );
 }

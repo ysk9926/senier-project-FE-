@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
-export const AllInquiryQuery = gql`
-  query AllInquiry {
-    allInquiry {
+export const SeeAnswerInquiryQuery = gql`
+  query SeeAnswerInquiry {
+    seeAnswerInquiry {
       id
       title
       contents
@@ -14,8 +14,8 @@ export const AllInquiryQuery = gql`
   }
 `;
 
-export interface IAllInquiryData {
-  allInquiry: Array<{
+export interface ISeeAnswerInquiryData {
+  seeAnswerInquiry: Array<{
     id: number;
     title: string;
     contents: string;
