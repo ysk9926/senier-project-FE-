@@ -2,7 +2,7 @@
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import ErrorForm from "./ErrorForm";
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import {
   ILoginData,
   LoginMutation,
@@ -23,6 +23,10 @@ export default function LoginForm() {
   const [pgState, setPgState] = useRecoilState(AuthPgValue);
   const PageStateHandler = () => {
     setPgState((prevState) => (prevState === "login" ? "signup" : "login"));
+  };
+  const [AuthCheck, setAuthCheck] = useRecoilState(AuthFormValue);
+  const AuthCheckHandler = () => {
+    setAuthCheck(false);
   };
   // 로그인 폼
   const {
@@ -70,6 +74,8 @@ export default function LoginForm() {
           password,
         },
       });
+      // 로그인창 닫기
+      AuthCheckHandler();
       // 로그인 결과를 콘솔에 출력
       console.log("로그인 결과:", result);
     } catch (error) {

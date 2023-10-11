@@ -10,7 +10,10 @@ import { setContext } from "@apollo/client/link/context";
 
 export const TOKEN = "TOKEN";
 
-export const LoggedInVar = makeVar(Boolean(localStorage.getItem(TOKEN)));
+// export const LoggedInVar = makeVar(Boolean(localStorage.getItem(TOKEN)));
+export const LoggedInVar = makeVar(
+  Boolean(typeof localStorage !== "undefined" && localStorage.getItem(TOKEN))
+);
 
 export const logUserIn = (token: string) => {
   localStorage.setItem(TOKEN, token);
