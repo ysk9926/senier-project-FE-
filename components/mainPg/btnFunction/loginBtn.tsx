@@ -1,7 +1,7 @@
 "use client";
 
 import { AuthFormValue } from "@/atom";
-import IMolla from "@/icon/IMolla";
+import IPeople from "@/icon/IPeople";
 import { useRecoilState } from "recoil";
 
 export default function LoginBtn() {
@@ -12,8 +12,11 @@ export default function LoginBtn() {
   };
 
   return (
-    <div className=" w-[18px] fill-white" onClick={AuthFormValueHandler}>
-      <IMolla />
+    <div
+      className=" w-[18px] h-[18px] fill-white"
+      onClick={AuthFormValueHandler}
+    >
+      <IPeople />
     </div>
   );
 }

@@ -68,17 +68,17 @@ export default function SignUpForm() {
       >
         <input
           {...register("userId", {
-            required: "이메일을 입력해주세요",
-            pattern: {
-              value: /[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/,
-              message: "이메일 형식을 지켜서 입력해주세요",
-            },
+            required: "아이디를 입력해주세요",
+            // pattern: {
+            //   value: /[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/,
+            //   message: "이메일 형식을 지켜서 입력해주세요",
+            // },
             onChange() {
               clearErrors();
             },
           })}
           type="text"
-          placeholder="이메일"
+          placeholder="아이디"
           className=" focus:outline-0 focus:border-color_accent_text w-LoginInput h-LoginInput border border-color_sub_text rounded-md  p-1 pl-4 placeholder:text-sm "
         />
         <input

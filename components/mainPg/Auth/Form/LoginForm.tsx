@@ -8,6 +8,8 @@ import {
   LoginMutation,
 } from "@/documents/mutations/Login.mutation";
 import { logUserIn } from "@/apollo";
+import { useRecoilState } from "recoil";
+import { AuthFormValue, AuthPgValue } from "@/atom";
 
 // 로그인 폼
 interface ILoginForm {
@@ -17,6 +19,11 @@ interface ILoginForm {
 }
 
 export default function LoginForm() {
+  // 페이지 상태 관리
+  const [pgState, setPgState] = useRecoilState(AuthPgValue);
+  const PageStateHandler = () => {
+    setPgState((prevState) => (prevState === "login" ? "signup" : "login"));
+  };
   // 로그인 폼
   const {
     register,
@@ -82,10 +89,10 @@ export default function LoginForm() {
         <input
           {...register("userId", {
             required: "아이디를 입력해주세요",
-            pattern: {
-              value: /[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/,
-              message: "이메일 형식을 지켜서 입력해주세요",
-            },
+            // pattern: {
+            //   value: /[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/,
+            //   message: "이메일 형식을 지켜서 입력해주세요",
+            // },
           })}
           type="text"
           className={` focus:outline-0 focus:border-color_accent_text w-loginInput h-loginInput border border-color_sub_text rounded-md  p-1 pl-4 placeholder:text-sm
@@ -137,7 +144,7 @@ export default function LoginForm() {
             //   type="submit"
             className=" w-[140px] h-loginInput bg-[#BCC7B2] text-[#32352f] rounded-md font-semibold
           flex justify-center items-center"
-            // onClick={LoginHandler}
+            onClick={PageStateHandler}
           >
             회원가입
           </div>
