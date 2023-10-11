@@ -23,6 +23,7 @@ export const logUserIn = (token: string) => {
 export const logUserOut = () => {
   localStorage.removeItem(TOKEN);
   window.location.reload();
+  console.log("로그아웃!!");
 };
 
 const httpLink = createHttpLink({

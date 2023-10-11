@@ -3,6 +3,7 @@ import LoginPg from "@/components/mainPg/Auth/loginPg";
 import HeaderGroup from "@/components/mainPg/headerGroup";
 import ControlbarGroup from "@/components/mainPg/controlbarGroup";
 import BgImgBtn from "@/components/mainPg/btnFunction/bgImgBtn";
+import Test from "@/components/function/text";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <LoginPg />
       {/* whitenoise - btn */}
       <BgImgBtn />
+      <Test />
     </div>
   );
 }

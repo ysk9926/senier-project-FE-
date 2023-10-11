@@ -1,12 +1,6 @@
 export default function IPeople() {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="white"
-      viewBox="0 0 24 24"
-      strokeWidth="4"
-      stroke="white"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeWidth="4">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

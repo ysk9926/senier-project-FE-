@@ -18,8 +18,8 @@ export default function LoginPg() {
     authValue && (
       <div className=" flex justify-center items-center absolute bg-black z-50 bg-opacity-60 w-full h-full top-0">
         {/* login-form */}
-        <div className=" flex flex-col items-center w-[600px] h-[350px] bg-opacity-90 bg-[#32352f] rounded-md">
-          <span className=" mt-10 text-xl font-semibold text-white ">
+        <div className=" py-8 flex flex-col items-center w-[500px]  bg-opacity-90 bg-[#32352f] rounded-md">
+          <span className=" text-xl font-semibold text-white ">
             {pgState === "login" ? "로그인" : "회원가입"}
           </span>
           {pgState === "login" ? <LoginForm /> : <SignUpForm />}

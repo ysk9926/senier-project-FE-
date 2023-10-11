@@ -28,19 +28,23 @@ export default function LoginForm() {
   const AuthCheckHandler = () => {
     setAuthCheck(false);
   };
+  // 회원가입 유저 정보 불러오기
+  const signupUserId = sessionStorage.getItem("userId");
+  const signupUserPw = sessionStorage.getItem("password");
+
   // 로그인 폼
   const {
     register,
-    formState: { errors },
+    formState: { errors, isValid },
     handleSubmit,
     setError,
     getValues,
   } = useForm<ILoginForm>({
     mode: "onChange",
-    // defaultValues: {
-    //   username: location?.state?.username || "",
-    //   password: location?.state?.password || "",
-    // },
+    defaultValues: {
+      userId: signupUserId || "",
+      password: signupUserPw || "",
+    },
   });
 
   // 로그인 뮤테이션
@@ -132,28 +136,31 @@ export default function LoginForm() {
         </div>
         {/* 아이디 비밀번호 찾기 */}
         <div className=" flex justify-end items-center w-loginInput pr-3">
-          <span className=" text-[11px] text-white">아이디 찾기</span>
+          <span className=" text-[11px] text-white opacity-60 hover:opacity-100">
+            아이디 찾기
+          </span>
         </div>
         {/* 로그인 & 회원가입 버튼 */}
-        <div className=" flex justify-between items-center w-loginInput h-loginInput mt-2">
+        <div className=" flex justify-between items-center w-loginInput h-loginInput mt-1">
           {/* 로그인 버튼 */}
           <button
             type="submit"
-            className=" w-[140px] h-loginInput bg-[#BCC7B2] text-[#32352f] rounded-md font-semibold
-          flex justify-center items-center"
+            //   className=" w-[140px] h-loginInput bg-[#BCC7B2] text-[#32352f] rounded-md font-semibold
+            // flex justify-center items-center"
+            className={` w-[140px] h-[35px] p-1 rounded-md text-white bg-color_main_text ${
+              isValid ? "" : "pointer-events-none opacity-50"
+            }`}
             // onClick={LoginHandler}
           >
             로그인
           </button>
           {/* 회원가입 버튼 */}
-          <div
-            //   type="submit"
-            className=" w-[140px] h-loginInput bg-[#BCC7B2] text-[#32352f] rounded-md font-semibold
-          flex justify-center items-center"
+          <button
+            className={` w-[140px] h-[35px] p-1 rounded-md text-white opacity-60 hover:opacity-100 bg-color_main_text`}
             onClick={PageStateHandler}
           >
             회원가입
-          </div>
+          </button>
         </div>
       </form>
     </div>
