@@ -7,8 +7,10 @@ import { useReactiveVar } from "@apollo/client";
 import { LoggedInVar } from "@/apollo";
 import useUser from "@/components/hook/useMe";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LoginBtn() {
+  const router = useRouter();
   // 로그인창 상태 관리
   const [authValue, setAuthValue] = useRecoilState(AuthFormValue);
   const AuthCheck = useReactiveVar(LoggedInVar);
@@ -17,6 +19,9 @@ export default function LoginBtn() {
     setAuthValue((pre) => !pre);
   };
   const MyPageValueHandler = () => {};
+  const AdminPageValueHandler = () => {
+    router.push("/admin");
+  };
 
   // 유저 아바타 설정
   const userData = useUser();
@@ -27,18 +32,15 @@ export default function LoginBtn() {
       setAvatar(userData.me.avatar);
     }
   }, [userData]);
-  if (!userData) {
-    console.log("데이터가 없음");
-  }
 
   return AuthCheck ? (
     // 로그인 상태 -> 유저 프로필
     <div
       className=" w-[18px] h-[18px] rounded-full"
-      onClick={MyPageValueHandler}
+      onClick={AdminPageValueHandler}
     >
-      <img src={avatar} alt="유저 아바타" />
-      {userData.me.admin ? (
+      {avatar === "" ? <IPeople /> : <img src={avatar} alt="유저 아바타" />}
+      {userData?.me?.admin ? (
         // 관리자페이지로 이동
         <div>관리자</div>
       ) : (
