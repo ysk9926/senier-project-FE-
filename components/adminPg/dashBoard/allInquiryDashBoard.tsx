@@ -5,6 +5,9 @@ import {
   useSeeAnswerInquiry,
   useSeeUnAnswerInquiry,
 } from "@/components/hook/useInquiry";
+import { CircularProgress } from "@nextui-org/react";
+import { useEffect, useState } from "react";
+import Circle from "./test";
 
 export default function AllInquiryDashBoard() {
   const all = useAllInquiry();
@@ -18,10 +21,9 @@ export default function AllInquiryDashBoard() {
   console.log(allArr, open, close);
 
   return (
-    <div>
-      {allArr.length}
-      {openArr.length}
-      {closeArr.length}
+    <div className=" stroke-green-500">
+      {/* progress */}
+      <Circle />
     </div>
   );
 }
