@@ -2,11 +2,14 @@
 
 import { LoggedInVar, logUserOut } from "@/apollo";
 import { useReactiveVar } from "@apollo/client";
+import useUser from "../hook/useMe";
 
 export default function Test() {
+  const userData = useUser();
   const Auth = useReactiveVar(LoggedInVar);
   const onClick = () => {
     console.log(Auth);
+    console.log(userData);
   };
 
   return (
