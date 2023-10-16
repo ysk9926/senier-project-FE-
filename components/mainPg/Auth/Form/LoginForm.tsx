@@ -52,6 +52,7 @@ export default function LoginForm() {
     const {
       login: { ok, error, token },
     } = data;
+    console.log(data);
     if (!ok) {
       return setError("result", {
         message: error,

@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const AddBgMusicMutation = gql`
-  mutation AddBgMusic($bgMusicName: String!, $bgMusicUrl: String!) {
+  mutation DeleteBgMusic($bgMusicName: String!, $bgMusicUrl: Upload) {
     addBgMusic(bgMusicName: $bgMusicName, bgMusicURL: $bgMusicUrl) {
       ok
       error

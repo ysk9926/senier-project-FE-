@@ -16,8 +16,6 @@ export default function AllInquiryDashBoard() {
   const openArr = open?.seeUnAnswerInquiry || [];
   const closeArr = close?.seeAnswerInquiry || [];
 
-  console.log(allArr, open, close);
-
   return (
     <div className="flex space-x-2">
       {/* progress */}

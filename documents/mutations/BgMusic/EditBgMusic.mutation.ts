@@ -4,15 +4,15 @@ export const EditBgMusicMutation = gql`
   mutation EditBgMusic(
     $editBgMusicId: Int!
     $bgMusicName: String
-    $bgMusicUrl: String
+    $bgMusicUrl: Upload
   ) {
     editBgMusic(
       id: $editBgMusicId
       bgMusicName: $bgMusicName
       bgMusicURL: $bgMusicUrl
     ) {
-      error
       ok
+      error
     }
   }
 `;
