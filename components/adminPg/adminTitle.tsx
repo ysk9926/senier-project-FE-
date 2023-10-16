@@ -1,6 +1,5 @@
 "use client";
 
-import { LoggedInVar } from "@/apollo";
 import useUser from "../hook/useMe";
 
 export default function AdminTitle() {

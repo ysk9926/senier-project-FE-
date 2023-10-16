@@ -1,7 +1,7 @@
 "use client";
 
 import { LoggedInVar, logUserOut } from "@/apollo";
-import { IMeData, MeQuery } from "@/documents/queries/me.quries";
+import { IMeData, MeQuery } from "@/documents/queries/me.query";
 import { useQuery, useReactiveVar } from "@apollo/client";
 import { useEffect } from "react";
 
