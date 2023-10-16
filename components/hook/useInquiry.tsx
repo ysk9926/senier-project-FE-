@@ -3,7 +3,7 @@
 import {
   AllInquiryQuery,
   IAllInquiryData,
-} from "@/documents/queries/allInquiry.queries";
+} from "@/documents/queries/allInquiry.query";
 import useUser from "./useMe";
 import { useQuery } from "@apollo/client";
 import {
@@ -19,7 +19,7 @@ import { useEffect } from "react";
 // 전체 문의 데이터
 export function useAllInquiry(): IAllInquiryData {
   const user = useUser();
-  const { data: allInquiryData, refetch: refetchAllInquiry } = useQuery(
+  const { data: allInqueryData, refetch: refetchAllInquery } = useQuery(
     AllInquiryQuery,
     {
       skip: !user?.me.admin,
@@ -28,11 +28,11 @@ export function useAllInquiry(): IAllInquiryData {
 
   useEffect(() => {
     if (user?.me.admin) {
-      refetchAllInquiry();
+      refetchAllInquery();
     }
   }, [user]);
 
-  return allInquiryData;
+  return allInqueryData;
 }
 
 // 열린 문의

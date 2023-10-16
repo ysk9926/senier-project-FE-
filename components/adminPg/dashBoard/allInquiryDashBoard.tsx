@@ -23,15 +23,15 @@ export default function AllInquiryDashBoard() {
       {/* progress */}
       <div className=" flex flex-col items-center w-64 bg-[#222] rounded-xl">
         <h2 className=" text-white text-sm mt-3 font-semibold">문의하기</h2>
-        <Circle cnt={Number(allArr.length)} />
+        <Circle cnt={Number(allArr.length)} maxVal={100} />
       </div>
       <div className=" flex flex-col items-center w-64 h-36 bg-[#222] rounded-xl">
         <h2 className=" text-white text-sm mt-3 font-semibold">답변 전</h2>
-        <Circle cnt={Number(openArr.length)} />
+        <Circle cnt={Number(openArr.length)} maxVal={allArr.length} />
       </div>
       <div className=" flex flex-col items-center w-64 h-36 bg-[#222] rounded-xl">
         <h2 className=" text-white text-sm mt-3 font-semibold">답변 완료</h2>
-        <Circle cnt={Number(closeArr.length)} />
+        <Circle cnt={Number(closeArr.length)} maxVal={allArr.length} />
       </div>
     </div>
   );
