@@ -22,15 +22,15 @@ export default function AllInquiryDashBoard() {
     <div className="flex space-x-2">
       {/* progress */}
       <div className=" flex flex-col items-center w-64 bg-[#222] rounded-xl">
-        <h2 className=" text-white text-sm mt-3">문의하기</h2>
+        <h2 className=" text-white text-sm mt-3 font-semibold">문의하기</h2>
         <Circle cnt={Number(allArr.length)} />
       </div>
       <div className=" flex flex-col items-center w-64 h-36 bg-[#222] rounded-xl">
-        <h2 className=" text-white text-sm mt-3">답변 전</h2>
+        <h2 className=" text-white text-sm mt-3 font-semibold">답변 전</h2>
         <Circle cnt={Number(openArr.length)} />
       </div>
       <div className=" flex flex-col items-center w-64 h-36 bg-[#222] rounded-xl">
-        <h2 className=" text-white text-sm mt-3">답변 완료</h2>
+        <h2 className=" text-white text-sm mt-3 font-semibold">답변 완료</h2>
         <Circle cnt={Number(closeArr.length)} />
       </div>
     </div>
