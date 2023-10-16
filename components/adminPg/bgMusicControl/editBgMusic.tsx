@@ -1,18 +1,23 @@
 "use client";
 
+import { EditBgMusicMutation } from "@/documents/mutations/BgMusic/EditBgMusic.mutation";
+import { useMutation } from "@apollo/client";
 import { PopoverContent } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
 import { useState, ChangeEvent } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 export default function EditBgContent({
-  filename,
-  fileURL,
+  bgMusicName,
+  oldUrl,
+  editBgMusicId,
 }: {
-  filename: string;
-  fileURL: string;
+  bgMusicName: string;
+  oldUrl: string;
+  editBgMusicId: number;
 }) {
   // 첨부파일 placeholder
-  const [fileName, setFileName] = useState(fileURL || "");
+  const [fileName, setFileName] = useState(oldUrl || "");
   // 첨부파일 파일명으로 변경
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files && e.target.files[0];
@@ -20,18 +25,47 @@ export default function EditBgContent({
       setFileName(selectedFile.name);
     }
   };
-  const onSubmitValid = () => {};
+
+  // 수정 뮤테이션
+  const [editBgMusicMutation, { loading: editBgMusicLoading }] =
+    useMutation(EditBgMusicMutation);
+  const onSubmitValid: SubmitHandler<IEditBgMusicForm> = async (data) => {
+    if (editBgMusicLoading) {
+      return;
+    }
+    const { bgMusicName, bgMusicUrl } = getValues();
+    try {
+      const result = await editBgMusicMutation({
+        variables: {
+          editBgMusicId,
+          bgMusicName,
+          bgMusicUrl: bgMusicUrl[0],
+        },
+      });
+      console.log("수정 결과", result);
+      window.location.reload();
+      // 클라이언트 캐시 업데이트 로직
+    } catch (error) {
+      // 오류 처리 로직
+      console.log("수정 결과", error);
+    }
+  };
 
   // 파일 선택 폼
   interface IEditBgMusicForm {
-    filename: string;
-    file: File;
+    bgMusicName: string;
+    bgMusicUrl: FileList;
   }
   const { register, handleSubmit, getValues } = useForm<IEditBgMusicForm>({
     defaultValues: {
-      filename,
+      bgMusicName,
     },
   });
+
+  const onclick = () => {
+    const { bgMusicName, bgMusicUrl } = getValues();
+    console.log(bgMusicUrl);
+  };
 
   return (
     <PopoverContent className="rounded-md w-[250px]">
@@ -40,7 +74,7 @@ export default function EditBgContent({
         <form onSubmit={handleSubmit(onSubmitValid)}>
           {/* 파일 이름 */}
           <input
-            {...register("filename")}
+            {...register("bgMusicName")}
             className="border border-gray-300 w-[218px] h-7 placeholder:pl-2 text-xs placeholder:text-gray-300 mt-2 outline-none pl-2"
             type="text"
             placeholder="파일명"
@@ -60,7 +94,7 @@ export default function EditBgContent({
               찾기
             </label>
             <input
-              {...register("file")}
+              {...register("bgMusicUrl")}
               type="file"
               accept="audio/*"
               id="file"
@@ -74,6 +108,7 @@ export default function EditBgContent({
           >
             수정하기
           </button>
+          <div onClick={onclick}>눌러</div>
         </form>
       </div>
     </PopoverContent>

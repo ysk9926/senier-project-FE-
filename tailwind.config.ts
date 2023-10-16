@@ -25,6 +25,11 @@ const config: Config = {
       },
     },
   },
-  plugins: [nextui(), require("tailwind-scrollbar")],
+  plugins: [
+    nextui({
+      addCommonColors: true,
+    }),
+    require("tailwind-scrollbar"),
+  ],
 };
 export default config;
