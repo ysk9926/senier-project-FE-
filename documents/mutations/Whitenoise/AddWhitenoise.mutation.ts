@@ -3,16 +3,16 @@ import { gql } from "@apollo/client";
 export const AddWhitenoiseMutation = gql`
   mutation CreateWhitenoise(
     $whitenoiseName: String!
-    $whitenoiseUrl: String!
     $requirePoints: Int
+    $whitenoiseUrl: Upload
   ) {
     createWhitenoise(
       whitenoiseName: $whitenoiseName
-      whitenoiseURL: $whitenoiseUrl
       requirePoints: $requirePoints
+      whitenoiseURL: $whitenoiseUrl
     ) {
-      error
       ok
+      error
     }
   }
 `;

@@ -1,19 +1,21 @@
 "use client";
 
-import { EditBgMusicMutation } from "@/documents/mutations/BgMusic/EditBgMusic.mutation";
+import { EditWhitenoiseMutation } from "@/documents/mutations/Whitenoise/EditWhitenoise.mutation";
 import { useMutation } from "@apollo/client";
 import { PopoverContent } from "@nextui-org/react";
 import { useState, ChangeEvent } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-export default function EditBgContent({
-  bgMusicName,
+export default function EditWhitenoise({
+  whitenoiseName,
   oldUrl,
-  editBgMusicId,
+  editWhitenoiseId,
+  oldRequirePoints,
 }: {
-  bgMusicName: string;
+  whitenoiseName: string;
   oldUrl: string;
-  editBgMusicId: number;
+  editWhitenoiseId: number;
+  oldRequirePoints: number | null;
 }) {
   // 첨부파일 placeholder
   const [fileName, setFileName] = useState(oldUrl || "");
@@ -26,19 +28,20 @@ export default function EditBgContent({
   };
 
   // 수정 뮤테이션
-  const [editBgMusicMutation, { loading: editBgMusicLoading }] =
-    useMutation(EditBgMusicMutation);
-  const onSubmitValid: SubmitHandler<IEditBgMusicForm> = async (data) => {
-    if (editBgMusicLoading) {
+  const [editWhitenoiseMutation, { loading: editWhitenoiseLoading }] =
+    useMutation(EditWhitenoiseMutation);
+  const onSubmitValid: SubmitHandler<IEditWhitenoiseForm> = async (data) => {
+    if (editWhitenoiseLoading) {
       return;
     }
-    const { bgMusicName, bgMusicUrl } = getValues();
+    const { whitenoiseName, whitenoiseUrl, requirePoints } = getValues();
     try {
-      const result = await editBgMusicMutation({
+      const result = await editWhitenoiseMutation({
         variables: {
-          editBgMusicId,
-          bgMusicName,
-          bgMusicUrl: bgMusicUrl[0],
+          editWhitenoiseId,
+          whitenoiseName,
+          whitenoiseUrl: whitenoiseUrl[0],
+          requirePoints: Number(requirePoints),
         },
       });
       console.log("수정 결과", result);
@@ -51,13 +54,15 @@ export default function EditBgContent({
   };
 
   // 파일 선택 폼
-  interface IEditBgMusicForm {
-    bgMusicName: string;
-    bgMusicUrl: FileList;
+  interface IEditWhitenoiseForm {
+    whitenoiseName: string;
+    whitenoiseUrl: FileList;
+    requirePoints: number | null;
   }
-  const { register, handleSubmit, getValues } = useForm<IEditBgMusicForm>({
+  const { register, handleSubmit, getValues } = useForm<IEditWhitenoiseForm>({
     defaultValues: {
-      bgMusicName,
+      whitenoiseName,
+      requirePoints: oldRequirePoints,
     },
   });
 
@@ -68,7 +73,7 @@ export default function EditBgContent({
         <form onSubmit={handleSubmit(onSubmitValid)}>
           {/* 파일 이름 */}
           <input
-            {...register("bgMusicName")}
+            {...register("whitenoiseName")}
             className="border border-gray-300 w-[218px] h-7 text-xs placeholder:text-gray-300 mt-2 outline-none pl-2"
             type="text"
             placeholder="파일명"
@@ -88,7 +93,7 @@ export default function EditBgContent({
               찾기
             </label>
             <input
-              {...register("bgMusicUrl")}
+              {...register("whitenoiseUrl")}
               type="file"
               accept="audio/*"
               id="file"
@@ -96,6 +101,14 @@ export default function EditBgContent({
               onChange={handleFileChange}
             />
           </div>
+          {/* 필요 포인트 */}
+          <input
+            {...register("requirePoints")}
+            className="border border-gray-300 w-[218px] h-7 text-xs placeholder:text-gray-300 mt-2 outline-none pl-2"
+            type="number"
+            step="10"
+            placeholder="요구 포인트"
+          />
           <div className=" w-full flex justify-center items-center">
             <button
               type="submit"
