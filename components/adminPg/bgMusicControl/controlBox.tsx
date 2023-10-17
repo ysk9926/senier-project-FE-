@@ -1,3 +1,4 @@
+import AddBgMusic from "./addBgMusic";
 import AllBgMusicData from "./allBgMusic";
 
 export default function BgMusicControlBox() {
@@ -8,8 +9,7 @@ export default function BgMusicControlBox() {
         {/* 타이틀 */}
         <h2>배경음악</h2>
         {/* 추가 */}
-
-        <span>추가</span>
+        <AddBgMusic />
       </div>
       <div className=" divide-y-1 overflow-auto scrollbar-none">
         <AllBgMusicData />
