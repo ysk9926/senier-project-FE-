@@ -1,10 +1,15 @@
-import { PopoverContent } from "@nextui-org/react";
+import { Button, PopoverContent } from "@nextui-org/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useState, ChangeEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { AddBgMusicMutation } from "@/documents/mutations/BgMusic/AddBgMusic.mutation";
+import { AllBgMusicQuery } from "@/documents/queries/allBgMusic.query";
 
-export default function AddBgMusicContent() {
+export default function AddBgMusicContent({
+  onClose,
+}: {
+  onClose: () => void;
+}) {
   // 첨부파일 placeholder
   const [fileName, setFileName] = useState("");
   // 첨부파일 파일명으로 변경
@@ -22,8 +27,12 @@ export default function AddBgMusicContent() {
   }
   const { register, handleSubmit, getValues } = useForm<IEditBgMusicForm>({});
   // 배경음악 추가 뮤테이션
-  const [addBgMusicMutation, { loading: addBgMusicLoading }] =
-    useMutation(AddBgMusicMutation);
+  const [addBgMusicMutation, { loading: addBgMusicLoading }] = useMutation(
+    AddBgMusicMutation,
+    {
+      refetchQueries: [{ query: AllBgMusicQuery }],
+    }
+  );
 
   // submit 관리
   interface IAddBgMusicForm {
@@ -42,8 +51,8 @@ export default function AddBgMusicContent() {
           bgMusicUrl: bgMusicUrl[0],
         },
       });
+      onClose();
       console.log("배경음악 추가 결과", result);
-      window.location.reload();
     } catch (error) {
       console.log("배경음악 추가 에러", error);
     }
@@ -52,7 +61,7 @@ export default function AddBgMusicContent() {
   return (
     <PopoverContent>
       <div className="px-1 py-2">
-        <div className="text-sm font-bold">수정하기</div>
+        <div className="text-sm font-bold">추가하기</div>
         <form onSubmit={handleSubmit(onSubmitValid)}>
           {/* 파일 이름 */}
           <input
@@ -85,12 +94,12 @@ export default function AddBgMusicContent() {
             />
           </div>
           <div className=" w-full flex justify-center items-center">
-            <button
+            <Button
               type="submit"
-              className=" flex justify-center items-center text-xs bg-gray-600 text-white px-4 h-7 mt-2 "
+              className=" flex justify-center items-center text-xs bg-gray-600 text-white px-4 h-7 mt-2 rounded-none "
             >
               추가하기
-            </button>
+            </Button>
           </div>
         </form>
       </div>

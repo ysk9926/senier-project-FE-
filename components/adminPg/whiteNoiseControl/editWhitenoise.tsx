@@ -1,22 +1,27 @@
 "use client";
 
 import { EditWhitenoiseMutation } from "@/documents/mutations/Whitenoise/EditWhitenoise.mutation";
+import { AllWhiteNoiseQuery } from "@/documents/queries/allWhitenoise.query";
 import { useMutation } from "@apollo/client";
 import { PopoverContent } from "@nextui-org/react";
 import { useState, ChangeEvent } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+
+interface IEditWhitenoise {
+  whitenoiseName: string;
+  oldUrl: string;
+  editWhitenoiseId: number;
+  oldRequirePoints: number | null;
+  onClose: () => void;
+}
 
 export default function EditWhitenoise({
   whitenoiseName,
   oldUrl,
   editWhitenoiseId,
   oldRequirePoints,
-}: {
-  whitenoiseName: string;
-  oldUrl: string;
-  editWhitenoiseId: number;
-  oldRequirePoints: number | null;
-}) {
+  onClose,
+}: IEditWhitenoise) {
   // 첨부파일 placeholder
   const [fileName, setFileName] = useState(oldUrl || "");
   // 첨부파일 파일명으로 변경
@@ -29,7 +34,9 @@ export default function EditWhitenoise({
 
   // 수정 뮤테이션
   const [editWhitenoiseMutation, { loading: editWhitenoiseLoading }] =
-    useMutation(EditWhitenoiseMutation);
+    useMutation(EditWhitenoiseMutation, {
+      refetchQueries: [{ query: AllWhiteNoiseQuery }],
+    });
   const onSubmitValid: SubmitHandler<IEditWhitenoiseForm> = async (data) => {
     if (editWhitenoiseLoading) {
       return;
@@ -44,9 +51,8 @@ export default function EditWhitenoise({
           requirePoints: Number(requirePoints),
         },
       });
+      onClose();
       console.log("수정 결과", result);
-      window.location.reload();
-      // 클라이언트 캐시 업데이트 로직
     } catch (error) {
       // 오류 처리 로직
       console.log("수정 결과", error);

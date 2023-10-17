@@ -3,8 +3,13 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useState, ChangeEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { AddWhitenoiseMutation } from "@/documents/mutations/Whitenoise/AddWhitenoise.mutation";
+import { AllWhiteNoiseQuery } from "@/documents/queries/allWhitenoise.query";
 
-export default function AddWhitenosieContent() {
+export default function AddWhitenosieContent({
+  onClose,
+}: {
+  onClose: () => void;
+}) {
   // 첨부파일 placeholder
   const [fileName, setFileName] = useState("");
   // 첨부파일 파일명으로 변경
@@ -24,7 +29,9 @@ export default function AddWhitenosieContent() {
   const { register, handleSubmit, getValues } = useForm<IAddWhitenoiseForm>({});
   // 배경음악 추가 뮤테이션
   const [addWhitenoiseMutation, { loading: addWhitenosieLoading }] =
-    useMutation(AddWhitenoiseMutation);
+    useMutation(AddWhitenoiseMutation, {
+      refetchQueries: [{ query: AllWhiteNoiseQuery }],
+    });
 
   const onSubmitValid: SubmitHandler<IAddWhitenoiseForm> = async (data) => {
     if (addWhitenosieLoading) {
@@ -39,8 +46,8 @@ export default function AddWhitenosieContent() {
           requirePoints: Number(requirePoints),
         },
       });
+      onClose();
       console.log("배경음악 추가 결과", result);
-      window.location.reload();
     } catch (error) {
       console.log("배경음악 추가 에러", error);
     }

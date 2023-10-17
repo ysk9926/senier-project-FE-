@@ -1,20 +1,25 @@
 "use client";
 
 import { EditBgMusicMutation } from "@/documents/mutations/BgMusic/EditBgMusic.mutation";
+import { AllBgMusicQuery } from "@/documents/queries/allBgMusic.query";
 import { useMutation } from "@apollo/client";
 import { PopoverContent } from "@nextui-org/react";
 import { useState, ChangeEvent } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
+interface IEditBgContent {
+  bgMusicName: string;
+  oldUrl: string;
+  editBgMusicId: number;
+  onClose: () => void;
+}
+
 export default function EditBgContent({
   bgMusicName,
   oldUrl,
   editBgMusicId,
-}: {
-  bgMusicName: string;
-  oldUrl: string;
-  editBgMusicId: number;
-}) {
+  onClose,
+}: IEditBgContent) {
   // 첨부파일 placeholder
   const [fileName, setFileName] = useState(oldUrl || "");
   // 첨부파일 파일명으로 변경
@@ -26,8 +31,12 @@ export default function EditBgContent({
   };
 
   // 수정 뮤테이션
-  const [editBgMusicMutation, { loading: editBgMusicLoading }] =
-    useMutation(EditBgMusicMutation);
+  const [editBgMusicMutation, { loading: editBgMusicLoading }] = useMutation(
+    EditBgMusicMutation,
+    {
+      refetchQueries: [{ query: AllBgMusicQuery }],
+    }
+  );
   const onSubmitValid: SubmitHandler<IEditBgMusicForm> = async (data) => {
     if (editBgMusicLoading) {
       return;
@@ -41,9 +50,8 @@ export default function EditBgContent({
           bgMusicUrl: bgMusicUrl[0],
         },
       });
+      onClose();
       console.log("수정 결과", result);
-      window.location.reload();
-      // 클라이언트 캐시 업데이트 로직
     } catch (error) {
       // 오류 처리 로직
       console.log("수정 결과", error);

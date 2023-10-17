@@ -1,11 +1,18 @@
 "use client";
 
-import { Button, Popover, PopoverTrigger } from "@nextui-org/react";
+import {
+  Button,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  useDisclosure,
+} from "@nextui-org/react";
 import AddBgMusicContent from "./addBgMusicContent";
 
 export default function AddBgMusic() {
+  const { isOpen, onClose, onOpenChange } = useDisclosure();
   return (
-    <Popover placement="bottom-end">
+    <Popover placement="bottom-end" isOpen={isOpen} onOpenChange={onOpenChange}>
       <PopoverTrigger>
         <Button
           variant="solid"
@@ -15,7 +22,7 @@ export default function AddBgMusic() {
           추가
         </Button>
       </PopoverTrigger>
-      <AddBgMusicContent />
+      <AddBgMusicContent onClose={onClose} />
     </Popover>
   );
 }

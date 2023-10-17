@@ -2,17 +2,27 @@
 
 import { useAllBgMusic } from "@/components/hook/useBgMusic";
 import { useMutation } from "@apollo/client";
-import { Button, Popover, PopoverTrigger } from "@nextui-org/react";
+import {
+  Button,
+  Popover,
+  PopoverTrigger,
+  useDisclosure,
+} from "@nextui-org/react";
 import EditBgContent from "./editBgMusic";
 import { DeleteBgMusicMutation } from "@/documents/mutations/BgMusic/DeleatBgMusic.mutation";
+import { AllBgMusicQuery } from "@/documents/queries/allBgMusic.query";
 
 export default function AllBgMusicData() {
+  // next ui
+  const { isOpen, onClose, onOpenChange } = useDisclosure();
+  // 배경음악 데이터 로드
   const allBgMusic = useAllBgMusic();
   const allBgMusicArr = allBgMusic?.allBgMusic || [];
 
   // 삭제 뮤테이션
-  const [deleteBgMusicMutation, { loading: deleteBgMusicLoading }] =
-    useMutation(DeleteBgMusicMutation);
+  const [deleteBgMusicMutation] = useMutation(DeleteBgMusicMutation, {
+    refetchQueries: [{ query: AllBgMusicQuery }],
+  });
   // 삭제 기능
   const deleteHandler = async (id: number) => {
     try {
@@ -23,7 +33,6 @@ export default function AllBgMusicData() {
       });
       // 삭제 결과
       console.log("삭제 결과", result);
-      window.location.reload();
     } catch (error) {
       console.log("삭제 에러", error);
     }
@@ -37,7 +46,11 @@ export default function AllBgMusicData() {
         {/* 수정 및 삭제 버튼 wrapper */}
         <div className=" flex items-center">
           {/* 수정 버튼 */}
-          <Popover placement="bottom-end">
+          <Popover
+            placement="bottom-end"
+            onOpenChange={onOpenChange}
+            isOpen={isOpen}
+          >
             <PopoverTrigger>
               <Button
                 variant="flat"
@@ -51,6 +64,7 @@ export default function AllBgMusicData() {
               editBgMusicId={bgMusic.id}
               bgMusicName={bgMusic.bgMusicName}
               oldUrl={bgMusic.bgMusicURL}
+              onClose={onClose}
             />
           </Popover>
           {/* 삭제 버튼 */}
@@ -59,6 +73,7 @@ export default function AllBgMusicData() {
             className=" bg-gray-600 text-white text-xs ml-1"
             onClick={() => {
               deleteHandler(bgMusic.id);
+              onClose();
             }}
           >
             삭제

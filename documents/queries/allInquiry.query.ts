@@ -7,6 +7,7 @@ export const AllInquiryQuery = gql`
       title
       contents
       isClosed
+      answer
       user {
         username
       }
@@ -20,6 +21,7 @@ export interface IAllInquiryData {
     title: string;
     contents: string;
     isClosed: boolean;
+    answer: string;
     user: {
       username: string;
     };

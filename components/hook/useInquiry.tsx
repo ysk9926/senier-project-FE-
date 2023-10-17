@@ -14,40 +14,23 @@ import {
   ISeeAnswerInquiryData,
   SeeAnswerInquiryQuery,
 } from "@/documents/queries/seeAnswerInquiry.query";
-import { useEffect } from "react";
 
 // 전체 문의 데이터
 export function useAllInquiry(): IAllInquiryData {
   const user = useUser();
-  const { data: allInqueryData, refetch: refetchAllInquery } = useQuery(
-    AllInquiryQuery,
-    {
-      skip: !user?.me.admin,
-    }
-  );
+  const { data: allInquiry } = useQuery(AllInquiryQuery, {
+    skip: !user?.me.admin,
+  });
 
-  useEffect(() => {
-    if (user?.me.admin) {
-      refetchAllInquery();
-    }
-  }, [user]);
-
-  return allInqueryData;
+  return allInquiry;
 }
 
 // 열린 문의
 export function useSeeUnAnswerInquiry(): ISeeUnAnswerInquiryData {
   const user = useUser();
-  const { data: SeeUnAnswerInquiryData, refetch: refetchSeeUnAnswerInquiry } =
-    useQuery(SeeUnAnswerInquiryQuery, {
-      skip: !user?.me.admin,
-    });
-
-  useEffect(() => {
-    if (user?.me.admin) {
-      refetchSeeUnAnswerInquiry();
-    }
-  }, [user]);
+  const { data: SeeUnAnswerInquiryData } = useQuery(SeeUnAnswerInquiryQuery, {
+    skip: !user?.me.admin,
+  });
 
   return SeeUnAnswerInquiryData;
 }
@@ -55,16 +38,9 @@ export function useSeeUnAnswerInquiry(): ISeeUnAnswerInquiryData {
 // 닫힌 문의
 export function useSeeAnswerInquiry(): ISeeAnswerInquiryData {
   const user = useUser();
-  const { data: SeeAnswerInquiryData, refetch: refetchSeeAnswerInquiryData } =
-    useQuery(SeeAnswerInquiryQuery, {
-      skip: !user?.me.admin,
-    });
-
-  useEffect(() => {
-    if (user?.me.admin) {
-      refetchSeeAnswerInquiryData();
-    }
-  }, [user]);
+  const { data: SeeAnswerInquiryData } = useQuery(SeeAnswerInquiryQuery, {
+    skip: !user?.me.admin,
+  });
 
   return SeeAnswerInquiryData;
 }

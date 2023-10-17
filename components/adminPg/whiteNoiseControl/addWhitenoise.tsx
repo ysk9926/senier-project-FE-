@@ -1,11 +1,17 @@
 "use client";
 
-import { Button, Popover, PopoverTrigger } from "@nextui-org/react";
+import {
+  Button,
+  Popover,
+  PopoverTrigger,
+  useDisclosure,
+} from "@nextui-org/react";
 import AddWhitenosieContent from "./addWhitenoiseContent";
 
 export default function AddWhitenoise() {
+  const { isOpen, onClose, onOpenChange } = useDisclosure();
   return (
-    <Popover placement="bottom-end">
+    <Popover placement="bottom-end" isOpen={isOpen} onOpenChange={onOpenChange}>
       <PopoverTrigger>
         <Button
           variant="solid"
@@ -15,7 +21,7 @@ export default function AddWhitenoise() {
           추가
         </Button>
       </PopoverTrigger>
-      <AddWhitenosieContent />
+      <AddWhitenosieContent onClose={onClose} />
     </Popover>
   );
 }
