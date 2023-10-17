@@ -1,13 +1,7 @@
 "use client";
 
-import {
-  useAllInquiry,
-  useSeeAnswerInquiry,
-  useSeeUnAnswerInquiry,
-} from "@/components/hook/useInquiry";
 import { AnswerInquiryMutation } from "@/documents/mutations/Inquiry/answerInquiry.mutation";
 import { AllInquiryQuery } from "@/documents/queries/allInquiry.query";
-import { MeQuery } from "@/documents/queries/me.query";
 import { SeeAnswerInquiryQuery } from "@/documents/queries/seeAnswerInquiry.query";
 import { SeeUnAnswerInquiryQuery } from "@/documents/queries/seeUnAnswerInquiry.mutation";
 import { useMutation } from "@apollo/client";
@@ -19,6 +13,7 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 interface IAnswerInquiryModal {
@@ -36,6 +31,10 @@ export default function AnswerInquiryModal({
   state,
   oldAnswer,
 }: IAnswerInquiryModal) {
+  const [inquiryState, SetInquiryState] = useState(state);
+  const inquiryStateHandler = () => {
+    SetInquiryState((pre) => !pre);
+  };
   // next ui
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -68,7 +67,7 @@ export default function AnswerInquiryModal({
         variables: {
           answerInquiryId: inquiryId,
           answer,
-          isClosed: !state,
+          isClosed: inquiryState,
         },
       });
       console.log("문의답변 결과", result);
@@ -118,8 +117,14 @@ export default function AnswerInquiryModal({
                   {/* seperate */}
                   <div className=" w-full px-3 h-[1px] bg-gray-300"></div>
                   {/* 답변 버튼 */}
-                  <div className=" w-full flex justify-center items-center mt-2">
-                    <Button type="submit" className=" w-36" onPress={onClose}>
+                  <div className=" w-full flex justify-between items-center mt-2">
+                    <Button
+                      onClick={inquiryStateHandler}
+                      color={`${inquiryState ? "warning" : "success"}`}
+                    >
+                      {inquiryState ? "close" : "open"}
+                    </Button>
+                    <Button type="submit" className=" w-52" onPress={onClose}>
                       답변하기
                     </Button>
                   </div>

@@ -18,7 +18,7 @@ export default function AllWhitenoiseData() {
   const allWhitenoiseArr = allWhitenoise?.allWhitenoise || [];
 
   // next ui
-  const { isOpen, onClose, onOpenChange } = useDisclosure();
+  const { onClose, onOpenChange } = useDisclosure();
 
   // 삭제 뮤테이션
   const [deleteWhitenoiseMutation] = useMutation(DeleteWhitenoiseMutation, {
@@ -47,11 +47,7 @@ export default function AllWhitenoiseData() {
         {/* 수정 및 삭제 버튼 wrapper */}
         <div className=" flex items-center">
           {/* 수정 버튼 */}
-          <Popover
-            placement="bottom-end"
-            isOpen={isOpen}
-            onOpenChange={onOpenChange}
-          >
+          <Popover placement="bottom-end" onOpenChange={onOpenChange}>
             <PopoverTrigger>
               <Button
                 variant="flat"
@@ -75,7 +71,6 @@ export default function AllWhitenoiseData() {
             className=" bg-gray-600 text-white text-xs ml-1"
             onClick={() => {
               deleteHandler(whitenoise.id);
-              onClose();
             }}
           >
             삭제

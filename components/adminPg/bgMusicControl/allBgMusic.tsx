@@ -14,7 +14,7 @@ import { AllBgMusicQuery } from "@/documents/queries/allBgMusic.query";
 
 export default function AllBgMusicData() {
   // next ui
-  const { isOpen, onClose, onOpenChange } = useDisclosure();
+  const { onClose, onOpenChange } = useDisclosure();
   // 배경음악 데이터 로드
   const allBgMusic = useAllBgMusic();
   const allBgMusicArr = allBgMusic?.allBgMusic || [];
@@ -46,11 +46,7 @@ export default function AllBgMusicData() {
         {/* 수정 및 삭제 버튼 wrapper */}
         <div className=" flex items-center">
           {/* 수정 버튼 */}
-          <Popover
-            placement="bottom-end"
-            onOpenChange={onOpenChange}
-            isOpen={isOpen}
-          >
+          <Popover placement="bottom-end" onOpenChange={onOpenChange}>
             <PopoverTrigger>
               <Button
                 variant="flat"
@@ -73,7 +69,6 @@ export default function AllBgMusicData() {
             className=" bg-gray-600 text-white text-xs ml-1"
             onClick={() => {
               deleteHandler(bgMusic.id);
-              onClose();
             }}
           >
             삭제
