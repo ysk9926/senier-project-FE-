@@ -3,7 +3,7 @@
 import { EditWhitenoiseMutation } from "@/documents/mutations/Whitenoise/EditWhitenoise.mutation";
 import { AllWhiteNoiseQuery } from "@/documents/queries/allWhitenoise.query";
 import { useMutation } from "@apollo/client";
-import { PopoverContent } from "@nextui-org/react";
+import { Button, PopoverContent } from "@nextui-org/react";
 import { useState, ChangeEvent } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -116,12 +116,12 @@ export default function EditWhitenoise({
             placeholder="요구 포인트"
           />
           <div className=" w-full flex justify-center items-center">
-            <button
+            <Button
               type="submit"
               className=" flex justify-center items-center text-xs bg-gray-600 text-white px-4 h-7 mt-2 "
             >
               수정하기
-            </button>
+            </Button>
           </div>
         </form>
       </div>
