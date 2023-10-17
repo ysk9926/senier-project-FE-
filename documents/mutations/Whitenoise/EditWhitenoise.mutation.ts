@@ -4,12 +4,14 @@ export const EditWhitenoiseMutation = gql`
   mutation EditWhitenoise(
     $editWhitenoiseId: Int!
     $whitenoiseName: String
-    $whitenoiseUrl: String
+    $whitenoiseUrl: Upload
+    $requirePoints: Int
   ) {
     editWhitenoise(
       id: $editWhitenoiseId
       whitenoiseName: $whitenoiseName
       whitenoiseURL: $whitenoiseUrl
+      requirePoints: $requirePoints
     ) {
       ok
       error

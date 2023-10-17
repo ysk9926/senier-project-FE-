@@ -1,22 +1,12 @@
-"use client";
-
-import { EditBgMusicMutation } from "@/documents/mutations/BgMusic/EditBgMusic.mutation";
-import { useMutation } from "@apollo/client";
 import { PopoverContent } from "@nextui-org/react";
-import { useState, ChangeEvent } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useState, ChangeEvent } from "react";
+import { useMutation } from "@apollo/client";
+import { AddWhitenoiseMutation } from "@/documents/mutations/Whitenoise/AddWhitenoise.mutation";
 
-export default function EditBgContent({
-  bgMusicName,
-  oldUrl,
-  editBgMusicId,
-}: {
-  bgMusicName: string;
-  oldUrl: string;
-  editBgMusicId: number;
-}) {
+export default function AddWhitenosieContent() {
   // 첨부파일 placeholder
-  const [fileName, setFileName] = useState(oldUrl || "");
+  const [fileName, setFileName] = useState("");
   // 첨부파일 파일명으로 변경
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files && e.target.files[0];
@@ -25,50 +15,45 @@ export default function EditBgContent({
     }
   };
 
-  // 수정 뮤테이션
-  const [editBgMusicMutation, { loading: editBgMusicLoading }] =
-    useMutation(EditBgMusicMutation);
-  const onSubmitValid: SubmitHandler<IEditBgMusicForm> = async (data) => {
-    if (editBgMusicLoading) {
+  // 파일 선택 폼
+  interface IAddWhitenoiseForm {
+    whitenoiseName: string;
+    whitenoiseUrl: FileList;
+    requirePoints: number | null;
+  }
+  const { register, handleSubmit, getValues } = useForm<IAddWhitenoiseForm>({});
+  // 배경음악 추가 뮤테이션
+  const [addWhitenoiseMutation, { loading: addWhitenosieLoading }] =
+    useMutation(AddWhitenoiseMutation);
+
+  const onSubmitValid: SubmitHandler<IAddWhitenoiseForm> = async (data) => {
+    if (addWhitenosieLoading) {
       return;
     }
-    const { bgMusicName, bgMusicUrl } = getValues();
+    const { whitenoiseName, whitenoiseUrl, requirePoints } = getValues();
     try {
-      const result = await editBgMusicMutation({
+      const result = await addWhitenoiseMutation({
         variables: {
-          editBgMusicId,
-          bgMusicName,
-          bgMusicUrl: bgMusicUrl[0],
+          whitenoiseName,
+          whitenoiseUrl: whitenoiseUrl[0],
+          requirePoints: Number(requirePoints),
         },
       });
-      console.log("수정 결과", result);
+      console.log("배경음악 추가 결과", result);
       window.location.reload();
-      // 클라이언트 캐시 업데이트 로직
     } catch (error) {
-      // 오류 처리 로직
-      console.log("수정 결과", error);
+      console.log("배경음악 추가 에러", error);
     }
   };
 
-  // 파일 선택 폼
-  interface IEditBgMusicForm {
-    bgMusicName: string;
-    bgMusicUrl: FileList;
-  }
-  const { register, handleSubmit, getValues } = useForm<IEditBgMusicForm>({
-    defaultValues: {
-      bgMusicName,
-    },
-  });
-
   return (
-    <PopoverContent className="rounded-md w-[250px]">
+    <PopoverContent>
       <div className="px-1 py-2">
-        <div className="text-sm font-bold">수정하기</div>
+        <div className="text-sm font-bold">추가하기</div>
         <form onSubmit={handleSubmit(onSubmitValid)}>
           {/* 파일 이름 */}
           <input
-            {...register("bgMusicName")}
+            {...register("whitenoiseName")}
             className="border border-gray-300 w-[218px] h-7 text-xs placeholder:text-gray-300 mt-2 outline-none pl-2"
             type="text"
             placeholder="파일명"
@@ -76,7 +61,7 @@ export default function EditBgContent({
           {/* 파일 선택 */}
           <div className="relative flex items-center mt-2">
             <input
-              className=" text-xs px-2 h-7 border border-gray-300 w-[170px] text-gray-300 outline-none"
+              className=" text-xs px-2 h-7 border border-gray-300 w-[170px] text-gray-300 outline-none placeholder:text-gray-300"
               value={fileName}
               placeholder="첨부파일"
               readOnly
@@ -88,7 +73,7 @@ export default function EditBgContent({
               찾기
             </label>
             <input
-              {...register("bgMusicUrl")}
+              {...register("whitenoiseUrl")}
               type="file"
               accept="audio/*"
               id="file"
@@ -96,12 +81,20 @@ export default function EditBgContent({
               onChange={handleFileChange}
             />
           </div>
+          {/* 필요 포인트 */}
+          <input
+            {...register("requirePoints")}
+            className="border border-gray-300 w-[218px] h-7 text-xs placeholder:text-gray-300 mt-2 outline-none pl-2"
+            type="number"
+            step="10"
+            placeholder="요구 포인트"
+          />
           <div className=" w-full flex justify-center items-center">
             <button
               type="submit"
               className=" flex justify-center items-center text-xs bg-gray-600 text-white px-4 h-7 mt-2 "
             >
-              수정하기
+              추가하기
             </button>
           </div>
         </form>

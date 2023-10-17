@@ -1,3 +1,4 @@
+import AddWhitenoise from "./addWhitenoise";
 import AllWhitenoiseData from "./allWhitenoise";
 
 export default function WhitenoiseControlBox() {
@@ -8,9 +9,7 @@ export default function WhitenoiseControlBox() {
         {/* 타이틀 */}
         <h2>백색소음</h2>
         {/* 추가 및 삭제 */}
-        <div>
-          <span>추가</span>
-        </div>
+        <AddWhitenoise />
       </div>
       <div className=" divide-y-1 overflow-auto scrollbar-none">
         <AllWhitenoiseData />
