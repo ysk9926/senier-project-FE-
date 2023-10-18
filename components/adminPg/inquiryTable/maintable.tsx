@@ -1,4 +1,4 @@
-import InquiryTableData from "./tableDate";
+import InquiryTableData from "./tableData";
 
 export default function InquiryMainT() {
   return (

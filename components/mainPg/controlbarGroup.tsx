@@ -2,7 +2,7 @@ import ISuffle from "@/icon/ISuffle";
 import IVolCustom from "@/icon/IVolCustom";
 
 import ISetting from "@/icon/ISetting";
-import LoginBtn from "./btnFunction/lobinBtn";
+import LoginBtn from "./btnFunction/loginBtn";
 
 export default function ControlbarGroup() {
   return (

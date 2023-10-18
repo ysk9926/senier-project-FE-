@@ -27,8 +27,8 @@ export default function InquiryTableData() {
               state={Inquiry.isClosed}
               oldAnswer={Inquiry.answer}
             />
-            <div className=" flex justify-center items-center">
-              {Inquiry.user.username}
+            <div className=" flex justify-center items-start overflow-auto scrollbar-none py-2 px-3 cursor-pointer">
+              <span>{Inquiry.user.username}</span>
             </div>
             <div className=" flex justify-center items-center">
               {Inquiry.isClosed ? (
@@ -51,8 +51,8 @@ export default function InquiryTableData() {
                 state={Inquiry.isClosed}
                 oldAnswer={Inquiry.answer}
               />
-              <div className=" flex justify-center items-center">
-                {Inquiry.user.username}
+              <div className=" flex justify-center items-start overflow-auto scrollbar-none py-2 px-3 cursor-pointer">
+                <span>{Inquiry.user.username}</span>
               </div>
               <div className=" flex justify-center items-center">
                 {Inquiry.isClosed ? (
@@ -75,8 +75,8 @@ export default function InquiryTableData() {
               state={Inquiry.isClosed}
               oldAnswer={Inquiry.answer}
             />
-            <div className=" flex justify-center items-center">
-              {Inquiry.user.username}
+            <div className=" flex justify-center items-start overflow-auto scrollbar-none py-2 px-3 cursor-pointer">
+              <span>{Inquiry.user.username}</span>
             </div>
             <div className=" flex justify-center items-center">
               {Inquiry.isClosed ? (

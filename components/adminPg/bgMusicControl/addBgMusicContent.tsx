@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, PopoverContent } from "@nextui-org/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useState, ChangeEvent } from "react";

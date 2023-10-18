@@ -6,6 +6,7 @@ import useUser from "@/components/hook/useMe";
 import IAdmin from "@/icon/IAdmin";
 import IPeople from "@/icon/IPeople";
 import { useReactiveVar } from "@apollo/client";
+import { Avatar } from "@nextui-org/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -24,7 +25,9 @@ export default function LoginBtn() {
     setAuthValue((pre) => !pre);
   };
   //   마이페이지 / 관리자 페이지 이동 핸들러
-  const MyPageValueHandler = () => {};
+  const MyPageValueHandler = () => {
+    router.push("/myPage");
+  };
   const AdminPageValueHandler = () => {
     router.push("/admin");
   };
@@ -54,13 +57,19 @@ export default function LoginBtn() {
             </div>
           ) : // 일반 유저
           avatar ? (
+            <Avatar
+              src={avatar}
+              className="w-[27px] h-[27px] text-large"
+              onClick={MyPageValueHandler}
+            />
+          ) : (
             <div
-              className="relative w-[18px] h-[18px]"
+              className=" w-[18px] h-[18px] fill-green-400 stroke-green-400"
               onClick={MyPageValueHandler}
             >
-              <Image src={avatar} alt="img" layout="fill" />
+              <IPeople />
             </div>
-          ) : null}
+          )}
         </div>
       ) : (
         // 비로그인 상태

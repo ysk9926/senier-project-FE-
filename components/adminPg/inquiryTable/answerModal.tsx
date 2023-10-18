@@ -4,6 +4,7 @@ import { AnswerInquiryMutation } from "@/documents/mutations/Inquiry/answerInqui
 import { AllInquiryQuery } from "@/documents/queries/allInquiry.query";
 import { SeeAnswerInquiryQuery } from "@/documents/queries/seeAnswerInquiry.query";
 import { SeeUnAnswerInquiryQuery } from "@/documents/queries/seeUnAnswerInquiry.mutation";
+import ITrashCan from "@/icon/ITrashCan";
 import { useMutation } from "@apollo/client";
 import {
   Button,
@@ -112,18 +113,24 @@ export default function AnswerInquiryModal({
                   <textarea
                     {...register("answer")}
                     placeholder="답변을 입력하세요"
-                    className=" overflow-auto scrollbar-none w-full h-64 resize-none outline-none"
+                    className=" overflow-auto scrollbar-none w-full h-64 resize-none outline-none text-sm"
                   />
                   {/* seperate */}
                   <div className=" w-full px-3 h-[1px] bg-gray-300"></div>
                   {/* 답변 버튼 */}
                   <div className=" w-full flex justify-between items-center mt-2">
+                    {/* 문의 삭제 */}
+                    <Button>
+                      <ITrashCan />
+                    </Button>
+                    {/* 문의 상태 변경 */}
                     <Button
                       onClick={inquiryStateHandler}
                       color={`${inquiryState ? "warning" : "success"}`}
                     >
                       {inquiryState ? "close" : "open"}
                     </Button>
+                    {/* 답변하기 버튼 */}
                     <Button type="submit" className=" w-52" onPress={onClose}>
                       답변하기
                     </Button>

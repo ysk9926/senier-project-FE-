@@ -2,9 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Provider } from "@/apollo";
-import ProviderSet from "@/components/Layout/ProviderSet";
-
-const inter = Inter({ subsets: ["latin"] });
+import ProviderSet from "@/components/layout/ProviderSet";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "Cogni",
@@ -18,7 +17,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <Head>
+        <link
+          rel="stylesheet"
+          as="style"
+          crossOrigin=""
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css"
+        />
+      </Head>
+      <body className={`font-pretendard`}>
         <ProviderSet>
           <Provider>{children}</Provider>
         </ProviderSet>

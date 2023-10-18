@@ -10,6 +10,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        pretendard: ["Pretendard", "sans-serif"],
+      },
       width: {
         titleSize: "320px",
         img_2xl: "520px",
