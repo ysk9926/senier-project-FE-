@@ -12,7 +12,6 @@ export default function UserInfo() {
       setAvatar(user.me.avatar);
     }
   }, [user]);
-  console.log(avatar);
 
   return (
     <div className=" flex justify-center items-center">

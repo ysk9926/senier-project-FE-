@@ -13,6 +13,7 @@ export const AddWhitenoiseMutation = gql`
     ) {
       ok
       error
+      id
     }
   }
 `;
@@ -21,5 +22,6 @@ export interface IAddWhitenoiseData {
   createWhitenoise: {
     ok: boolean;
     error: string;
+    id: number;
   };
 }

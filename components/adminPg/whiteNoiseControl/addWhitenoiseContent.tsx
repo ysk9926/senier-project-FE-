@@ -4,6 +4,7 @@ import { useState, ChangeEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { AddWhitenoiseMutation } from "@/documents/mutations/Whitenoise/AddWhitenoise.mutation";
 import { AllWhiteNoiseQuery } from "@/documents/queries/allWhitenoise.query";
+import { UpdateUserWhitenoiseMutation } from "@/documents/mutations/Whitenoise/UpdateUserWhitenoise.mutation";
 
 export default function AddWhitenosieContent({
   onClose,
@@ -32,6 +33,11 @@ export default function AddWhitenosieContent({
     useMutation(AddWhitenoiseMutation, {
       refetchQueries: [{ query: AllWhiteNoiseQuery }],
     });
+  // 유저백색소음 업데이트 뮤테이션
+  const [
+    updateUserWhitenoiseMutation,
+    { loading: updateUserWhitenoiseLoading },
+  ] = useMutation(UpdateUserWhitenoiseMutation);
 
   const onSubmitValid: SubmitHandler<IAddWhitenoiseForm> = async (data) => {
     if (addWhitenosieLoading) {
@@ -47,6 +53,21 @@ export default function AddWhitenosieContent({
         },
       });
       onClose();
+      // 유저 백색소음 업데이트
+      console.log(result.data.createWhitenoise.id);
+      if (updateUserWhitenoiseLoading) {
+        return;
+      }
+      try {
+        const updateResult = await updateUserWhitenoiseMutation({
+          variables: {
+            whiteNoiseId: result.data.createWhitenoise.id,
+          },
+        });
+        console.log("유저백색소음 업데이트 결과", updateResult);
+      } catch (error) {
+        console.log("유저백색소음 업데이트 에러", error);
+      }
       console.log("배경음악 추가 결과", result);
     } catch (error) {
       console.log("배경음악 추가 에러", error);

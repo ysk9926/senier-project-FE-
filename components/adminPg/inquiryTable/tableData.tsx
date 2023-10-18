@@ -2,7 +2,6 @@
 
 import { InquiryTagValue } from "@/atom";
 import { useAllInquiry } from "@/components/hook/useInquiry";
-import { Button, ModalContent, useDisclosure } from "@nextui-org/react";
 import { useRecoilValue } from "recoil";
 import AnswerInquiryModal from "./answerModal";
 

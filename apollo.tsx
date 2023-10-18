@@ -24,7 +24,7 @@ export const logUserIn = (token: string) => {
 
 export const logUserOut = () => {
   localStorage.removeItem(TOKEN);
-  window.location.reload();
+  LoggedInVar(false);
   console.log("로그아웃!!");
 };
 

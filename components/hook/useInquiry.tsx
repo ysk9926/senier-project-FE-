@@ -14,6 +14,11 @@ import {
   ISeeAnswerInquiryData,
   SeeAnswerInquiryQuery,
 } from "@/documents/queries/seeAnswerInquiry.query";
+import {
+  ISeeMyInquiryData,
+  SeeMyInquiryQuery,
+} from "@/documents/queries/seeMyInquiry.query";
+import { user } from "@nextui-org/react";
 
 // 전체 문의 데이터
 export function useAllInquiry(): IAllInquiryData {
@@ -43,4 +48,13 @@ export function useSeeAnswerInquiry(): ISeeAnswerInquiryData {
   });
 
   return SeeAnswerInquiryData;
+}
+
+// 내 문의
+export function useSeeMyInquiry(): ISeeMyInquiryData {
+  const { data: SeeMyInquiryData } = useQuery(SeeMyInquiryQuery, {
+    skip: !user,
+  });
+
+  return SeeMyInquiryData;
 }
