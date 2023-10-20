@@ -1,3 +1,4 @@
+import useUser from "@/components/hook/useMe";
 import DeleteId from "@/components/myPg/deleteId";
 import EditProfile from "@/components/myPg/editProfile/editProfile";
 import UserInfo from "@/components/myPg/userInfo/userInfo";

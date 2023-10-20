@@ -12,6 +12,7 @@ interface IUseInquiryModal {
   content: string;
   state: boolean;
   inquiryId: number;
+  answer: string;
 }
 
 export default function UseInquiryModal({
@@ -19,6 +20,7 @@ export default function UseInquiryModal({
   content,
   state,
   inquiryId,
+  answer,
 }: IUseInquiryModal) {
   // next ui
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -52,10 +54,20 @@ export default function UseInquiryModal({
                   </div>
                   {/* seperate */}
                   <div className=" w-full px-3 mt-3 h-[1px] bg-gray-300"></div>
-                  <div className="text-sm mt-3 h-80 overflow-auto scrollbar-none">
+                  <div className="text-sm mt-3 h-52 overflow-auto scrollbar-none">
                     {content}
                   </div>
                 </div>
+                {answer && (
+                  <div>
+                    {/* seperate */}
+                    <div className=" flex justify-between">
+                      <div className=" text-sm font-semibold">답변</div>
+                      <div className=" w-[90%] px-3 mt-3 h-[1px] bg-gray-300"></div>
+                    </div>
+                    <div className=" text-sm my-3 max-h-32">{answer}</div>
+                  </div>
+                )}
               </ModalBody>
             </>
           )}

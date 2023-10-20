@@ -19,7 +19,7 @@ export default function UserInfo() {
       <Avatar
         name={user?.me.username}
         src={avatar}
-        className="w-24 h-24 text-large"
+        className="w-24 h-24 text-base font-semibold"
       />
       <div className=" ml-10 w-52 space-y-2">
         {/* 유저명 */}

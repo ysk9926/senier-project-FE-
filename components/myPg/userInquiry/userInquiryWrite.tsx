@@ -1,4 +1,5 @@
 import { CreateInquiryMutation } from "@/documents/mutations/Inquiry/createInquiry.mutation";
+import { SeeMyInquiryQuery } from "@/documents/queries/seeMyInquiry.query";
 import { useMutation } from "@apollo/client";
 import {
   Button,
@@ -21,7 +22,9 @@ export default function UserInquiryWrite() {
 
   // 문의 생성 뮤테이션
   const [createInquiryMutation, { loading: createInquiryLoading }] =
-    useMutation(CreateInquiryMutation);
+    useMutation(CreateInquiryMutation, {
+      refetchQueries: [{ query: SeeMyInquiryQuery }],
+    });
   // 입력 폼
   interface IUserInquiryWriteForm {
     title: string;

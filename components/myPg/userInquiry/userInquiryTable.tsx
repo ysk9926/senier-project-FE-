@@ -21,6 +21,7 @@ export default function UserInquiryTable() {
               content={Inquiry.contents}
               state={Inquiry.isClosed}
               inquiryId={Inquiry.id}
+              answer={Inquiry.answer}
             />
             {/* 문의 상태 */}
             <div className=" flex justify-center items-center border-b-1">

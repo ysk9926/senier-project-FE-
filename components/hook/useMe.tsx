@@ -5,7 +5,7 @@ import { IMeData, MeQuery } from "@/documents/queries/me.query";
 import { useQuery, useReactiveVar } from "@apollo/client";
 import { useEffect } from "react";
 
-function useUser(): IMeData | undefined {
+function useUser(): IMeData {
   const loggedInUser = useReactiveVar(LoggedInVar);
   const { data } = useQuery(MeQuery, {
     skip: !loggedInUser,

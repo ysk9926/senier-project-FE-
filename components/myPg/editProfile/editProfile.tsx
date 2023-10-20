@@ -11,6 +11,9 @@ import {
 } from "@nextui-org/react";
 import useUser from "@/components/hook/useMe";
 import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import ErrorForm from "@/components/mainPg/Auth/Form/ErrorForm";
+import EditProfileForm from "./editProfileForm";
 
 export default function EditProfile() {
   // next ui
@@ -18,9 +21,6 @@ export default function EditProfile() {
 
   // 유저정보 불러오기
   const user = useUser();
-
-  // 입력 폼
-  const { register, getValues, handleSubmit } = useForm({});
 
   return (
     <>
@@ -33,38 +33,12 @@ export default function EditProfile() {
             <>
               <ModalHeader>프로필 수정</ModalHeader>
               <ModalBody>
-                <form className=" flex justify-between items-center w-full">
-                  <label>
-                    <Avatar
-                      name={user?.me.username}
-                      src={user?.me.avatar}
-                      className="w-24 h-24 text-large"
-                    />
-                    <input
-                      {...register("avatar")}
-                      type="file"
-                      style={{ display: "none" }}
-                    />
-                  </label>
-                  <div className=" flex flex-col items-end">
-                    <label>
-                      <span>아이디</span>
-                      <input
-                        {...register("username")}
-                        type="text"
-                        className=" border"
-                      />
-                    </label>
-                    <label>
-                      <span>비밀번호</span>
-                      <input
-                        {...register("passwordCheck")}
-                        type="password"
-                        className=" border"
-                      />
-                    </label>
-                  </div>
-                </form>
+                <EditProfileForm
+                  avatar={user?.me.avatar}
+                  userId={user?.me.userId}
+                  username={user?.me.username}
+                  onClose={onClose}
+                />
               </ModalBody>
             </>
           )}
