@@ -1,26 +1,30 @@
 "use client";
 
 import { useMyWhitenoise } from "@/components/hook/useWhitenoise";
-import IPlay from "@/icon/IPlay";
+import UserWhitenoiseTable from "./userWhitenoiseTable";
 
 export default function UserWhitenoise() {
   const whitenoise = useMyWhitenoise();
   const whitenoiseList = whitenoise?.seeMyWhitenoise || [];
-  console.log(whitenoise);
+  console.log(whitenoiseList);
 
   return (
-    <div className="w-80 h-56 bg-lime-200">
+    // 전체 Wrapper
+    <div className="max-w-[345px] h-[300px] w-full bg-white rounded-md">
+      {/* 유저 백색소음 헤더 */}
       <div className="flex flex-col">
-        <div className=" border-b-1">보유 백색소음</div>
+        <div className=" flex items-center p-3 text-sm">
+          <span className=" flex items-center h-8">보유 백색소음</span>
+        </div>
         {/* 리스트 */}
-        {whitenoiseList.map((whitenoiseItem, index) => (
-          <div className=" flex justify-between py-2 bg-blue-200">
-            <div key={index}>{whitenoiseItem.whiteNoise.whitenoiseName}</div>
-            <div className=" w-6 h-6">
-              <IPlay />
-            </div>
-          </div>
-        ))}
+        <div className=" h-52 overflow-auto scrollbar-none px-3">
+          {whitenoiseList.map((whitenoiseItem, index) => (
+            <UserWhitenoiseTable
+              whitenoise={whitenoiseItem.whiteNoise}
+              index={index}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

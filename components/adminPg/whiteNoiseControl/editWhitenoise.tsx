@@ -11,6 +11,7 @@ interface IEditWhitenoise {
   whitenoiseName: string;
   oldUrl: string;
   editWhitenoiseId: number;
+  oldBgUrl: string;
   oldRequirePoints: number | null;
   onClose: () => void;
 }
@@ -18,6 +19,7 @@ interface IEditWhitenoise {
 export default function EditWhitenoise({
   whitenoiseName,
   oldUrl,
+  oldBgUrl,
   editWhitenoiseId,
   oldRequirePoints,
   onClose,
@@ -31,6 +33,15 @@ export default function EditWhitenoise({
       setFileName(selectedFile.name);
     }
   };
+  // 배경 첨부파일 placeholder
+  const [bgFileName, setBgFileName] = useState(oldBgUrl || "");
+  // 첨부파일 파일명으로 변경
+  const handleBgFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files && e.target.files[0];
+    if (selectedFile) {
+      setBgFileName(selectedFile.name);
+    }
+  };
 
   // 수정 뮤테이션
   const [editWhitenoiseMutation, { loading: editWhitenoiseLoading }] =
@@ -41,13 +52,15 @@ export default function EditWhitenoise({
     if (editWhitenoiseLoading) {
       return;
     }
-    const { whitenoiseName, whitenoiseUrl, requirePoints } = getValues();
+    const { whitenoiseName, whitenoiseUrl, backgroundImgUrl, requirePoints } =
+      getValues();
     try {
       const result = await editWhitenoiseMutation({
         variables: {
           editWhitenoiseId,
           whitenoiseName,
           whitenoiseUrl: whitenoiseUrl[0],
+          backgroundImgUrl: backgroundImgUrl[0],
           requirePoints: Number(requirePoints),
         },
       });
@@ -63,6 +76,7 @@ export default function EditWhitenoise({
   interface IEditWhitenoiseForm {
     whitenoiseName: string;
     whitenoiseUrl: FileList;
+    backgroundImgUrl: FileList;
     requirePoints: number | null;
   }
   const { register, handleSubmit, getValues } = useForm<IEditWhitenoiseForm>({
@@ -89,7 +103,7 @@ export default function EditWhitenoise({
             <input
               className=" text-xs px-2 h-7 border border-gray-300 w-[170px] text-gray-300 outline-none"
               value={fileName}
-              placeholder="첨부파일"
+              placeholder="음원파일"
               readOnly
             />
             <label
@@ -105,6 +119,29 @@ export default function EditWhitenoise({
               id="file"
               className="absolute w-0 h-0 p-0 overflow-hidden border-0"
               onChange={handleFileChange}
+            />
+          </div>
+          {/* 배경 파일 선택 */}
+          <div className="relative flex items-center mt-2">
+            <input
+              className=" text-xs px-2 h-7 border border-gray-300 w-[170px] text-gray-300 outline-none"
+              value={bgFileName}
+              placeholder="배경 이미지"
+              readOnly
+            />
+            <label
+              htmlFor="bgFile"
+              className=" flex justify-center items-center w-12 h-7 text-white bg-gray-600 cursor-pointer text-xs "
+            >
+              찾기
+            </label>
+            <input
+              {...register("backgroundImgUrl")}
+              type="file"
+              accept="image/*"
+              id="bgFile"
+              className="absolute w-0 h-0 p-0 overflow-hidden border-0"
+              onChange={handleBgFileChange}
             />
           </div>
           {/* 필요 포인트 */}

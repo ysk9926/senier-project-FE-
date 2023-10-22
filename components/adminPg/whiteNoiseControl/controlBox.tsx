@@ -3,7 +3,7 @@ import AllWhitenoiseData from "./allWhitenoise";
 
 export default function WhitenoiseControlBox() {
   return (
-    <div className=" bg-blue-200 w-[270px]">
+    <div className=" bg-white w-full rounded-md p-3">
       {/* header */}
       <div className=" flex justify-between items-center border-b-1 border-black">
         {/* 타이틀 */}
@@ -11,7 +11,7 @@ export default function WhitenoiseControlBox() {
         {/* 추가 및 삭제 */}
         <AddWhitenoise />
       </div>
-      <div className=" divide-y-1 overflow-auto scrollbar-none">
+      <div className=" overflow-auto scrollbar-none h-32">
         <AllWhitenoiseData />
       </div>
     </div>

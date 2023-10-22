@@ -7,13 +7,13 @@ export default function UserInquiryTable() {
   const myInquiryArr = myInquiry?.seeMyInquiry || [];
 
   return (
-    <div className=" grid grid-cols-[100px_1fr_70px] auto-rows-[40px] divide-x-1 text-sm overflow-hidden">
-      {myInquiryArr.map((Inquiry) => {
+    <div className=" grid grid-cols-[40px_1fr_90px] auto-rows-[40px] divide-x-1 text-sm overflow-hidden">
+      {myInquiryArr.map((Inquiry, index) => {
         return (
           <>
             {/* 문의 번호 */}
             <div className=" flex justify-center items-center border-b-1">
-              no.{Inquiry.id}
+              <span>{index + 1}</span>
             </div>
             {/* 문의 제목 & 모달 */}
             <UseInquiryModal
@@ -26,9 +26,15 @@ export default function UserInquiryTable() {
             {/* 문의 상태 */}
             <div className=" flex justify-center items-center border-b-1">
               {Inquiry.isClosed ? (
-                <div className=" rounded-full bg-[#f5a524] w-4 h-4"></div>
+                <div className=" flex justify-center items-center">
+                  <div className=" rounded-full bg-[#f5a524] w-[10px] h-[10px] mr-2"></div>
+                  <span>답변대기</span>
+                </div>
               ) : (
-                <div className=" rounded-full bg-[#17c964] w-4 h-4"></div>
+                <div className=" flex justify-center items-center">
+                  <div className=" rounded-full bg-[#17c964] w-[10px] h-[10px] mr-2"></div>
+                  <span>답변완료</span>
+                </div>
               )}
             </div>
           </>

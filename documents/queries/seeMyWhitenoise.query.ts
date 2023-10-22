@@ -5,6 +5,8 @@ export const SeeMyWhitenosieQuery = gql`
     seeMyWhitenoise {
       whiteNoise {
         whitenoiseName
+        whitenoiseURL
+        backgroundImgURL
       }
     }
   }
@@ -14,6 +16,8 @@ export interface ISeeMyWhitenoiseData {
   seeMyWhitenoise: Array<{
     whiteNoise: {
       whitenoiseName: string;
+      whitenoiseURL: string;
+      backgroundImgURL: string;
     };
   }>;
 }

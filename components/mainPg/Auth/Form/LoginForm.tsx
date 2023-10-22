@@ -39,6 +39,7 @@ export default function LoginForm() {
     handleSubmit,
     setError,
     getValues,
+    clearErrors,
   } = useForm<ILoginForm>({
     mode: "onChange",
     defaultValues: {
@@ -59,6 +60,8 @@ export default function LoginForm() {
       });
     }
     if (token) {
+      // 로그인창 닫기
+      AuthCheckHandler();
       // 로그인 헤더로 전송
       logUserIn(token);
     }
@@ -79,14 +82,18 @@ export default function LoginForm() {
           password,
         },
       });
-      // 로그인창 닫기
-      AuthCheckHandler();
+
       // 로그인 결과를 콘솔에 출력
       console.log("로그인 결과:", result);
     } catch (error) {
       // 에러 처리
       console.error("로그인 에러:", error);
     }
+  };
+
+  // 에러 초기화
+  const clearLoginError = () => {
+    clearErrors("result");
   };
 
   return (
@@ -104,6 +111,9 @@ export default function LoginForm() {
             //   value: /[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/,
             //   message: "이메일 형식을 지켜서 입력해주세요",
             // },
+            onChange() {
+              clearErrors();
+            },
           })}
           type="text"
           className={` focus:outline-0 focus:border-color_accent_text w-loginInput h-loginInput border border-color_sub_text rounded-md  p-1 pl-4 placeholder:text-sm
@@ -117,6 +127,9 @@ export default function LoginForm() {
         <input
           {...register("password", {
             required: "비밀번호를 입력해주세요",
+            onChange() {
+              clearErrors();
+            },
           })}
           type="password"
           className={` focus:outline-0  focus:border-color_accent_text  w-loginInput h-loginInput border border-color_sub_text rounded-md mt-5 p-1 pl-4 placeholder:text-sm
@@ -133,6 +146,9 @@ export default function LoginForm() {
           )}
           {errors.password?.message && (
             <ErrorForm message={errors.password?.message} />
+          )}
+          {errors.result?.message && (
+            <ErrorForm message={errors.result.message} />
           )}
         </div>
         {/* 아이디 비밀번호 찾기 */}

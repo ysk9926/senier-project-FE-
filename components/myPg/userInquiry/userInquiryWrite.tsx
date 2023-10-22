@@ -55,11 +55,10 @@ export default function UserInquiryWrite() {
       <Button
         onPress={onOpen}
         color="default"
-        className=" bg-inherit rounded-none"
         size="sm"
         onClick={modatOpenHandler}
       >
-        작성하기
+        문의하기
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
         <ModalContent>

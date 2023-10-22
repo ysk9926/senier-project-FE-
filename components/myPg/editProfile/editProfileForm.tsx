@@ -4,7 +4,7 @@ import ErrorForm from "@/components/mainPg/Auth/Form/ErrorForm";
 import { Avatar, Button } from "@nextui-org/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { EditProfileMutation } from "@/documents/mutations/User/EditAccount";
 import { MeQuery } from "@/documents/queries/me.query";
 
@@ -73,18 +73,26 @@ export default function EditProfileForm({
   };
 
   // 아바타 미리보기
-  const [preAvatar, setPreAvatar] = useState();
+  const watchAvatar: FileList = watch("avatar");
+  const [preAvatar, setPreAvatar] = useState<string>("");
+  useEffect(() => {
+    if (watchAvatar && watchAvatar.length > 0) {
+      const PreviewFile: File = watchAvatar[0];
+      const PreviewUrl: string = URL.createObjectURL(PreviewFile);
+      setPreAvatar(PreviewUrl);
+    }
+  }, [watchAvatar]);
 
   return (
     <form
       onSubmit={handleSubmit(onSubmitValid)}
-      className=" flex flex-col justify-between items-center w-full"
+      className=" flex flex-col justify-between items-center"
     >
-      <div className=" flex justify-between items-center w-full">
+      <div className=" flex flex-col justify-between items-center">
         <label>
           <Avatar
             name={username}
-            src={avatar}
+            src={preAvatar ? preAvatar : avatar}
             className="w-24 h-24 text-large"
           />
           <input
@@ -93,35 +101,35 @@ export default function EditProfileForm({
             style={{ display: "none" }}
           />
         </label>
-        <div className=" flex flex-col items-end">
-          <div className=" w-[250px] flex justify-between">
+        <div className=" flex flex-col items-end mx-10 mt-7 mb-3">
+          <div className=" w-[330px] items-center flex justify-between mb-3">
             <span>유저명</span>
             <input
               {...register("username")}
               type="text"
-              className=" border outline-none mb-3"
+              className=" border outline-none px-2 py-2"
               placeholder="유저명"
             />
           </div>
-          <div className=" w-[250px] flex justify-between">
+          <div className=" w-[330px] items-center flex justify-between mb-3">
             <span>아이디</span>
             <input
               {...register("userId")}
               type="text"
-              className=" border outline-none mb-3"
+              className=" border outline-none px-2 py-2"
               placeholder="아이디"
             />
           </div>
-          <div className=" w-[250px] flex justify-between">
+          <div className=" w-[330px] items-center flex justify-between mb-3">
             <span>비밀번호</span>
             <input
               {...register("password")}
               type="password"
-              className=" border outline-none"
+              className=" border outline-none px-2 py-2"
               placeholder="비밀번호"
             />
           </div>
-          <div className=" w-[250px] flex justify-between">
+          <div className=" w-[330px] items-center flex justify-between mb-3">
             <span>비밀번호 확인</span>
             <input
               {...register("passwordCheck", {
@@ -129,7 +137,7 @@ export default function EditProfileForm({
                   value === watchPassword || "비밀번호가 일치하지 않습니다",
               })}
               type="password"
-              className=" border outline-none"
+              className=" border outline-none px-2 py-2"
               placeholder="비밀번호 확인"
             />
           </div>
@@ -140,7 +148,7 @@ export default function EditProfileForm({
         <ErrorForm message={errors.password?.message} />
         <ErrorForm message={errors.passwordCheck?.message} />
       </div>
-      <Button size="sm" className=" w-32 mt-5" type="submit">
+      <Button size="sm" className=" w-32 mb-5" type="submit">
         저장
       </Button>
     </form>

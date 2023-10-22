@@ -4,16 +4,18 @@ export const AddWhitenoiseMutation = gql`
   mutation CreateWhitenoise(
     $whitenoiseName: String!
     $requirePoints: Int
+    $backgroundImgUrl: Upload
     $whitenoiseUrl: Upload
   ) {
     createWhitenoise(
       whitenoiseName: $whitenoiseName
       requirePoints: $requirePoints
+      backgroundImgURL: $backgroundImgUrl
       whitenoiseURL: $whitenoiseUrl
     ) {
-      ok
-      error
       id
+      error
+      ok
     }
   }
 `;

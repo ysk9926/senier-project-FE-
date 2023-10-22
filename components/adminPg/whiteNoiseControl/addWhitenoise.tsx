@@ -13,11 +13,7 @@ export default function AddWhitenoise() {
   return (
     <Popover placement="bottom-end" isOpen={isOpen} onOpenChange={onOpenChange}>
       <PopoverTrigger>
-        <Button
-          variant="solid"
-          className="capitalize bg-inherit text-xs"
-          size="sm"
-        >
+        <Button variant="solid" className=" bg-inherit text-base " size="sm">
           추가
         </Button>
       </PopoverTrigger>

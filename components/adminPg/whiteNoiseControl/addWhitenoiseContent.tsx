@@ -20,11 +20,21 @@ export default function AddWhitenosieContent({
       setFileName(selectedFile.name);
     }
   };
+  // 첨부파일 placeholder
+  const [bgFileName, setBgFileName] = useState("");
+  // 첨부파일 파일명으로 변경
+  const handleBgFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files && e.target.files[0];
+    if (selectedFile) {
+      setBgFileName(selectedFile.name);
+    }
+  };
 
   // 파일 선택 폼
   interface IAddWhitenoiseForm {
     whitenoiseName: string;
     whitenoiseUrl: FileList;
+    backgroundImgUrl: FileList;
     requirePoints: number | null;
   }
   const { register, handleSubmit, getValues } = useForm<IAddWhitenoiseForm>({});
@@ -43,12 +53,14 @@ export default function AddWhitenosieContent({
     if (addWhitenosieLoading) {
       return;
     }
-    const { whitenoiseName, whitenoiseUrl, requirePoints } = getValues();
+    const { whitenoiseName, whitenoiseUrl, backgroundImgUrl, requirePoints } =
+      getValues();
     try {
       const result = await addWhitenoiseMutation({
         variables: {
           whitenoiseName,
           whitenoiseUrl: whitenoiseUrl[0],
+          backgroundImgUrl: backgroundImgUrl[0],
           requirePoints: Number(requirePoints),
         },
       });
@@ -86,12 +98,12 @@ export default function AddWhitenosieContent({
             type="text"
             placeholder="파일명"
           />
-          {/* 파일 선택 */}
+          {/* 음원 파일 선택 */}
           <div className="relative flex items-center mt-2">
             <input
               className=" text-xs px-2 h-7 border border-gray-300 w-[170px] text-gray-300 outline-none placeholder:text-gray-300"
               value={fileName}
-              placeholder="첨부파일"
+              placeholder="음원파일"
               readOnly
             />
             <label
@@ -107,6 +119,29 @@ export default function AddWhitenosieContent({
               id="file"
               className="absolute w-0 h-0 p-0 overflow-hidden border-0"
               onChange={handleFileChange}
+            />
+          </div>
+          {/* 배경 파일 선택 */}
+          <div className="relative flex items-center mt-2">
+            <input
+              className=" text-xs px-2 h-7 border border-gray-300 w-[170px] text-gray-300 outline-none placeholder:text-gray-300"
+              value={bgFileName}
+              placeholder="배경이미지"
+              readOnly
+            />
+            <label
+              htmlFor="bgFile"
+              className=" flex justify-center items-center w-12 h-7 text-white bg-gray-600 cursor-pointer text-xs "
+            >
+              찾기
+            </label>
+            <input
+              {...register("backgroundImgUrl")}
+              type="file"
+              accept="image/*"
+              id="bgFile"
+              className="absolute w-0 h-0 p-0 overflow-hidden border-0"
+              onChange={handleBgFileChange}
             />
           </div>
           {/* 필요 포인트 */}

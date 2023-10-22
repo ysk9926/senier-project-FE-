@@ -16,6 +16,7 @@ export default function AllWhitenoisePopover({
     whitenoiseName: string;
     requirePoints: number | null;
     whitenoiseURL: string;
+    backgroundImgURL: string;
   };
 }) {
   // next ui
@@ -26,7 +27,7 @@ export default function AllWhitenoisePopover({
       <PopoverTrigger>
         <Button
           variant="flat"
-          className="capitalize bg-gray-600 text-xs text-white"
+          className="capitalize bg-inherit border-cyan-950 border text-xs text-cyan-950"
           size="sm"
         >
           수정
@@ -36,6 +37,7 @@ export default function AllWhitenoisePopover({
         whitenoiseName={whitenoise.whitenoiseName}
         editWhitenoiseId={whitenoise.id}
         oldUrl={whitenoise.whitenoiseURL}
+        oldBgUrl={whitenoise.backgroundImgURL}
         oldRequirePoints={whitenoise.requirePoints}
         onClose={onClose}
       />

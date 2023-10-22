@@ -3,15 +3,15 @@ import AllBgMusicData from "./allBgMusic";
 
 export default function BgMusicControlBox() {
   return (
-    <div className=" bg-green-200 w-[270px]">
+    <div className=" bg-white w-full rounded-md p-3">
       {/* header */}
       <div className=" flex justify-between items-center border-b-1 border-black">
         {/* 타이틀 */}
-        <h2>배경음악</h2>
+        <span>배경음악</span>
         {/* 추가 */}
         <AddBgMusic />
       </div>
-      <div className=" divide-y-1 overflow-auto scrollbar-none">
+      <div className=" overflow-auto scrollbar-none">
         <AllBgMusicData />
       </div>
     </div>

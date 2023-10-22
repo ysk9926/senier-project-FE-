@@ -7,6 +7,7 @@ export const AllWhiteNoiseQuery = gql`
       whitenoiseName
       requirePoints
       whitenoiseURL
+      backgroundImgURL
     }
   }
 `;
@@ -17,5 +18,6 @@ export interface IAllWhitenoise {
     whitenoiseName: string;
     requirePoints: number | null;
     whitenoiseURL: string;
+    backgroundImgURL: string;
   }>;
 }

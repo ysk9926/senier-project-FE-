@@ -82,7 +82,7 @@ export default function AnswerInquiryModal({
       <Button
         onPress={onOpen}
         color="default"
-        className=" bg-inherit rounded-none"
+        className=" bg-inherit rounded-none  border-r border-b"
       >
         {title}
       </Button>
@@ -121,7 +121,9 @@ export default function AnswerInquiryModal({
                   <div className=" w-full flex justify-between items-center mt-2">
                     {/* 문의 삭제 */}
                     <Button>
-                      <ITrashCan />
+                      <div className=" w-5 h-5">
+                        <ITrashCan />
+                      </div>
                     </Button>
                     {/* 문의 상태 변경 */}
                     <Button

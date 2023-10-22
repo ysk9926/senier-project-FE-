@@ -24,7 +24,7 @@ export default function EditProfile() {
 
   return (
     <>
-      <Button onPress={onOpen} size="sm">
+      <Button onPress={onOpen} className=" bg-inherit" size="sm">
         수정하기
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">

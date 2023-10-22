@@ -33,7 +33,7 @@ export default function AllBgMusicData() {
 
   return allBgMusicArr.map((bgMusic) => {
     return (
-      <div className=" flex justify-between items-center h-8 overflow-hidden px-2">
+      <div className=" flex justify-between items-center overflow-hidden h-10 px-2 py-2 border-b">
         {/* 배경음악 title */}
         <div className="">{bgMusic.bgMusicName}</div>
         {/* 수정 및 삭제 버튼 wrapper */}
@@ -43,7 +43,7 @@ export default function AllBgMusicData() {
           {/* 삭제 버튼 */}
           <Button
             size="sm"
-            className=" bg-gray-600 text-white text-xs ml-1"
+            className=" bg-cyan-950 text-white text-xs ml-1"
             onClick={() => {
               deleteHandler(bgMusic.id);
             }}

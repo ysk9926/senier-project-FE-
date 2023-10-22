@@ -3,15 +3,17 @@ import { gql } from "@apollo/client";
 export const EditWhitenoiseMutation = gql`
   mutation EditWhitenoise(
     $editWhitenoiseId: Int!
-    $whitenoiseName: String
-    $whitenoiseUrl: Upload
     $requirePoints: Int
+    $backgroundImgUrl: Upload
+    $whitenoiseUrl: Upload
+    $whitenoiseName: String
   ) {
     editWhitenoise(
       id: $editWhitenoiseId
-      whitenoiseName: $whitenoiseName
-      whitenoiseURL: $whitenoiseUrl
       requirePoints: $requirePoints
+      backgroundImgURL: $backgroundImgUrl
+      whitenoiseURL: $whitenoiseUrl
+      whitenoiseName: $whitenoiseName
     ) {
       ok
       error
