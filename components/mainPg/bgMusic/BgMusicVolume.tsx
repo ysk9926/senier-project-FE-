@@ -4,14 +4,16 @@ import { ChangeEvent, useState } from "react";
 interface IBgMusicVolumeProps {
   audioRef: React.MutableRefObject<HTMLAudioElement | null>;
   bgName: string;
+  value: number;
+  setValue: (newValue: number) => void;
 }
 
 export default function BgMusicVolume({
   audioRef,
   bgName,
+  value,
+  setValue,
 }: IBgMusicVolumeProps) {
-  const [value, setValue] = useState(0.5);
-
   const handleSliderChange = (e: ChangeEvent<HTMLInputElement>) => {
     const volume = Number(e.target.value);
     setValue(volume);

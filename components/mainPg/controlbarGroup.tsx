@@ -2,6 +2,7 @@ import ISuffle from "@/icon/ISuffle";
 import IVolCustom from "@/icon/IVolCustom";
 import LoginBtn from "./btnFunction/loginBtn";
 import LogOutBtn from "./btnFunction/logOutBtn";
+import AllWhitenoise from "./whitenoise/allWhitenoise";
 
 export default function ControlbarGroup() {
   return (
@@ -10,9 +11,7 @@ export default function ControlbarGroup() {
         <div className=" w-[18px] fill-white">
           <ISuffle />
         </div>
-        <div className=" w-[18px] fill-white">
-          <IVolCustom />
-        </div>
+        <AllWhitenoise />
         {/* user */}
         <LoginBtn />
         <LogOutBtn />

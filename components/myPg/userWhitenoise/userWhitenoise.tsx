@@ -6,7 +6,6 @@ import UserWhitenoiseTable from "./userWhitenoiseTable";
 export default function UserWhitenoise() {
   const whitenoise = useMyWhitenoise();
   const whitenoiseList = whitenoise?.seeMyWhitenoise || [];
-  console.log(whitenoiseList);
 
   return (
     // 전체 Wrapper

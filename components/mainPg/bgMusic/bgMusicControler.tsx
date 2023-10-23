@@ -6,17 +6,20 @@ import IRewind from "@/icon/IRewind";
 import IVolume from "@/icon/IVolume";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import BgMusicVolume from "../bgMusic/BgMusicVolume";
+import BgMusicVolume from "./BgMusicVolume";
 import { useAllBgMusic } from "@/components/hook/useBgMusic";
 import IPause from "@/icon/IPause";
-import VolMute from "../controlers";
+import VolMute from "./volMute";
 
 export default function BgMusicController() {
-  // 볼륨조절 상태
+  // 볼륨조절 창 상태
   const [isOpen, setIsOpen] = useState(false);
   const bgVolHandler = () => {
     setIsOpen((pre) => !pre);
   };
+
+  // 볼륨조절
+  const [value, setValue] = useState(0.5);
 
   // 오디오 플레이어
   interface BgMusic {
@@ -100,6 +103,8 @@ export default function BgMusicController() {
             <BgMusicVolume
               audioRef={audioRef}
               bgName={bgMusicArr[nowPlaying].bgMusicName}
+              value={value}
+              setValue={setValue}
             />
           )}
         </AnimatePresence>

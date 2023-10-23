@@ -1,5 +1,5 @@
 import Logo from "@/icon/logo";
-import BgMusicController from "./btnFunction/bgMusicControler";
+import BgMusicController from "./bgMusic/bgMusicControler";
 
 export default function HeaderGroup() {
   return (

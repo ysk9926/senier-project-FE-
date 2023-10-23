@@ -4,7 +4,7 @@ import IPause from "@/icon/IPause";
 import IPlay from "@/icon/IPlay";
 import { useRef, useState } from "react";
 
-export default function UserWhitenoiseTable({
+export default function MainPgWhitenoiseTable({
   whitenoise,
   index,
 }: {
@@ -48,7 +48,7 @@ export default function UserWhitenoiseTable({
   };
 
   return (
-    <div className="h-16 text-white mb-2 rounded-md bg-cover" style={divStyle}>
+    <div className=" h-16 text-white mb-2 rounded-md bg-cover" style={divStyle}>
       <div className="w-full h-full backdrop-blur-sm  flex justify-between p-2 rounded-md">
         <div key={index} className=" flex items-end pl-2">
           {whitenoise.whitenoiseName}
@@ -61,7 +61,7 @@ export default function UserWhitenoiseTable({
             max="1"
             step="0.1"
             value={volume}
-            className=" w-20 cursor-pointer outline-none accent-cyan-950 bg-white"
+            className=" w-16 cursor-pointer outline-none accent-cyan-950 bg-white"
             onChange={handleVolumeChange}
           />
           {/* 플레이 버튼 */}
