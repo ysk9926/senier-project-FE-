@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import BgMusicVolume from "../bgMusic/BgMusicVolume";
 import { useAllBgMusic } from "@/components/hook/useBgMusic";
 import IPause from "@/icon/IPause";
+import VolMute from "../controlers";
 
 export default function BgMusicController() {
   // 볼륨조절 상태
@@ -18,12 +19,19 @@ export default function BgMusicController() {
   };
 
   // 오디오 플레이어
+  interface BgMusic {
+    bgMusicURL: string;
+    bgMusicName: string;
+  }
   const bgMusic = useAllBgMusic();
-  const [bgMusicUrl, setBgMusicUrl] = useState<string[]>([]);
+  const [bgMusicArr, setBgMusicArr] = useState<BgMusic[]>([]);
   useEffect(() => {
     if (bgMusic?.allBgMusic) {
-      const urls = bgMusic.allBgMusic.map((bgmusic) => bgmusic.bgMusicURL);
-      setBgMusicUrl(urls);
+      const musicArray = bgMusic.allBgMusic.map((bgmusic) => ({
+        bgMusicURL: bgmusic.bgMusicURL,
+        bgMusicName: bgmusic.bgMusicName,
+      }));
+      setBgMusicArr(musicArray);
     }
   }, [bgMusic]);
 
@@ -31,7 +39,7 @@ export default function BgMusicController() {
   const [nowPlaying, setNowPlaying] = useState(0);
   const nextBtn = () => {
     const musicNum = nowPlaying + 1;
-    if (bgMusicUrl.length === musicNum) {
+    if (bgMusicArr.length === musicNum) {
       setNowPlaying(0);
     } else {
       setNowPlaying(musicNum);
@@ -41,7 +49,7 @@ export default function BgMusicController() {
   const preBtn = () => {
     const musicNum = nowPlaying - 1;
     if (musicNum < 0) {
-      setNowPlaying(bgMusicUrl.length - 1);
+      setNowPlaying(bgMusicArr.length - 1);
     } else {
       setNowPlaying(musicNum);
     }
@@ -66,25 +74,38 @@ export default function BgMusicController() {
   };
 
   return (
-    <div className=" relative">
-      <div className=" flex justify-around items-center w-40 h-9 bg-color_main_black rounded-md ">
-        <div className=" w-[18px] fill-white" onClick={preBtn}>
-          <IRewind />
+    <div className=" space-x-3 flex justify-between items-center px-8 ">
+      <div className=" relative">
+        <div className=" flex justify-around items-center w-40 h-9 bg-color_main_black rounded-md ">
+          <div className=" w-[18px] fill-white" onClick={preBtn}>
+            <IRewind />
+          </div>
+          <div className=" w-[18px] fill-white" onClick={play}>
+            {isPlaying ? <IPause /> : <IPlay />}
+          </div>
+          <div className=" w-[18px] fill-white" onClick={nextBtn}>
+            <IForward />
+          </div>
+          <div className=" w-[18px] fill-white  z-10 " onClick={bgVolHandler}>
+            <IVolume />
+          </div>
         </div>
-        <div className=" w-[18px] fill-white" onClick={play}>
-          {isPlaying ? <IPause /> : <IPlay />}
-        </div>
-        <div className=" w-[18px] fill-white" onClick={nextBtn}>
-          <IForward />
-        </div>
-        <div className=" w-[18px] fill-white  z-10 " onClick={bgVolHandler}>
-          <IVolume />
-        </div>
+        <audio
+          ref={audioRef}
+          src={bgMusicArr.length > 0 ? bgMusicArr[nowPlaying].bgMusicURL : ""}
+          loop={true}
+        ></audio>
+        <AnimatePresence>
+          {isOpen && (
+            <BgMusicVolume
+              audioRef={audioRef}
+              bgName={bgMusicArr[nowPlaying].bgMusicName}
+            />
+          )}
+        </AnimatePresence>
       </div>
-      <audio ref={audioRef} src={bgMusicUrl[nowPlaying]}></audio>
-      <AnimatePresence>
-        {isOpen && <BgMusicVolume audioRef={audioRef} />}
-      </AnimatePresence>
+      {/* 음소거 */}
+      <VolMute audioRef={audioRef} />
     </div>
   );
 }

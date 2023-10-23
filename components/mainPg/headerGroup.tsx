@@ -1,5 +1,5 @@
 import Logo from "@/icon/logo";
-import BgMusicControler from "./background/bgMusicControler";
+import BgMusicController from "./btnFunction/bgMusicControler";
 
 export default function HeaderGroup() {
   return (
@@ -14,7 +14,7 @@ export default function HeaderGroup() {
       {/* 유저 & 시계 */}
       <div className=" w-titleSize flex justify-center items-start"></div>
       {/* 음량조절 및 메뉴 */}
-      <BgMusicControler />
+      <BgMusicController />
     </div>
   );
 }
