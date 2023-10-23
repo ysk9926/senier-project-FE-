@@ -7,12 +7,17 @@ import IAdmin from "@/icon/IAdmin";
 import IPeople from "@/icon/IPeople";
 import { useReactiveVar } from "@apollo/client";
 import { Avatar } from "@nextui-org/react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
 export default function LoginBtn() {
+  // Hydration Error을 해결
+  const [isWindow, setIsWindow] = useState<boolean>(false);
+  useEffect(() => {
+    setIsWindow(true);
+  }, []);
+
   // 로그인 상태값
   const AuthCheck = useReactiveVar(LoggedInVar);
 
@@ -42,41 +47,43 @@ export default function LoginBtn() {
   }, [userData]);
 
   return (
-    <div>
-      {/* 로그인 상태 확인 */}
-      {AuthCheck ? (
-        // 로그인 상태
-        <div>
-          {userData?.me.admin ? (
-            // 관리자
+    isWindow && (
+      <div>
+        {/* 로그인 상태 확인 */}
+        {AuthCheck ? (
+          // 로그인 상태
+          <div>
+            {userData?.me.admin ? (
+              // 관리자
+              <div
+                className=" w-[18px] h-[18px] fill-white stroke-white"
+                onClick={AdminPageValueHandler}
+              >
+                <IAdmin />
+              </div>
+            ) : (
+              // 일반 유저
+              <Avatar
+                src={avatar}
+                name={userData?.me.username}
+                className="w-[27px] h-[27px] text-large"
+                onClick={MyPageValueHandler}
+              />
+            )}
+          </div>
+        ) : (
+          // 비로그인 상태
+          <div>
             <div
               className=" w-[18px] h-[18px] fill-white stroke-white"
-              onClick={AdminPageValueHandler}
+              onClick={LoginFormValueHandler}
             >
-              <IAdmin />
+              <IPeople />
             </div>
-          ) : (
-            // 일반 유저
-            <Avatar
-              src={avatar}
-              name={userData?.me.username}
-              className="w-[27px] h-[27px] text-large"
-              onClick={MyPageValueHandler}
-            />
-          )}
-        </div>
-      ) : (
-        // 비로그인 상태
-        <div>
-          <div
-            className=" w-[18px] h-[18px] fill-white stroke-white"
-            onClick={LoginFormValueHandler}
-          >
-            <IPeople />
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    )
   );
 }
 

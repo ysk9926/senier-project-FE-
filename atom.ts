@@ -14,3 +14,16 @@ export const InquiryTagValue = atom({
   key: "문의하기 태그",
   default: "all",
 });
+
+export const CityRainValue = atom({
+  key: "city rain 재생상태",
+  default: false,
+});
+export const CarSoundValue = atom({
+  key: "CarSound 재생상태",
+  default: false,
+});
+export const PeoplesoundValue = atom({
+  key: "Peoplesound 재생상태",
+  default: false,
+});

@@ -1,8 +1,11 @@
 "use client";
 
+import { CarSoundValue, CityRainValue, PeoplesoundValue } from "@/atom";
 import IPause from "@/icon/IPause";
 import IPlay from "@/icon/IPlay";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import ReactPlayer from "react-player";
+import { useRecoilState } from "recoil";
 
 export default function MainPgWhitenoiseTable({
   whitenoise,
@@ -21,38 +24,58 @@ export default function MainPgWhitenoiseTable({
   };
 
   // 오디오 플레이어
-  const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false); // 버튼 상태를 추적하는 상태
   const [volume, setVolume] = useState(0.5); // 초기 볼륨 설정
 
   // 재생 설정
   const play = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause(); // 이미 재생 중이라면 일시정지
-      } else {
-        audioRef.current.play(); // 아니라면 재생
-      }
-      setIsPlaying(!isPlaying); // 버튼 상태를 토글
+    if (index === 0) {
+      setCityRainPlay(!cityrainPlay);
+    } else if (index === 1) {
+      setCarsoundPlay(!carsoundPlay);
+    } else if (index === 2) {
+      setPeoplesoundPlay(!peoplesoundPlay);
     } else {
-      console.log("에러");
+      setIsPlaying(!isPlaying);
     }
   };
   // 볼륨 설정
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVolume = parseFloat(e.target.value);
-    if (audioRef.current) {
-      audioRef.current.volume = newVolume;
-      setVolume(newVolume);
-    }
+    setVolume(newVolume);
   };
 
+  // 빗소리 핸들러
+  const [cityrainPlay, setCityRainPlay] = useRecoilState(CityRainValue);
+  useEffect(() => {
+    if (index === 0) {
+      setIsPlaying(cityrainPlay);
+    }
+  }, [cityrainPlay]);
+  // 도시소음 핸들러
+  const [carsoundPlay, setCarsoundPlay] = useRecoilState(CarSoundValue);
+  useEffect(() => {
+    if (index === 1) {
+      setIsPlaying(carsoundPlay);
+    }
+  }, [carsoundPlay]);
+  // 속삭이는 소리 핸들러
+  const [peoplesoundPlay, setPeoplesoundPlay] =
+    useRecoilState(PeoplesoundValue);
+  useEffect(() => {
+    if (index === 2) {
+      setIsPlaying(peoplesoundPlay);
+    }
+  }, [peoplesoundPlay]);
+
   return (
-    <div className=" h-16 text-white mb-2 rounded-md bg-cover" style={divStyle}>
+    <div
+      className=" h-16 text-white mb-2 rounded-md bg-cover"
+      key={index}
+      style={divStyle}
+    >
       <div className="w-full h-full backdrop-blur-sm  flex justify-between p-2 rounded-md">
-        <div key={index} className=" flex items-end pl-2">
-          {whitenoise.whitenoiseName}
-        </div>
+        <div className=" flex items-end pl-2">{whitenoise.whitenoiseName}</div>
         <div className=" flex justify-center items-center">
           {/* 볼륨 조절 */}
           <input
@@ -69,11 +92,14 @@ export default function MainPgWhitenoiseTable({
             <div className=" w-8 h-8 fill-white" onClick={play}>
               {isPlaying ? <IPause /> : <IPlay />}
             </div>
-            <audio
-              ref={audioRef}
-              src={whitenoise.whitenoiseURL}
-              loop={true}
-            ></audio>
+            <div className="hidden">
+              <ReactPlayer
+                loop={true}
+                url={whitenoise.whitenoiseURL}
+                playing={isPlaying}
+                volume={volume}
+              />
+            </div>
           </div>
         </div>
       </div>

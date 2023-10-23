@@ -1,18 +1,25 @@
 "use client";
 
+import { CarSoundValue, CityRainValue, PeoplesoundValue } from "@/atom";
+import { useRecoilState } from "recoil";
+
 export default function BgImgBtn() {
+  const [cityrainPlay, setCityRainPlay] = useRecoilState(CityRainValue);
+  const [carsoundPlay, setCarsoundPlay] = useRecoilState(CarSoundValue);
+  const [peoplesoundPlay, setPeoplesoundPlay] =
+    useRecoilState(PeoplesoundValue);
+
   const CarsoundHandler = () => {
-    return null;
+    setCarsoundPlay(!carsoundPlay);
   };
   const RainsoundHandler = () => {
-    return null;
+    setCityRainPlay(!cityrainPlay);
   };
   const PeoplesoundHandler = () => {
-    return null;
+    setPeoplesoundPlay(!peoplesoundPlay);
   };
   return (
     <div>
-      {/* test */}
       {/* car-sound */}
       <label
         className="

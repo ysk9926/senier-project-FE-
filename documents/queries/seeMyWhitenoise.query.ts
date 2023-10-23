@@ -3,6 +3,7 @@ import { gql } from "@apollo/client";
 export const SeeMyWhitenosieQuery = gql`
   query SeeMyWhitenoise {
     seeMyWhitenoise {
+      isLocked
       whiteNoise {
         whitenoiseName
         whitenoiseURL
@@ -14,6 +15,7 @@ export const SeeMyWhitenosieQuery = gql`
 
 export interface ISeeMyWhitenoiseData {
   seeMyWhitenoise: Array<{
+    isLocked: boolean;
     whiteNoise: {
       whitenoiseName: string;
       whitenoiseURL: string;
