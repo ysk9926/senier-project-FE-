@@ -65,7 +65,9 @@ export default function UseInquiryModal({
                       <div className=" text-sm font-semibold">답변</div>
                       <div className=" w-[90%] px-3 mt-3 h-[1px] bg-gray-300"></div>
                     </div>
-                    <div className=" text-sm my-3 max-h-32">{answer}</div>
+                    <div className=" text-sm my-3 max-h-32 overflow-auto scrollbar-none">
+                      {answer}
+                    </div>
                   </div>
                 )}
               </ModalBody>

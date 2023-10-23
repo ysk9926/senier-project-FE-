@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  Avatar,
   Button,
   Modal,
   ModalBody,
@@ -10,14 +9,11 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import useUser from "@/components/hook/useMe";
-import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
-import ErrorForm from "@/components/mainPg/Auth/Form/ErrorForm";
 import EditProfileForm from "./editProfileForm";
 
 export default function EditProfile() {
   // next ui
-  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   // 유저정보 불러오기
   const user = useUser();

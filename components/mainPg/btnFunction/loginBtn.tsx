@@ -55,20 +55,14 @@ export default function LoginBtn() {
             >
               <IAdmin />
             </div>
-          ) : // 일반 유저
-          avatar ? (
+          ) : (
+            // 일반 유저
             <Avatar
               src={avatar}
+              name={userData?.me.username}
               className="w-[27px] h-[27px] text-large"
               onClick={MyPageValueHandler}
             />
-          ) : (
-            <div
-              className=" w-[18px] h-[18px] fill-green-400 stroke-green-400"
-              onClick={MyPageValueHandler}
-            >
-              <IPeople />
-            </div>
           )}
         </div>
       ) : (

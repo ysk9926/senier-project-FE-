@@ -23,7 +23,7 @@ export default function UserWhitenoiseTable({
   // 오디오 플레이어
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false); // 버튼 상태를 추적하는 상태
-  const [volume, setVolume] = useState(1); // 초기 볼륨 설정
+  const [volume, setVolume] = useState(0.5); // 초기 볼륨 설정
 
   // 재생 설정
   const play = () => {
@@ -68,7 +68,7 @@ export default function UserWhitenoiseTable({
             max="1"
             step="0.1"
             value={volume}
-            className=" w-20"
+            className=" w-20 cursor-pointer outline-none accent-cyan-950 bg-white"
             onChange={handleVolumeChange}
           />
           {/* 플레이 버튼 */}
