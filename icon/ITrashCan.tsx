@@ -5,7 +5,6 @@ export default function ITrashCan() {
       fill="none"
       viewBox="0 0 24 24"
       strokeWidth="1.5"
-      stroke="currentColor"
     >
       <path
         strokeLinecap="round"

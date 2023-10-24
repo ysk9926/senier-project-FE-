@@ -15,6 +15,11 @@ export const InquiryTagValue = atom({
   default: "all",
 });
 
+export const TodoTagValue = atom({
+  key: "투두리스트 태그",
+  default: "TODO",
+});
+
 export const CityRainValue = atom({
   key: "city rain 재생상태",
   default: false,
