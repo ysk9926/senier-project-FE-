@@ -2,7 +2,6 @@ import LoginBtn from "./btnFunction/loginBtn";
 import LogOutBtn from "./btnFunction/logOutBtn";
 import TodoModal from "./todo/todoModal";
 import AllWhitenoise from "./whitenoise/allWhitenoise";
-import ITodo from "@/icon/ITodo";
 
 export default function ControlbarGroup() {
   return (

@@ -51,11 +51,6 @@ export default function SignUpForm() {
     // userId와 password를 sessionStorage에 저장
     sessionStorage.setItem("userId", userId);
     sessionStorage.setItem("password", password);
-    // 5분 후에 데이터를 삭제
-    setTimeout(() => {
-      sessionStorage.removeItem("userId");
-      sessionStorage.removeItem("password");
-    }, 5 * 60 * 1000);
     // 로그인 페이지로 이동
     setPgState("login");
   };

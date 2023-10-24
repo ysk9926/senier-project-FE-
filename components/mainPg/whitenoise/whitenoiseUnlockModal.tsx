@@ -1,5 +1,6 @@
 import useUser from "@/components/hook/useMe";
 import { EditLockMutation } from "@/documents/mutations/Whitenoise/UnLockWhitenoise.mutation";
+import { MeQuery } from "@/documents/queries/me.query";
 import { SeeMyWhitenosieQuery } from "@/documents/queries/seeMyWhitenoise.query";
 import ILocked from "@/icon/ILocked";
 import IUnLock from "@/icon/IUnLock";
@@ -49,7 +50,7 @@ export default function UserWhitenoiseUnLockModal({
   // 언락 뮤테이션
   const [unlockWhitenoiseMutation, { loading: unlockWhitenoiseLoading }] =
     useMutation(EditLockMutation, {
-      refetchQueries: [{ query: SeeMyWhitenosieQuery }],
+      refetchQueries: [{ query: SeeMyWhitenosieQuery }, { query: MeQuery }],
     });
   const unlockHandler = async ({ onClose }: { onClose: () => void }) => {
     if (unlockWhitenoiseLoading) {

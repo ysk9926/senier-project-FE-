@@ -12,19 +12,29 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import TodoTable from "./todoTable";
-import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { TodoTagValue } from "@/atom";
+import { useReactiveVar } from "@apollo/client";
+import { LoggedInVar } from "@/apollo";
 
 export default function TodoModal() {
   // next ui
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
 
+  // 로그인 벨류
+  const Auth = useReactiveVar(LoggedInVar);
+
   // 태그 벨류
   const [tag, setTag] = useRecoilState(TodoTagValue);
+
   return (
     <>
-      <div className=" w-[18px] fill-white" onClick={onOpen}>
+      <div
+        className={` w-[18px] fill-white ${
+          !Auth && "pointer-events-none opacity-50"
+        }`}
+        onClick={onOpen}
+      >
         <ITodo />
       </div>
       <Modal size="4xl" isOpen={isOpen} onClose={onClose}>

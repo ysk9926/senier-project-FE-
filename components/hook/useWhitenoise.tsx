@@ -3,6 +3,10 @@ import {
   IAllWhitenoise,
 } from "@/documents/queries/allWhitenoise.query";
 import {
+  ISeeDefaultWhitenoiseData,
+  SeeDefaultWhitenoiseQuery,
+} from "@/documents/queries/defaultWhitenoise.query";
+import {
   ISeeMyWhitenoiseData,
   SeeMyWhitenosieQuery,
 } from "@/documents/queries/seeMyWhitenoise.query";
@@ -16,4 +20,9 @@ export function useAllWhitenoise(): IAllWhitenoise {
 export function useMyWhitenoise(): ISeeMyWhitenoiseData {
   const { data: myWhitenoiseData } = useQuery(SeeMyWhitenosieQuery);
   return myWhitenoiseData;
+}
+
+export function useDefaultWHitenoise(): ISeeDefaultWhitenoiseData {
+  const { data: defaultWhitenoiseData } = useQuery(SeeDefaultWhitenoiseQuery);
+  return defaultWhitenoiseData;
 }

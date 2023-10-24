@@ -26,6 +26,7 @@ export const logUserOut = () => {
   localStorage.removeItem(TOKEN);
   LoggedInVar(false);
   console.log("로그아웃!!");
+  window.location.reload();
 };
 
 const httpLink = createHttpLink({

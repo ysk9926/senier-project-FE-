@@ -40,6 +40,7 @@ export default function LoginForm() {
     setError,
     getValues,
     clearErrors,
+    reset,
   } = useForm<ILoginForm>({
     mode: "onChange",
     defaultValues: {
@@ -64,6 +65,8 @@ export default function LoginForm() {
       AuthCheckHandler();
       // 로그인 헤더로 전송
       logUserIn(token);
+      sessionStorage.removeItem("userId");
+      sessionStorage.removeItem("password");
     }
   };
   const [loginMutation, { loading: loginLoading }] = useMutation(
