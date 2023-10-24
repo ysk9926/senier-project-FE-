@@ -35,19 +35,19 @@ export default function InquiryTableData() {
             <div className=" flex justify-center items-center border-b">
               {Inquiry.isClosed ? (
                 <div className=" flex justify-center items-center">
-                  <div className=" rounded-full bg-[#f5a524]  w-[10px] h-[10px]"></div>
-                  <span className=" pl-1 text-sm">답변대기</span>
+                  <div className=" rounded-full bg-[#17c964]  w-[10px] h-[10px]"></div>
+                  <span className=" pl-1 text-sm">답변완료</span>
                 </div>
               ) : (
                 <div className=" flex justify-center items-center">
-                  <div className=" rounded-full bg-[#17c964]  w-[10px] h-[10px]"></div>
-                  <span className=" pl-1 text-sm">답변완료</span>
+                  <div className=" rounded-full bg-[#f5a524]  w-[10px] h-[10px]"></div>
+                  <span className=" pl-1 text-sm">답변대기</span>
                 </div>
               )}
             </div>
           </>
         ) : tagv === "close" ? (
-          Inquiry.isClosed === false ? (
+          Inquiry.isClosed === true ? (
             <>
               {/* 문의 넘버 */}
               <div className=" flex justify-center items-center border-r border-b">
@@ -68,19 +68,19 @@ export default function InquiryTableData() {
               <div className=" flex justify-center items-center border-b">
                 {Inquiry.isClosed ? (
                   <div className=" flex justify-center items-center">
-                    <div className=" rounded-full bg-[#f5a524]  w-[10px] h-[10px]"></div>
-                    <span className=" pl-1 text-sm">답변대기</span>
+                    <div className=" rounded-full bg-[#17c964]  w-[10px] h-[10px]"></div>
+                    <span className=" pl-1 text-sm">답변완료</span>
                   </div>
                 ) : (
                   <div className=" flex justify-center items-center">
-                    <div className=" rounded-full bg-[#17c964]  w-[10px] h-[10px]"></div>
-                    <span className=" pl-1 text-sm">답변완료</span>
+                    <div className=" rounded-full bg-[#f5a524]  w-[10px] h-[10px]"></div>
+                    <span className=" pl-1 text-sm">답변대기</span>
                   </div>
                 )}
               </div>
             </>
           ) : null
-        ) : Inquiry.isClosed === true ? (
+        ) : Inquiry.isClosed === false ? (
           <>
             {/* 문의 넘버 */}
             <div className=" flex justify-center items-center border-r border-b">
@@ -101,13 +101,13 @@ export default function InquiryTableData() {
             <div className=" flex justify-center items-center border-b">
               {Inquiry.isClosed ? (
                 <div className=" flex justify-center items-center">
-                  <div className=" rounded-full bg-[#f5a524]  w-[10px] h-[10px]"></div>
-                  <span className=" pl-1 text-sm">답변대기</span>
+                  <div className=" rounded-full bg-[#17c964]  w-[10px] h-[10px]"></div>
+                  <span className=" pl-1 text-sm">답변완료</span>
                 </div>
               ) : (
                 <div className=" flex justify-center items-center">
-                  <div className=" rounded-full bg-[#17c964]  w-[10px] h-[10px]"></div>
-                  <span className=" pl-1 text-sm">답변완료</span>
+                  <div className=" rounded-full bg-[#f5a524]  w-[10px] h-[10px]"></div>
+                  <span className=" pl-1 text-sm">답변대기</span>
                 </div>
               )}
             </div>

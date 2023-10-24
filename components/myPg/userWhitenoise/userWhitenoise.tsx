@@ -21,6 +21,7 @@ export default function UserWhitenoise() {
             <UserWhitenoiseTable
               whitenoise={whitenoiseItem.whiteNoise}
               index={index}
+              isLocked={whitenoiseItem.isLocked}
             />
           ))}
         </div>

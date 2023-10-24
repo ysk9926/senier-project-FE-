@@ -13,7 +13,7 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface IUnlockModal {
   whitenoiseName: string;
@@ -28,8 +28,13 @@ export default function UserWhitenoiseUnLockModal({
 }: IUnlockModal) {
   // 유저정보 호출
   const user = useUser();
-
-  const remainPoint = user.me.points - requirePoints;
+  const [remainPoint, setRemainPoint] = useState(0);
+  useEffect(() => {
+    if (user) {
+      const remain = user.me.points - requirePoints;
+      setRemainPoint(remain);
+    }
+  }, [user]);
   // next ui
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   // 호버 핸들러

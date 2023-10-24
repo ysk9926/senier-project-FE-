@@ -27,13 +27,13 @@ export default function UserInquiryTable() {
             <div className=" flex justify-center items-center border-b-1">
               {Inquiry.isClosed ? (
                 <div className=" flex justify-center items-center">
-                  <div className=" rounded-full bg-[#f5a524] w-[10px] h-[10px] mr-2"></div>
-                  <span>답변대기</span>
+                  <div className=" rounded-full bg-[#17c964]  w-[10px] h-[10px]"></div>
+                  <span className=" pl-1 text-sm">답변완료</span>
                 </div>
               ) : (
                 <div className=" flex justify-center items-center">
-                  <div className=" rounded-full bg-[#17c964] w-[10px] h-[10px] mr-2"></div>
-                  <span>답변완료</span>
+                  <div className=" rounded-full bg-[#f5a524]  w-[10px] h-[10px]"></div>
+                  <span className=" pl-1 text-sm">답변대기</span>
                 </div>
               )}
             </div>

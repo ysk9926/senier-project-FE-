@@ -128,9 +128,9 @@ export default function AnswerInquiryModal({
                     {/* 문의 상태 변경 */}
                     <Button
                       onClick={inquiryStateHandler}
-                      color={`${inquiryState ? "warning" : "success"}`}
+                      color={`${inquiryState ? "success" : "warning"}`}
                     >
-                      {inquiryState ? "close" : "open"}
+                      {inquiryState ? "완료" : "대기"}
                     </Button>
                     {/* 답변하기 버튼 */}
                     <Button type="submit" className=" w-52" onPress={onClose}>

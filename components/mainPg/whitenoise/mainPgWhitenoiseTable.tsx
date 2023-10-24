@@ -77,7 +77,7 @@ export default function MainPgWhitenoiseTable({
   }, [peoplesoundPlay]);
 
   return isLocked ? (
-    // 잠금이 해제된 경우
+    // 잠겨있는 경우
     <label className=" relative">
       <UserWhitenoiseUnLockModal
         whitenoiseName={whitenoise.whitenoiseName}
@@ -123,7 +123,7 @@ export default function MainPgWhitenoiseTable({
       </div>
     </label>
   ) : (
-    // 잠겨있는 경우
+    // 잠금 해제된 경우
     <div
       className=" h-16 text-white mb-2 rounded-md bg-cover"
       key={index}
