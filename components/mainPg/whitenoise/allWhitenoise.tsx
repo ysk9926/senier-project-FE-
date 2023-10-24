@@ -2,7 +2,6 @@
 
 import { useMyWhitenoise } from "@/components/hook/useWhitenoise";
 import IVolCustom from "@/icon/IVolCustom";
-import { Popover, PopoverContent, PopoverTrigger } from "@nextui-org/react";
 import MainPgWhitenoiseTable from "./mainPgWhitenoiseTable";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -39,6 +38,7 @@ export default function AllWhitenoise() {
               <MainPgWhitenoiseTable
                 whitenoise={whitenoiseItem.whiteNoise}
                 index={index}
+                isLocked={whitenoiseItem.isLocked}
               />
             ))}
           </div>

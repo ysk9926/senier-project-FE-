@@ -11,7 +11,7 @@ export default function WhitenoiseControlBox() {
         {/* 추가 및 삭제 */}
         <AddWhitenoise />
       </div>
-      <div className=" overflow-auto scrollbar-none h-32">
+      <div className=" overflow-auto scrollbar-none h-48">
         <AllWhitenoiseData />
       </div>
     </div>

@@ -11,7 +11,7 @@ export default function BgMusicControlBox() {
         {/* 추가 */}
         <AddBgMusic />
       </div>
-      <div className=" overflow-auto scrollbar-none">
+      <div className=" overflow-auto h-48 scrollbar-none">
         <AllBgMusicData />
       </div>
     </div>
