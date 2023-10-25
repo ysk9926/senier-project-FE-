@@ -28,10 +28,11 @@ export default function TodoDeleteBtn({ todoId }: { todoId: number }) {
     }
   };
   return (
-    <Button isIconOnly color="danger" onClick={deleteTodoHandler}>
-      <div className=" w-5 stroke-white">
-        <ITrashCan />
-      </div>
-    </Button>
+    <div
+      className=" w-5 stroke-red-500 hover:scale-[1.2]"
+      onClick={deleteTodoHandler}
+    >
+      <ITrashCan />
+    </div>
   );
 }

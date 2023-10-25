@@ -30,10 +30,12 @@ export function TodoStateBtn({ todoId }: { todoId: number }) {
   };
   return (
     // 완료버튼
-    <Button isIconOnly color="success" onClick={todoStateHandler}>
-      <div className=" fill-white">
-        <IDone />
-      </div>
-    </Button>
+
+    <div
+      className=" w-5 fill-green-500 hover:scale-[1.2]"
+      onClick={todoStateHandler}
+    >
+      <IDone />
+    </div>
   );
 }

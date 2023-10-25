@@ -16,6 +16,7 @@ import { useRecoilState } from "recoil";
 import { TodoTagValue } from "@/atom";
 import { useReactiveVar } from "@apollo/client";
 import { LoggedInVar } from "@/apollo";
+import { useEffect, useState } from "react";
 
 export default function TodoModal() {
   // next ui
@@ -23,6 +24,10 @@ export default function TodoModal() {
 
   // 로그인 벨류
   const Auth = useReactiveVar(LoggedInVar);
+  const [AuthV, setAuthV] = useState(false);
+  useEffect(() => {
+    setAuthV(Auth);
+  }, [Auth]);
 
   // 태그 벨류
   const [tag, setTag] = useRecoilState(TodoTagValue);
@@ -31,7 +36,7 @@ export default function TodoModal() {
     <>
       <div
         className={` w-[18px] fill-white ${
-          !Auth && "pointer-events-none opacity-50"
+          AuthV ? null : "pointer-events-none opacity-50"
         }`}
         onClick={onOpen}
       >

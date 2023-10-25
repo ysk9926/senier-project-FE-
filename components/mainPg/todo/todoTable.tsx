@@ -5,7 +5,6 @@ import {
   SeeMyTodoQuery,
 } from "@/documents/queries/seeMyTodo.query";
 import { useMutation, useQuery } from "@apollo/client";
-import { Button } from "@nextui-org/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRecoilValue } from "recoil";
 import { TodoStateBtn } from "./todoStateBtn";
@@ -55,11 +54,14 @@ export default function TodoTable() {
   // 태그 상태
   const tag = useRecoilValue(TodoTagValue);
 
+  // 투두 배경색상
+  const todoBgCol = ["#FCE4E4", "#FEF7CD", "#E9F9DD", "#DEF1FF", "#E9DFF5"];
+
   return tag === "TODO" ? (
     // 투두 상태
     <div className="flex flex-wrap justify-center">
       {/* 추가 버튼 */}
-      <div className=" w-48 h-44 bg-cyan-950 rounded-md m-3 flex justify-center">
+      <div className=" w-56 h-44 bg-[#DEF1FF] rounded-md m-5 flex justify-center">
         <form
           onSubmit={handleSubmit(onSubmitValid)}
           className=" flex flex-col items-center"
@@ -70,29 +72,36 @@ export default function TodoTable() {
               minLength: { value: 2, message: "2글자 이상 입력하세요" },
             })}
             placeholder="투두를 추가해주세요"
-            className=" h-28 m-2 bg-inherit overflow-auto scrollbar-none resize-none outline-none text-white"
+            className=" w-full h-28 m-2 bg-inherit overflow-auto scrollbar-none resize-none outline-none 
+            "
           />
-          <Button
+          <button
             type="submit"
-            size="sm"
-            className={`font-semibold ${
+            className={` bg-white py-[2px] px-2 rounded-md mt-3 outline-none ${
               isValid ? "" : "pointer-events-none opacity-50"
             }`}
           >
             추가하기
-          </Button>
+          </button>
         </form>
       </div>
-      {seeMyTodoList.map(
-        (todoItem, index) =>
+      {seeMyTodoList.map((todoItem, index) => {
+        const colorIndex = index % todoBgCol.length;
+        const backgroundColor = todoBgCol[colorIndex];
+
+        return (
           todoItem.status === false && (
-            <div className=" w-48 h-44 bg-cyan-950 rounded-md m-3" key={index}>
+            <div
+              className={` w-56 h-44 rounded-md m-5 px-2`}
+              style={{ backgroundColor: `${backgroundColor}` }}
+              key={index}
+            >
               {/* content */}
-              <div className=" h-28 m-2 text-white overflow-auto scrollbar-none">
+              <div className=" h-28 m-2 overflow-auto scrollbar-none">
                 {todoItem.content}
               </div>
               {/* button wrapper */}
-              <div className=" flex justify-center items-center space-x-10 pb-2">
+              <div className=" flex justify-center items-center space-x-10 mt-6">
                 {/* 삭제하기 */}
                 <TodoDeleteBtn todoId={todoItem.id} />
                 {/* 완료하기 */}
@@ -100,27 +109,35 @@ export default function TodoTable() {
               </div>
             </div>
           )
-      )}
+        );
+      })}
     </div>
   ) : (
     // 완료 상태
     <div className="flex flex-wrap justify-center">
-      {seeMyTodoList.map(
-        (todoItem, index) =>
+      {seeMyTodoList.map((todoItem, index) => {
+        const colorIndex = index % todoBgCol.length;
+        const backgroundColor = todoBgCol[colorIndex];
+        return (
           todoItem.status === true && (
-            <div className=" w-48 h-44 bg-cyan-950 rounded-md m-3" key={index}>
+            <div
+              className=" w-56 h-44 rounded-md m-5 px-2"
+              style={{ backgroundColor: `${backgroundColor}` }}
+              key={index}
+            >
               {/* content */}
-              <div className=" h-28 m-2 text-white overflow-auto scrollbar-none">
+              <div className=" h-28 m-2 overflow-auto scrollbar-none">
                 {todoItem.content}
               </div>
               {/* button wrapper */}
-              <div className=" flex justify-center items-center space-x-10 pb-2">
+              <div className=" flex justify-center items-center space-x-10 mt-6">
                 {/* 삭제하기 */}
                 <TodoDeleteBtn todoId={todoItem.id} />
               </div>
             </div>
           )
-      )}
+        );
+      })}
     </div>
   );
 }
