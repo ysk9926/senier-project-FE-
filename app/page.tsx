@@ -1,8 +1,8 @@
-import BgImg from "@/components/mainPg/bgImg";
-import HeaderGroup from "@/components/mainPg/headerGroup";
-import ControlbarGroup from "@/components/mainPg/controlbarGroup";
-import BgImgBtn from "@/components/mainPg/btnFunction/bgImgBtn";
-import LoginPg from "@/components/mainPg/auth/loginPg";
+import LoginPg from "@/components/mainPage/auth/loginPg";
+import BgImg from "@/components/mainPage/bgImg";
+import BgImgBtn from "@/components/mainPage/btnFunction/bgImgBtn";
+import ControlbarGroup from "@/components/mainPage/controlbarGroup";
+import HeaderGroup from "@/components/mainPage/headerGroup";
 
 export default function Home() {
   return (

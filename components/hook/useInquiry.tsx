@@ -3,22 +3,22 @@
 import {
   AllInquiryQuery,
   IAllInquiryData,
-} from "@/documents/queries/allInquiry.query";
+} from "@/documents/query/allInquiry.query";
+import { user } from "@nextui-org/react";
 import useUser from "./useMe";
-import { useQuery } from "@apollo/client";
 import {
   ISeeUnAnswerInquiryData,
   SeeUnAnswerInquiryQuery,
-} from "@/documents/queries/seeUnAnswerInquiry.mutation";
+} from "@/documents/query/seeUnAnswerInquiry.query";
+import { useQuery } from "@apollo/client/react";
 import {
   ISeeAnswerInquiryData,
   SeeAnswerInquiryQuery,
-} from "@/documents/queries/seeAnswerInquiry.query";
+} from "@/documents/query/seeAnserInquiry.query";
 import {
   ISeeMyInquiryData,
   SeeMyInquiryQuery,
-} from "@/documents/queries/seeMyInquiry.query";
-import { user } from "@nextui-org/react";
+} from "@/documents/query/seeMyInquiry.query";
 
 // 전체 문의 데이터
 export function useAllInquiry(): IAllInquiryData {

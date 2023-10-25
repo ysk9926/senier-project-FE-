@@ -1,11 +1,11 @@
-import AdminTitle from "@/components/adminPg/adminTitle";
-import BgMusicControlBox from "@/components/adminPg/bgMusicControl/controlBox";
-import AllInquiryDashBoard from "@/components/adminPg/dashBoard/allInquiryDashBoard";
-import InquiryTags from "@/components/adminPg/inquiryTable/inquiryTags";
-import InquiryMainT from "@/components/adminPg/inquiryTable/maintable";
-import WhitenoiseControlBox from "@/components/adminPg/whiteNoiseControl/controlBox";
-import BackHome from "@/components/myPg/backHome";
-import Seperator from "@/components/utils/seperator";
+import AdminTitle from "@/components/admin/adminTitle";
+import BgMusicControlBox from "@/components/admin/bgMusic/controlBox";
+import AllInquiryDashBoard from "@/components/admin/dashBoard/allInquiryDashBoard";
+import InquiryTags from "@/components/admin/inquiry/inquiryTags";
+import InquiryMainT from "@/components/admin/inquiry/maintable";
+import WhitenoiseControlBox from "@/components/admin/whitenoise/controlBox";
+import BackHome from "@/components/myPage/backHome";
+import Seperator from "@/components/util/seperator";
 
 export default function AdminPG() {
   return (

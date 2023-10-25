@@ -1,10 +1,9 @@
-import useUser from "@/components/hook/useMe";
-import UserPoints from "@/components/myPg/points/userPoints";
-import BackHome from "@/components/myPg/backHome";
-import DeleteId from "@/components/myPg/deleteId";
-import UserInfo from "@/components/myPg/userInfo/userInfo";
-import UserInquiry from "@/components/myPg/userInquiry/userInquiry";
-import UserWhitenoise from "@/components/myPg/userWhitenoise/userWhitenoise";
+import BackHome from "@/components/myPage/backHome";
+import DeleteId from "@/components/myPage/deleteId";
+import UserPoints from "@/components/myPage/points/userPoints";
+import UserInfo from "@/components/myPage/userInfo/userInfo";
+import UserInquiry from "@/components/myPage/userInquiry/userInquiry";
+import UserWhitenoise from "@/components/myPage/userWhitenoise/userWhitenoise";
 
 export default function MyPage() {
   return (

@@ -1,15 +1,17 @@
+"use client";
+
 import {
   AllWhiteNoiseQuery,
   IAllWhitenoise,
-} from "@/documents/queries/allWhitenoise.query";
+} from "@/documents/query/allWhitenoise.query";
 import {
   ISeeDefaultWhitenoiseData,
   SeeDefaultWhitenoiseQuery,
-} from "@/documents/queries/defaultWhitenoise.query";
+} from "@/documents/query/defaultWhitenoise.query";
 import {
   ISeeMyWhitenoiseData,
   SeeMyWhitenosieQuery,
-} from "@/documents/queries/seeMyWhitenoise.query";
+} from "@/documents/query/seeMyWhitenoise.query";
 import { useQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 
 export function useAllWhitenoise(): IAllWhitenoise {
