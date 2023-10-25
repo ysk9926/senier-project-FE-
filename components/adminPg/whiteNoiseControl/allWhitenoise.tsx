@@ -3,9 +3,9 @@
 import { useAllWhitenoise } from "@/components/hook/useWhitenoise";
 import { Button } from "@nextui-org/react";
 import { useMutation } from "@apollo/client";
-import { DeleteWhitenoiseMutation } from "@/documents/mutations/Whitenoise/DeleteWhitenoise.mutation";
 import { AllWhiteNoiseQuery } from "@/documents/queries/allWhitenoise.query";
 import AllWhitenoisePopover from "./allWhitenoisePopover";
+import { DeleteWhitenoiseMutation } from "@/documents/mutations/whitenoise/DeleteWhitenoise.mutation";
 
 export default function AllWhitenoiseData() {
   const allWhitenoise = useAllWhitenoise();

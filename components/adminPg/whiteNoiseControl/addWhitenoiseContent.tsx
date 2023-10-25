@@ -2,9 +2,9 @@ import { PopoverContent } from "@nextui-org/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useState, ChangeEvent } from "react";
 import { useMutation } from "@apollo/client";
-import { AddWhitenoiseMutation } from "@/documents/mutations/Whitenoise/AddWhitenoise.mutation";
 import { AllWhiteNoiseQuery } from "@/documents/queries/allWhitenoise.query";
-import { UpdateUserWhitenoiseMutation } from "@/documents/mutations/Whitenoise/UpdateUserWhitenoise.mutation";
+import { AddWhitenoiseMutation } from "@/documents/mutations/whitenoise/addWhitenoise.mutation";
+import { UpdateUserWhitenoiseMutation } from "@/documents/mutations/whitenoise/updateUserWhitenoise.mutation";
 
 export default function AddWhitenosieContent({
   onClose,

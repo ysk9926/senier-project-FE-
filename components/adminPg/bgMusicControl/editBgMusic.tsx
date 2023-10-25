@@ -1,6 +1,6 @@
 "use client";
 
-import { EditBgMusicMutation } from "@/documents/mutations/BgMusic/EditBgMusic.mutation";
+import { EditBgMusicMutation } from "@/documents/mutations/bgMusic/editBgMusic.mutation";
 import { AllBgMusicQuery } from "@/documents/queries/allBgMusic.query";
 import { useMutation } from "@apollo/client";
 import { PopoverContent } from "@nextui-org/react";

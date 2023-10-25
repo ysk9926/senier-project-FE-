@@ -1,6 +1,6 @@
 "use client";
 
-import { EditWhitenoiseMutation } from "@/documents/mutations/Whitenoise/EditWhitenoise.mutation";
+import { EditWhitenoiseMutation } from "@/documents/mutations/whitenoise/EditWhitenoise.mutation";
 import { AllWhiteNoiseQuery } from "@/documents/queries/allWhitenoise.query";
 import { useMutation } from "@apollo/client";
 import { Button, PopoverContent } from "@nextui-org/react";

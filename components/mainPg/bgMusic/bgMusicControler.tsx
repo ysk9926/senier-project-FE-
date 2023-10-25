@@ -6,10 +6,10 @@ import IRewind from "@/icon/IRewind";
 import IVolume from "@/icon/IVolume";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import BgMusicVolume from "./BgMusicVolume";
 import { useAllBgMusic } from "@/components/hook/useBgMusic";
 import IPause from "@/icon/IPause";
 import VolMute from "./volMute";
+import BgMusicVolume from "./bgMusicVolume";
 
 export default function BgMusicController() {
   // 볼륨조절 창 상태

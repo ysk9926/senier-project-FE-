@@ -1,7 +1,7 @@
 "use client";
 
 import { logUserOut } from "@/apollo";
-import { DeleteIdMutation } from "@/documents/mutations/User/DeleteAccount";
+import { DeleteIdMutation } from "@/documents/mutations/user/DeleteAccount";
 import { useMutation } from "@apollo/client";
 import {
   Button,

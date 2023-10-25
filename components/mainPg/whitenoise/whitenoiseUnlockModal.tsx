@@ -1,5 +1,5 @@
 import useUser from "@/components/hook/useMe";
-import { EditLockMutation } from "@/documents/mutations/Whitenoise/UnLockWhitenoise.mutation";
+import { EditLockMutation } from "@/documents/mutations/whitenoise/UnLockWhitenoise.mutation";
 import { MeQuery } from "@/documents/queries/me.query";
 import { SeeMyWhitenosieQuery } from "@/documents/queries/seeMyWhitenoise.query";
 import ILocked from "@/icon/ILocked";

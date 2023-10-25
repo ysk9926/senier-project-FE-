@@ -3,7 +3,7 @@
 import { useAllBgMusic } from "@/components/hook/useBgMusic";
 import { useMutation } from "@apollo/client";
 import { Button } from "@nextui-org/react";
-import { DeleteBgMusicMutation } from "@/documents/mutations/BgMusic/DeleatBgMusic.mutation";
+import { DeleteBgMusicMutation } from "@/documents/mutations/bgMusic/deleatBgMusic.mutation";
 import { AllBgMusicQuery } from "@/documents/queries/allBgMusic.query";
 import AllBgMusicPopover from "./allBgMusicPopover";
 

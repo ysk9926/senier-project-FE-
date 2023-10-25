@@ -52,7 +52,8 @@ const onErrorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 const uploadHttpLink = createUploadLink({
-  uri: "http://localhost:4000/graphql",
+  // uri: "http://localhost:4000/graphql",
+  uri: "https://port-0-senier-project-be-ac2nlkxx9m8s.sel4.cloudtype.app/graphql",
 });
 
 const client = new ApolloClient({

@@ -1,5 +1,5 @@
 import useUser from "@/components/hook/useMe";
-import UserPoints from "@/components/myPg/Points/userPoints";
+import UserPoints from "@/components/myPg/points/userPoints";
 import BackHome from "@/components/myPg/backHome";
 import DeleteId from "@/components/myPg/deleteId";
 import UserInfo from "@/components/myPg/userInfo/userInfo";

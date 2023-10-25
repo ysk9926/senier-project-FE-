@@ -5,7 +5,7 @@ import { Avatar, Button } from "@nextui-org/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import { useState, ChangeEvent, useEffect } from "react";
-import { EditProfileMutation } from "@/documents/mutations/User/EditAccount";
+import { EditProfileMutation } from "@/documents/mutations/user/EditAccount";
 import { MeQuery } from "@/documents/queries/me.query";
 
 export default function EditProfileForm({

@@ -4,7 +4,7 @@ import { Button, PopoverContent } from "@nextui-org/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useState, ChangeEvent } from "react";
 import { useMutation } from "@apollo/client";
-import { AddBgMusicMutation } from "@/documents/mutations/BgMusic/AddBgMusic.mutation";
+import { AddBgMusicMutation } from "@/documents/mutations/bgMusic/addBgMusic.mutation";
 import { AllBgMusicQuery } from "@/documents/queries/allBgMusic.query";
 
 export default function AddBgMusicContent({
