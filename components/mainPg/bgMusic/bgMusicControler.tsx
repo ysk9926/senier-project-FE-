@@ -1,13 +1,13 @@
 "use client";
 
-import IForward from "@/icon/IForward";
-import IPlay from "@/icon/IPlay";
-import IRewind from "@/icon/IRewind";
-import IVolume from "@/icon/IVolume";
+import IForward from "@/icon/iForward";
+import IPlay from "@/icon/iPlay";
+import IRewind from "@/icon/iRewind";
+import IVolume from "@/icon/iVolume";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useAllBgMusic } from "@/components/hook/useBgMusic";
-import IPause from "@/icon/IPause";
+import IPause from "@/icon/iPause";
 import VolMute from "./volMute";
 import BgMusicVolume from "./bgMusicVolume";
 

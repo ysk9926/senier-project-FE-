@@ -4,7 +4,7 @@ import {
   useDefaultWHitenoise,
   useMyWhitenoise,
 } from "@/components/hook/useWhitenoise";
-import IVolCustom from "@/icon/IVolCustom";
+import IVolCustom from "@/icon/iVolCustom";
 import MainPgWhitenoiseTable from "./mainPgWhitenoiseTable";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";

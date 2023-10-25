@@ -1,12 +1,12 @@
 "use client";
 
-import ErrorForm from "@/components/mainPg/Auth/Form/ErrorForm";
 import { Avatar, Button } from "@nextui-org/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
-import { useState, ChangeEvent, useEffect } from "react";
-import { EditProfileMutation } from "@/documents/mutations/user/EditAccount";
+import { useState, useEffect } from "react";
 import { MeQuery } from "@/documents/queries/me.query";
+import { EditProfileMutation } from "@/documents/mutations/user/editAccount";
+import ErrorForm from "@/components/mainPg/auth/form/errorForm";
 
 export default function EditProfileForm({
   avatar,

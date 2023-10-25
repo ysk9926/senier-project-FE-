@@ -1,10 +1,10 @@
 "use client";
 
-import { AnswerInquiryMutation } from "@/documents/mutations/Inquiry/answerInquiry.mutation";
+import { AnswerInquiryMutation } from "@/documents/mutations/inquiry/answerInquiry.mutation";
 import { AllInquiryQuery } from "@/documents/queries/allInquiry.query";
 import { SeeAnswerInquiryQuery } from "@/documents/queries/seeAnswerInquiry.query";
 import { SeeUnAnswerInquiryQuery } from "@/documents/queries/seeUnAnswerInquiry.mutation";
-import ITrashCan from "@/icon/ITrashCan";
+import ITrashCan from "@/icon/iTrashCan";
 import { useMutation } from "@apollo/client";
 import {
   Button,

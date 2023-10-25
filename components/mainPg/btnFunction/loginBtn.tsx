@@ -3,8 +3,8 @@
 import { LoggedInVar } from "@/apollo";
 import { AuthFormValue } from "@/atom";
 import useUser from "@/components/hook/useMe";
-import IAdmin from "@/icon/IAdmin";
-import IPeople from "@/icon/IPeople";
+import IAdmin from "@/icon/iAdmin";
+import IPeople from "@/icon/iPeople";
 import { useReactiveVar } from "@apollo/client";
 import { Avatar } from "@nextui-org/react";
 import { useRouter } from "next/navigation";

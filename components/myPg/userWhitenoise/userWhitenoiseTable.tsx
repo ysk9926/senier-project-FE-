@@ -1,8 +1,8 @@
 "use client";
 
 import UserWhitenoiseUnLockModal from "@/components/mainPg/whitenoise/whitenoiseUnlockModal";
-import IPause from "@/icon/IPause";
-import IPlay from "@/icon/IPlay";
+import IPause from "@/icon/iPause";
+import IPlay from "@/icon/iPlay";
 import { useRef, useState } from "react";
 
 export default function UserWhitenoiseTable({

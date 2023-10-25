@@ -1,8 +1,8 @@
 import BgImg from "@/components/mainPg/bgImg";
-import LoginPg from "@/components/mainPg/Auth/loginPg";
 import HeaderGroup from "@/components/mainPg/headerGroup";
 import ControlbarGroup from "@/components/mainPg/controlbarGroup";
 import BgImgBtn from "@/components/mainPg/btnFunction/bgImgBtn";
+import LoginPg from "@/components/mainPg/auth/loginPg";
 
 export default function Home() {
   return (

@@ -1,9 +1,9 @@
 import useUser from "@/components/hook/useMe";
-import { EditLockMutation } from "@/documents/mutations/whitenoise/UnLockWhitenoise.mutation";
+import { EditLockMutation } from "@/documents/mutations/whitenoise/unLockWhitenoise.mutation";
 import { MeQuery } from "@/documents/queries/me.query";
 import { SeeMyWhitenosieQuery } from "@/documents/queries/seeMyWhitenoise.query";
-import ILocked from "@/icon/ILocked";
-import IUnLock from "@/icon/IUnLock";
+import ILocked from "@/icon/iLocked";
+import IUnLock from "@/icon/iUnLock";
 import { useMutation } from "@apollo/client";
 import {
   Button,

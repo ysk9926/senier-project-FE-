@@ -1,7 +1,7 @@
 "use client";
 
 import { SubmitHandler, useForm } from "react-hook-form";
-import ErrorForm from "./ErrorForm";
+import ErrorForm from "./errorForm";
 import { useMutation } from "@apollo/client";
 
 import { useRecoilState } from "recoil";
@@ -9,7 +9,7 @@ import { AuthPgValue } from "@/atom";
 import {
   ISignupData,
   SignupMutation,
-} from "@/documents/mutations/Signup.mutation";
+} from "@/documents/mutations/signup.mutation";
 
 interface ISignupForm {
   userId: string;

@@ -1,10 +1,10 @@
 "use client";
 
-import LoginForm from "./Form/LoginForm";
-import SignUpForm from "./Form/signUpForm";
 import { useRecoilState } from "recoil";
 import { AuthFormValue, AuthPgValue } from "@/atom";
-import IDelete from "@/icon/IDelete";
+import LoginForm from "./form/loginForm";
+import SignUpForm from "./form/signUpForm";
+import IDelete from "@/icon/iDelete";
 
 export default function LoginPg() {
   const [authValue, setAuthValue] = useRecoilState(AuthFormValue);

@@ -1,8 +1,8 @@
 "use client";
 
 import { CarSoundValue, CityRainValue, PeoplesoundValue } from "@/atom";
-import IPause from "@/icon/IPause";
-import IPlay from "@/icon/IPlay";
+import IPause from "@/icon/iPause";
+import IPlay from "@/icon/iPlay";
 import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import { useRecoilState } from "recoil";

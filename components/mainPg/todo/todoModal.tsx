@@ -1,6 +1,6 @@
 "use client";
 
-import ITodo from "@/icon/ITodo";
+import ITodo from "@/icon/iTodo";
 import {
   Button,
   Modal,

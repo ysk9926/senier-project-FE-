@@ -1,6 +1,6 @@
 import { DeleteTodoMutation } from "@/documents/mutations/todo/deleteTodo.mutation";
 import { SeeMyTodoQuery } from "@/documents/queries/seeMyTodo.query";
-import ITrashCan from "@/icon/ITrashCan";
+import ITrashCan from "@/icon/iTrashCan";
 import { useMutation } from "@apollo/client";
 import { Button } from "@nextui-org/react";
 

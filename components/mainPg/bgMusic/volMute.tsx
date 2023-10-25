@@ -1,6 +1,6 @@
 "use client";
 
-import IMute from "@/icon/IMute";
+import IMute from "@/icon/iMute";
 import { useState } from "react";
 
 interface IBgMusicMuteProps {

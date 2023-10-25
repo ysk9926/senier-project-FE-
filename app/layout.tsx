@@ -2,7 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Provider } from "@/apollo";
 import Head from "next/head";
-import ProviderSet from "@/components/layout/ProviderSet";
+import ProviderSet from "@/components/layout/providerSet";
 
 export const metadata: Metadata = {
   title: "Cogni",

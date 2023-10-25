@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@nextui-org/react";
 import UserInquiryTable from "./userInquiryTable";
 import UserInquiryWrite from "./userInquiryWrite";
 

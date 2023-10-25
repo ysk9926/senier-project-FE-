@@ -1,7 +1,7 @@
 "use client";
 
 import { LoggedInVar, logUserOut } from "@/apollo";
-import ILogout from "@/icon/ILogout";
+import ILogout from "@/icon/iLogout";
 import { useReactiveVar } from "@apollo/client";
 import { useEffect, useState } from "react";
 

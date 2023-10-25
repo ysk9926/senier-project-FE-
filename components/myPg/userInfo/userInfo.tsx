@@ -4,7 +4,7 @@ import useUser from "@/components/hook/useMe";
 import { useEffect, useState } from "react";
 import { Avatar } from "@nextui-org/react";
 import EditProfile from "../editProfile/editProfile";
-import ISetting from "@/icon/ISetting";
+import ISetting from "@/icon/iSetting";
 
 export default function UserInfo() {
   const user = useUser();

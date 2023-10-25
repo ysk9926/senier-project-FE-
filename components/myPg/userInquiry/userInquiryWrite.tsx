@@ -1,4 +1,4 @@
-import { CreateInquiryMutation } from "@/documents/mutations/Inquiry/createInquiry.mutation";
+import { CreateInquiryMutation } from "@/documents/mutations/inquiry/createInquiry.mutation";
 import { SeeMyInquiryQuery } from "@/documents/queries/seeMyInquiry.query";
 import { useMutation } from "@apollo/client";
 import {

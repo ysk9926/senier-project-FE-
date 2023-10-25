@@ -1,7 +1,6 @@
 "use client";
 
 import { SubmitHandler, useForm } from "react-hook-form";
-import ErrorForm from "./ErrorForm";
 import { useMutation } from "@apollo/client";
 import { logUserIn } from "@/apollo";
 import { useRecoilState } from "recoil";
@@ -9,7 +8,8 @@ import { AuthFormValue, AuthPgValue } from "@/atom";
 import {
   ILoginData,
   LoginMutation,
-} from "@/documents/mutations/Login.mutation";
+} from "@/documents/mutations/login.mutation";
+import ErrorForm from "./errorForm";
 
 // 로그인 폼
 interface ILoginForm {

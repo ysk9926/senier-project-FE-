@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 
 interface IBgMusicVolumeProps {
   audioRef: React.MutableRefObject<HTMLAudioElement | null>;

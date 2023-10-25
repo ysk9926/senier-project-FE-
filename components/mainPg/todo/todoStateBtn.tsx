@@ -1,9 +1,8 @@
 import { ChangeTodoStatusMutation } from "@/documents/mutations/todo/editTodoState";
 import { MeQuery } from "@/documents/queries/me.query";
 import { SeeMyTodoQuery } from "@/documents/queries/seeMyTodo.query";
-import IDone from "@/icon/IDone";
+import IDone from "@/icon/iDone";
 import { useMutation } from "@apollo/client";
-import { Button } from "@nextui-org/react";
 
 export function TodoStateBtn({ todoId }: { todoId: number }) {
   // 투두 완료 뮤테이션
