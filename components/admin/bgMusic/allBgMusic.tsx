@@ -3,9 +3,10 @@
 import { useAllBgMusic } from "@/components/hook/useBgMusic";
 import { useMutation } from "@apollo/client";
 import { Button } from "@nextui-org/react";
-import { DeleteBgMusicMutation } from "@/documents/mutations/bgMusic/deleatBgMusic.mutation";
-import { AllBgMusicQuery } from "@/documents/queries/allBgMusic.query";
+
 import AllBgMusicPopover from "./allBgMusicPopover";
+import { DeleteBgMusicMutation } from "@/documents/mutation/bgMusic/deletBgMusic.mutation";
+import { AllBgMusicQuery } from "@/documents/query/allBgMusic.query";
 
 export default function AllBgMusicData() {
   // 배경음악 데이터 로드
