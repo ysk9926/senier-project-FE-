@@ -38,7 +38,7 @@ export default function AllWhitenoise() {
           initial={{ opacity: 0 }}
           animate={{ opacity: modalOpen ? 1 : 0 }}
           transition={{ duration: 0.5 }}
-          className={`absolute right-10 w-60 bg-color_main_black px-3 py-2 -top-5 rounded-md ${
+          className={`absolute z-10 right-10 w-60 bg-color_main_black px-3 py-2 -top-5 rounded-md ${
             modalOpen ? null : "hidden"
           }`}
         >

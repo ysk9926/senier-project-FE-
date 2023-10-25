@@ -5,7 +5,7 @@ export default function HeaderGroup() {
   return (
     <div className="flex justify-between pt-3">
       {/* logo - wrapper */}
-      <div className=" flex justify-center items-center w-titleSize min-w-[220px] h-[70px] bg-[#292929]">
+      <div className=" flex justify-center items-center w-titleSize min-w-[130px] h-[70px] bg-[#292929]">
         {/* logo */}
         <div className=" w-52 h-10 flex justify-center items-center">
           <Logo />

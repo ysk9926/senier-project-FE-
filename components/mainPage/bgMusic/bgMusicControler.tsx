@@ -77,7 +77,7 @@ export default function BgMusicController() {
   };
 
   return (
-    <div className=" space-x-3 flex justify-between items-center px-8 ">
+    <div className=" space-x-3 flex justify-between items-center px-3 min-[820px]:px-8 ">
       <div className=" relative">
         <div className=" flex justify-around items-center w-40 h-9 bg-color_main_black rounded-md ">
           <div className=" w-[18px] fill-white" onClick={preBtn}>

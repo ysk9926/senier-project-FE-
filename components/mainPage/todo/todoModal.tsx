@@ -65,7 +65,7 @@ export default function TodoModal() {
                   </Tabs>
                 </div>
               </ModalHeader>
-              <div className=" flex justify-center max-h-[600px] overflow-auto scrollbar-none mb-3">
+              <div className=" flex justify-center h-64 min-[820px]:max-h-[600px] overflow-auto scrollbar-none mb-3">
                 <TodoTable />
               </div>
             </>

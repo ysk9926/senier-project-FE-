@@ -11,7 +11,7 @@ export default function BgImg() {
         <Image src={자동차} alt="car img" fill={true} />
       </div>
       {/* 사람 */}
-      <div className=" w-[460px] h-[310px] relative">
+      <div className=" w-[460px] h-[310px] relative -z-10">
         <Image src={사람} alt="car img" fill={true} />
       </div>
       {/* 바텐더 */}

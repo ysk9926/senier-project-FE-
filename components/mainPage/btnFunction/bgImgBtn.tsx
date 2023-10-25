@@ -49,9 +49,9 @@ export default function BgImgBtn() {
           className="w-6 h-6 rounded-full border border-white hover:border-2"
           onClick={PeoplesoundHandler}
         ></button>
-        <label className="ml-3 w-fit h-6 px-3 py-4 rounded-md bg-[#E5583530] flex justify-center items-center text-color_main_text  ">
+        <span className="ml-3 w-fit h-6 px-3 py-4 rounded-md bg-[#E5583530] flex justify-center items-center text-color_main_text  ">
           Whispers people
-        </label>
+        </span>
       </label>
       {/* cityRain-sound */}
       <label
@@ -65,9 +65,9 @@ export default function BgImgBtn() {
           className="w-6 h-6 rounded-full border border-white hover:border-2"
           onClick={RainsoundHandler}
         ></button>
-        <label className="ml-3 w-fit h-6 px-3 py-4 rounded-md bg-[#2A6AAA30] flex justify-center items-center text-color_main_text">
+        <span className="ml-3 w-fit h-6 px-3 py-4 rounded-md bg-[#2A6AAA30] flex justify-center items-center text-color_main_text">
           City Rain
-        </label>
+        </span>
       </label>
     </div>
   );

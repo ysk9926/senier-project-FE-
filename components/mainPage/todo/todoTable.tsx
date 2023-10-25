@@ -61,7 +61,7 @@ export default function TodoTable() {
     // 투두 상태
     <div className="flex flex-wrap justify-center">
       {/* 추가 버튼 */}
-      <div className=" w-56 h-44 bg-[#DEF1FF] rounded-md m-5 flex justify-center">
+      <div className=" w-32 px-1 min-[820px]:w-56 h-44 bg-[#DEF1FF] rounded-md m-5 flex justify-center">
         <form
           onSubmit={handleSubmit(onSubmitValid)}
           className=" flex flex-col items-center"
@@ -92,7 +92,7 @@ export default function TodoTable() {
         return (
           todoItem.status === false && (
             <div
-              className={` w-56 h-44 rounded-md m-5 px-2`}
+              className={` w-32 min-[820px]:w-56 h-44 rounded-md m-5 px-2`}
               style={{ backgroundColor: `${backgroundColor}` }}
               key={index}
             >
@@ -121,7 +121,7 @@ export default function TodoTable() {
         return (
           todoItem.status === true && (
             <div
-              className=" w-56 h-44 rounded-md m-5 px-2"
+              className=" w-32 min-[820px]:w-56 h-44 rounded-md m-5 px-2"
               style={{ backgroundColor: `${backgroundColor}` }}
               key={index}
             >

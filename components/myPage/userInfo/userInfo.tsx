@@ -17,12 +17,16 @@ export default function UserInfo() {
 
   return (
     <div className=" flex items-center bg-white p-5 w-full rounded-md">
-      {/* 아바타 */}
-      <Avatar
-        name={user?.me.username}
-        src={avatar}
-        className="w-24 h-24 text-base font-semibold"
-      />
+      <div>
+        {/* 아바타 */}
+        <Avatar
+          name={user?.me.username}
+          src={avatar}
+          className="md:w-24 md:h-24 text-base font-semibold
+         w-[80px] h-[80px]
+        "
+        />
+      </div>
       {/* content wrapper */}
       <div className=" ml-10 w-52 space-y-2  flex flex-col">
         {/* 유저명 */}
