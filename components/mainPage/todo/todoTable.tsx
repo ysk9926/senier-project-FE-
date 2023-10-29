@@ -57,87 +57,54 @@ export default function TodoTable() {
   // 투두 배경색상
   const todoBgCol = ["#FCE4E4", "#FEF7CD", "#E9F9DD", "#DEF1FF", "#E9DFF5"];
 
-  return tag === "TODO" ? (
-    // 투두 상태
-    <div className="flex flex-wrap justify-center">
-      {/* 추가 버튼 */}
-      <div className=" w-32 px-1 min-[820px]:w-56 h-44 bg-[#DEF1FF] rounded-md m-5 flex justify-center">
-        <form
-          onSubmit={handleSubmit(onSubmitValid)}
-          className=" flex flex-col items-center"
+  return (
+    <div className=" w-full flex flex-col items-center justify-start ">
+      {/* 추가버튼 */}
+      <form
+        onSubmit={handleSubmit(onSubmitValid)}
+        className=" flex justify-between items-center bg-slate-200 w-[90%] h-10 rounded-lg py-1 pl-1"
+      >
+        <input
+          {...register("content", {
+            required: "내용을 입력해주세요",
+            minLength: { value: 2, message: "2글자 이상 입력하세요" },
+          })}
+          placeholder="투두를 추가해주세요"
+          type="text"
+          className="  w-full bg-white h-full outline-none rounded-l-md pl-2"
+        />
+        <button
+          type="submit"
+          className={` w-24 ${isValid ? "" : "pointer-events-none opacity-50"}`}
         >
-          <textarea
-            {...register("content", {
-              required: "내용을 입력해주세요",
-              minLength: { value: 2, message: "2글자 이상 입력하세요" },
-            })}
-            placeholder="투두를 추가해주세요"
-            className=" w-full h-28 m-2 bg-inherit overflow-auto scrollbar-none resize-none outline-none 
-            "
-          />
-          <button
-            type="submit"
-            className={` bg-white py-[2px] px-2 rounded-md mt-3 outline-none ${
-              isValid ? "" : "pointer-events-none opacity-50"
-            }`}
-          >
-            추가하기
-          </button>
-        </form>
+          추가하기
+        </button>
+      </form>
+      {/* 투두 내용 */}
+      <div className=" w-[90%] space-y-2 overflow-auto scrollbar-none">
+        {seeMyTodoList.map((todoItem, index) => {
+          const colorIndex = index % todoBgCol.length;
+          const backgroundColor = todoBgCol[colorIndex];
+          return (
+            <div
+              className={`flex justify-between items-center rounded-md mt-2 px-2 h-10 ${
+                todoItem.status ? "bg-opacity-50" : null
+              }`}
+              style={{ backgroundColor: `${backgroundColor}` }}
+              key={index}
+            >
+              {/* 완료하기 */}
+              <TodoStateBtn todoId={todoItem.id} state={todoItem.status} />
+              {/* 내용 */}
+              <div className={`${todoItem.status && "opacity-50"}`}>
+                {todoItem.content}
+              </div>
+              {/* 삭제하기 */}
+              <TodoDeleteBtn todoId={todoItem.id} />
+            </div>
+          );
+        })}
       </div>
-      {seeMyTodoList.map((todoItem, index) => {
-        const colorIndex = index % todoBgCol.length;
-        const backgroundColor = todoBgCol[colorIndex];
-
-        return (
-          todoItem.status === false && (
-            <div
-              className={` w-32 min-[820px]:w-56 h-44 rounded-md m-5 px-2`}
-              style={{ backgroundColor: `${backgroundColor}` }}
-              key={index}
-            >
-              {/* content */}
-              <div className=" h-28 m-2 overflow-auto scrollbar-none">
-                {todoItem.content}
-              </div>
-              {/* button wrapper */}
-              <div className=" flex justify-center items-center space-x-10 mt-6">
-                {/* 삭제하기 */}
-                <TodoDeleteBtn todoId={todoItem.id} />
-                {/* 완료하기 */}
-                <TodoStateBtn todoId={todoItem.id} />
-              </div>
-            </div>
-          )
-        );
-      })}
-    </div>
-  ) : (
-    // 완료 상태
-    <div className="flex flex-wrap justify-center">
-      {seeMyTodoList.map((todoItem, index) => {
-        const colorIndex = index % todoBgCol.length;
-        const backgroundColor = todoBgCol[colorIndex];
-        return (
-          todoItem.status === true && (
-            <div
-              className=" w-32 min-[820px]:w-56 h-44 rounded-md m-5 px-2"
-              style={{ backgroundColor: `${backgroundColor}` }}
-              key={index}
-            >
-              {/* content */}
-              <div className=" h-28 m-2 overflow-auto scrollbar-none">
-                {todoItem.content}
-              </div>
-              {/* button wrapper */}
-              <div className=" flex justify-center items-center space-x-10 mt-6">
-                {/* 삭제하기 */}
-                <TodoDeleteBtn todoId={todoItem.id} />
-              </div>
-            </div>
-          )
-        );
-      })}
     </div>
   );
 }
