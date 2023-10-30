@@ -1,3 +1,5 @@
+"use client";
+
 import { PopoverContent } from "@nextui-org/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useState, ChangeEvent } from "react";
@@ -6,23 +8,29 @@ import { AddWhitenoiseMutation } from "@/documents/mutation/whitenoise/addWhiten
 import { AllWhiteNoiseQuery } from "@/documents/query/allWhitenoise.query";
 import { UpdateUserWhitenoiseMutation } from "@/documents/mutation/whitenoise/updateUserWhitenoise.mutation";
 
+interface IAddWhitenoiseForm {
+  whitenoiseName: string;
+  whitenoiseUrl: FileList;
+  backgroundImgUrl: FileList;
+  requirePoints: number | null;
+}
+
 export default function AddWhitenosieContent({
   onClose,
 }: {
   onClose: () => void;
 }) {
-  // 첨부파일 placeholder
+  /* 기본 설정 */
+
   const [fileName, setFileName] = useState("");
-  // 첨부파일 파일명으로 변경
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files && e.target.files[0];
     if (selectedFile) {
       setFileName(selectedFile.name);
     }
   };
-  // 첨부파일 placeholder
+
   const [bgFileName, setBgFileName] = useState("");
-  // 첨부파일 파일명으로 변경
   const handleBgFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files && e.target.files[0];
     if (selectedFile) {
@@ -30,20 +38,17 @@ export default function AddWhitenosieContent({
     }
   };
 
-  // 파일 선택 폼
-  interface IAddWhitenoiseForm {
-    whitenoiseName: string;
-    whitenoiseUrl: FileList;
-    backgroundImgUrl: FileList;
-    requirePoints: number | null;
-  }
+  /* 폼 */
+
   const { register, handleSubmit, getValues } = useForm<IAddWhitenoiseForm>({});
-  // 배경음악 추가 뮤테이션
+
+  /* 뮤테이션 */
+
   const [addWhitenoiseMutation, { loading: addWhitenosieLoading }] =
     useMutation(AddWhitenoiseMutation, {
       refetchQueries: [{ query: AllWhiteNoiseQuery }],
     });
-  // 유저백색소음 업데이트 뮤테이션
+
   const [
     updateUserWhitenoiseMutation,
     { loading: updateUserWhitenoiseLoading },
@@ -65,8 +70,6 @@ export default function AddWhitenosieContent({
         },
       });
       onClose();
-      // 유저 백색소음 업데이트
-      console.log(result.data.createWhitenoise.id);
       if (updateUserWhitenoiseLoading) {
         return;
       }
@@ -105,6 +108,7 @@ export default function AddWhitenosieContent({
               value={fileName}
               placeholder="음원파일"
               readOnly
+              aria-label="음원파일"
             />
             <label
               htmlFor="file"
@@ -156,6 +160,7 @@ export default function AddWhitenosieContent({
             <button
               type="submit"
               className=" flex justify-center items-center text-xs bg-gray-600 text-white px-4 h-7 mt-2 "
+              aria-label="추가"
             >
               추가하기
             </button>

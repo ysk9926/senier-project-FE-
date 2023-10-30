@@ -11,12 +11,12 @@ export default function AllWhitenoiseData() {
   const allWhitenoise = useAllWhitenoise();
   const allWhitenoiseArr = allWhitenoise?.allWhitenoise || [];
 
-  // 삭제 뮤테이션
+  /* 뮤테이션 */
   const [deleteWhitenoiseMutation] = useMutation(DeleteWhitenoiseMutation, {
     refetchQueries: [{ query: AllWhiteNoiseQuery }],
   });
 
-  // 삭제 기능
+  /* 기능 */
   const deleteHandler = async (id: number) => {
     try {
       const result = await deleteWhitenoiseMutation({
@@ -24,7 +24,6 @@ export default function AllWhitenoiseData() {
           deleteWhitenoiseId: id,
         },
       });
-      // 삭제 결과
       console.log("삭제 결과", result);
     } catch (error) {
       console.log("삭제 에러", error);

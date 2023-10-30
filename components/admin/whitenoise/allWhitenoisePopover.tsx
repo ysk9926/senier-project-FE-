@@ -8,9 +8,7 @@ import {
 } from "@nextui-org/react";
 import EditWhitenoise from "./editWhitenoise";
 
-export default function AllWhitenoisePopover({
-  whitenoise,
-}: {
+interface IAllWhitenoisePopover {
   whitenoise: {
     id: number;
     whitenoiseName: string;
@@ -18,8 +16,11 @@ export default function AllWhitenoisePopover({
     whitenoiseURL: string;
     backgroundImgURL: string;
   };
-}) {
-  // next ui
+}
+
+export default function AllWhitenoisePopover({
+  whitenoise,
+}: IAllWhitenoisePopover) {
   const { isOpen, onClose, onOpenChange } = useDisclosure();
 
   return (
