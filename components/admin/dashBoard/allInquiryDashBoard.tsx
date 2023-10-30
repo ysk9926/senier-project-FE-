@@ -16,21 +16,33 @@ export default function AllInquiryDashBoard() {
   const openArr = open?.seeUnAnswerInquiry || [];
   const closeArr = close?.seeAnswerInquiry || [];
 
+  const dashBoardData = [
+    { title: "문의하기", count: Number(allArr.length), maxVal: 100 },
+    {
+      title: "답변 대기",
+      count: Number(openArr.length),
+      maxVal: allArr.length,
+    },
+    {
+      title: "답변 완료",
+      count: Number(closeArr.length),
+      maxVal: allArr.length,
+    },
+  ];
+
   return (
     <div className="flex justify-between space-x-2">
-      {/* progress */}
-      <div className=" flex flex-col items-center w-64 bg-cyan-950 rounded-xl">
-        <h2 className=" text-white text-sm mt-3 font-semibold">문의하기</h2>
-        <Circle cnt={Number(allArr.length)} maxVal={100} />
-      </div>
-      <div className=" flex flex-col items-center w-64 h-36 bg-cyan-950 rounded-xl">
-        <h2 className=" text-white text-sm mt-3 font-semibold">답변 대기</h2>
-        <Circle cnt={Number(openArr.length)} maxVal={allArr.length} />
-      </div>
-      <div className=" flex flex-col items-center w-64 h-36 bg-cyan-950 rounded-xl">
-        <h2 className=" text-white text-sm mt-3 font-semibold">답변 완료</h2>
-        <Circle cnt={Number(closeArr.length)} maxVal={allArr.length} />
-      </div>
+      {dashBoardData.map((item, index) => (
+        <div
+          key={index}
+          className="flex flex-col items-center w-64 bg-cyan-950 rounded-xl pb-3"
+        >
+          <h2 className="text-white text-sm mt-3 font-semibold">
+            {item.title}
+          </h2>
+          <Circle cnt={item.count} maxVal={item.maxVal} />
+        </div>
+      ))}
     </div>
   );
 }

@@ -1,13 +1,12 @@
 import React from "react";
 import { CircularProgress } from "@nextui-org/react";
 
-export default function Circle({
-  cnt,
-  maxVal,
-}: {
+interface ICircle {
   cnt: number;
   maxVal: number;
-}) {
+}
+
+export default function Circle({ cnt, maxVal }: ICircle) {
   const cntValue = typeof cnt === "number" ? cnt : 0;
 
   return (
@@ -20,8 +19,9 @@ export default function Circle({
           value: "text-xl font-semibold text-white",
         }}
         maxValue={maxVal}
-        value={cntValue} // 숫자로 변환된 cnt를 전달
+        value={cntValue}
         strokeWidth={4}
+        aria-label={`${cnt} out of ${maxVal}`}
       />
       <span className=" text-white ml-7">
         {cnt}/{maxVal}
