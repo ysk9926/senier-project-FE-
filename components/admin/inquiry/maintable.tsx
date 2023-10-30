@@ -1,6 +1,40 @@
-import InquiryTableData from "./tableData";
+"use client";
 
+import { useRecoilValue } from "recoil";
+import InquiryTableData from "./tableData";
+import { InquiryTagValue } from "@/atom";
+import { useAllInquiry } from "@/components/hook/useInquiry";
+import { useEffect } from "react";
+import { IAllInquiryData } from "@/documents/query/allInquiry.query";
+
+export interface IInquiryDArr {
+  id: number;
+  title: string;
+  contents: string;
+  isClosed: boolean;
+  answer: string;
+  user: {
+    username: string;
+  };
+}
 export default function InquiryMainT() {
+  const tagv = useRecoilValue(InquiryTagValue);
+  // 문의하기 데이터 불러오기
+  const InquiryD = useAllInquiry();
+  const InquiryDArr = InquiryD?.allInquiry || [];
+  const closeInquiryDArr: IInquiryDArr[] = [];
+  const openInquiryDArr: IInquiryDArr[] = [];
+
+  useEffect(() => {
+    InquiryDArr.map((item) => {
+      if (item.isClosed) {
+        closeInquiryDArr.push(item);
+      } else {
+        openInquiryDArr.push(item);
+      }
+    });
+  }, [InquiryDArr]);
+
   return (
     <div className="flex flex-col w-full px-3 pb-3">
       {/* 문의 번호 - 문의 타이틀 - 문의 유저 - 문의 상태 */}
@@ -20,7 +54,15 @@ export default function InquiryMainT() {
       </div>
       {/* 데이터 wrapper */}
       <div className=" h-[200px] overflow-auto scrollbar-none border-x-1 border-b-1">
-        <InquiryTableData />
+        <InquiryTableData
+          dataArr={
+            tagv === "all"
+              ? InquiryDArr
+              : tagv === "close"
+              ? closeInquiryDArr
+              : openInquiryDArr
+          }
+        />
       </div>
     </div>
   );
