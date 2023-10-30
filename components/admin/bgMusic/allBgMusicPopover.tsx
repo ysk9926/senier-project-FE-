@@ -8,16 +8,18 @@ import {
 } from "@nextui-org/react";
 import EditBgContent from "./editBgMusic";
 
-export default function AllBgMusicPopover({
-  bgMusic,
-}: {
+/* 인터페이스 구성 */
+
+interface IAllBgMusicPopover {
   bgMusic: {
     id: number;
     bgMusicName: string;
     bgMusicURL: string;
   };
-}) {
-  // next ui
+}
+
+export default function AllBgMusicPopover({ bgMusic }: IAllBgMusicPopover) {
+  /* 기본 설정 */
   const { isOpen, onClose, onOpenChange } = useDisclosure();
 
   return (
@@ -27,6 +29,7 @@ export default function AllBgMusicPopover({
           variant="flat"
           className="capitalize bg-inherit border-cyan-950 border text-xs text-cyan-950"
           size="sm"
+          aria-label="수정"
         >
           수정
         </Button>

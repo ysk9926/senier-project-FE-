@@ -13,7 +13,12 @@ export default function AddBgMusic() {
   return (
     <Popover placement="bottom-end" isOpen={isOpen} onOpenChange={onOpenChange}>
       <PopoverTrigger>
-        <Button variant="solid" className=" bg-inherit text-base" size="sm">
+        <Button
+          variant="solid"
+          className=" bg-inherit text-base"
+          size="sm"
+          aria-label="추가"
+        >
           추가
         </Button>
       </PopoverTrigger>

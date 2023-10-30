@@ -1,23 +1,24 @@
 "use client";
 
-import { useAllBgMusic } from "@/components/hook/useBgMusic";
 import { useMutation } from "@apollo/client";
-import { Button } from "@nextui-org/react";
-
-import AllBgMusicPopover from "./allBgMusicPopover";
-import { DeleteBgMusicMutation } from "@/documents/mutation/bgMusic/deletBgMusic.mutation";
+import { useAllBgMusic } from "@/components/hook/useBgMusic";
 import { AllBgMusicQuery } from "@/documents/query/allBgMusic.query";
+import { DeleteBgMusicMutation } from "@/documents/mutation/bgMusic/deletBgMusic.mutation";
+import { Button } from "@nextui-org/react";
+import AllBgMusicPopover from "./allBgMusicPopover";
 
 export default function AllBgMusicData() {
-  // 배경음악 데이터 로드
+  /* 기본 설정 */
+
   const allBgMusic = useAllBgMusic();
   const allBgMusicArr = allBgMusic?.allBgMusic || [];
 
-  // 삭제 뮤테이션
+  /* 뮤테이션 */
   const [deleteBgMusicMutation] = useMutation(DeleteBgMusicMutation, {
     refetchQueries: [{ query: AllBgMusicQuery }],
   });
-  // 삭제 기능
+
+  /* 기능 */
   const deleteHandler = async (id: number) => {
     try {
       const result = await deleteBgMusicMutation({
@@ -32,9 +33,12 @@ export default function AllBgMusicData() {
     }
   };
 
-  return allBgMusicArr.map((bgMusic) => {
+  return allBgMusicArr.map((bgMusic, index) => {
     return (
-      <div className=" flex justify-between items-center overflow-hidden h-10 px-2 py-2 border-b">
+      <div
+        className=" flex justify-between items-center overflow-hidden h-10 px-2 py-2 border-b"
+        key={index}
+      >
         {/* 배경음악 title */}
         <div className="">{bgMusic.bgMusicName}</div>
         {/* 수정 및 삭제 버튼 wrapper */}
@@ -48,6 +52,7 @@ export default function AllBgMusicData() {
             onClick={() => {
               deleteHandler(bgMusic.id);
             }}
+            aria-label={`삭제 ${bgMusic.bgMusicName}`}
           >
             삭제
           </Button>

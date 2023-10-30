@@ -1,11 +1,13 @@
 "use client";
 
-import { EditBgMusicMutation } from "@/documents/mutation/bgMusic/editBgMusic.mutation";
-import { AllBgMusicQuery } from "@/documents/query/allBgMusic.query";
-import { useMutation } from "@apollo/client";
-import { PopoverContent } from "@nextui-org/react";
 import { useState, ChangeEvent } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useMutation } from "@apollo/client";
+import { EditBgMusicMutation } from "@/documents/mutation/bgMusic/editBgMusic.mutation";
+import { AllBgMusicQuery } from "@/documents/query/allBgMusic.query";
+import { PopoverContent } from "@nextui-org/react";
+
+/* 인터페이스 구성 */
 
 interface IEditBgContent {
   bgMusicName: string;
@@ -14,15 +16,19 @@ interface IEditBgContent {
   onClose: () => void;
 }
 
+interface IEditBgMusicForm {
+  bgMusicName: string;
+  bgMusicUrl: FileList;
+}
+
 export default function EditBgContent({
   bgMusicName,
   oldUrl,
   editBgMusicId,
   onClose,
 }: IEditBgContent) {
-  // 첨부파일 placeholder
+  /* 기본 설정 */
   const [fileName, setFileName] = useState(oldUrl || "");
-  // 첨부파일 파일명으로 변경
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files && e.target.files[0];
     if (selectedFile) {
@@ -30,7 +36,7 @@ export default function EditBgContent({
     }
   };
 
-  // 수정 뮤테이션
+  /* 뮤테이션 */
   const [editBgMusicMutation, { loading: editBgMusicLoading }] = useMutation(
     EditBgMusicMutation,
     {
@@ -41,7 +47,7 @@ export default function EditBgContent({
     if (editBgMusicLoading) {
       return;
     }
-    const { bgMusicName, bgMusicUrl } = getValues();
+    const { bgMusicName, bgMusicUrl } = data;
     try {
       const result = await editBgMusicMutation({
         variables: {
@@ -53,17 +59,12 @@ export default function EditBgContent({
       onClose();
       console.log("수정 결과", result);
     } catch (error) {
-      // 오류 처리 로직
       console.log("수정 결과", error);
     }
   };
 
-  // 파일 선택 폼
-  interface IEditBgMusicForm {
-    bgMusicName: string;
-    bgMusicUrl: FileList;
-  }
-  const { register, handleSubmit, getValues } = useForm<IEditBgMusicForm>({
+  /* 폼 */
+  const { register, handleSubmit } = useForm<IEditBgMusicForm>({
     defaultValues: {
       bgMusicName,
     },
@@ -88,6 +89,7 @@ export default function EditBgContent({
               value={fileName}
               placeholder="첨부파일"
               readOnly
+              aria-label="첨부파일"
             />
             <label
               htmlFor="file"
@@ -102,12 +104,14 @@ export default function EditBgContent({
               id="file"
               className="absolute w-0 h-0 p-0 overflow-hidden border-0"
               onChange={handleFileChange}
+              aria-label="첨부 파일 선택"
             />
           </div>
           <div className=" w-full flex justify-center items-center">
             <button
               type="submit"
               className=" flex justify-center items-center text-xs bg-gray-600 text-white px-4 h-7 mt-2 "
+              aria-label="수정하기"
             >
               수정하기
             </button>

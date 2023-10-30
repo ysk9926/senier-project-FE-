@@ -1,20 +1,32 @@
 "use client";
 
-import { Button, PopoverContent } from "@nextui-org/react";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { useState, ChangeEvent } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import { AddBgMusicMutation } from "@/documents/mutation/bgMusic/addBgMusic.mutation";
 import { AllBgMusicQuery } from "@/documents/query/allBgMusic.query";
+import { Button, PopoverContent } from "@nextui-org/react";
 
-export default function AddBgMusicContent({
-  onClose,
-}: {
+/* 인터페이스 구성 */
+
+interface IEditBgMusicForm {
+  bgMusicName: string;
+  bgMusicUrl: FileList;
+}
+
+interface IAddBgMusicContent {
   onClose: () => void;
-}) {
-  // 첨부파일 placeholder
+}
+
+interface IAddBgMusicForm {
+  bgMusicName: string;
+  bgMusicUrl: FileList;
+}
+
+export default function AddBgMusicContent({ onClose }: IAddBgMusicContent) {
+  /* 기본 설정 */
+
   const [fileName, setFileName] = useState("");
-  // 첨부파일 파일명으로 변경
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files && e.target.files[0];
     if (selectedFile) {
@@ -22,13 +34,8 @@ export default function AddBgMusicContent({
     }
   };
 
-  // 파일 선택 폼
-  interface IEditBgMusicForm {
-    bgMusicName: string;
-    bgMusicUrl: FileList;
-  }
-  const { register, handleSubmit, getValues } = useForm<IEditBgMusicForm>({});
-  // 배경음악 추가 뮤테이션
+  /* 뮤테이션 */
+
   const [addBgMusicMutation, { loading: addBgMusicLoading }] = useMutation(
     AddBgMusicMutation,
     {
@@ -36,12 +43,11 @@ export default function AddBgMusicContent({
     }
   );
 
-  // submit 관리
-  interface IAddBgMusicForm {
-    bgMusicName: string;
-    bgMusicUrl: FileList;
-  }
+  /* 입력 폼 */
+
+  const { register, handleSubmit, getValues } = useForm<IEditBgMusicForm>({});
   const onSubmitValid: SubmitHandler<IAddBgMusicForm> = async (data) => {
+    console.log(data);
     if (addBgMusicLoading) {
       return;
     }
@@ -79,6 +85,7 @@ export default function AddBgMusicContent({
               value={fileName}
               placeholder="첨부파일"
               readOnly
+              aria-label="첨부파일"
             />
             <label
               htmlFor="file"
@@ -93,12 +100,14 @@ export default function AddBgMusicContent({
               id="file"
               className="absolute w-0 h-0 p-0 overflow-hidden border-0"
               onChange={handleFileChange}
+              aria-label="첨부 파일 선택"
             />
           </div>
           <div className=" w-full flex justify-center items-center">
             <Button
               type="submit"
               className=" flex justify-center items-center text-xs bg-gray-600 text-white px-4 h-7 mt-2 rounded-none "
+              aria-label="추가하기"
             >
               추가하기
             </Button>
