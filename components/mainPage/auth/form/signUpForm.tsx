@@ -114,7 +114,7 @@ export default function SignUpForm() {
           placeholder="유저명"
           className={` mt-5 focus:outline-0 focus:border-color_accent_text w-loginInput h-loginInput border border-color_sub_text rounded-md  p-1 pl-4 placeholder:text-sm
           ${
-            errors.userId?.message &&
+            errors.username?.message &&
             "border-red-600 border-[3px] placeholder:text-red-600"
           }`}
         />
@@ -126,7 +126,7 @@ export default function SignUpForm() {
           placeholder="비밀번호"
           className={` mt-5 focus:outline-0 focus:border-color_accent_text w-loginInput h-loginInput border border-color_sub_text rounded-md  p-1 pl-4 placeholder:text-sm
           ${
-            errors.userId?.message &&
+            errors.password?.message &&
             "border-red-600 border-[3px] placeholder:text-red-600"
           }`}
         />
@@ -140,7 +140,7 @@ export default function SignUpForm() {
           placeholder="비밀번호 확인"
           className={` mt-5 focus:outline-0 focus:border-color_accent_text w-loginInput h-loginInput border border-color_sub_text rounded-md  p-1 pl-4 placeholder:text-sm
           ${
-            errors.userId?.message &&
+            errors.passwordCheck?.message &&
             "border-red-600 border-[3px] placeholder:text-red-600"
           }`}
         />
