@@ -53,16 +53,12 @@ export default function TodoTable() {
 
   // 태그 상태
   const tag = useRecoilValue(TodoTagValue);
-
-  // 투두 배경색상
-  const todoBgCol = ["#FCE4E4", "#FEF7CD", "#E9F9DD", "#DEF1FF", "#E9DFF5"];
-
   return (
     <div className=" w-full flex flex-col items-center justify-start ">
       {/* 추가버튼 */}
       <form
         onSubmit={handleSubmit(onSubmitValid)}
-        className=" flex justify-between items-center bg-slate-200 w-[90%] h-10 rounded-lg py-1 pl-1"
+        className=" flex justify-between items-center bg-color_todo_gray w-[90%] h-10 rounded-full py-1 pl-1"
       >
         <input
           {...register("content", {
@@ -71,7 +67,7 @@ export default function TodoTable() {
           })}
           placeholder="투두를 추가해주세요"
           type="text"
-          className="  w-full bg-white h-full outline-none rounded-l-md pl-2"
+          className="  w-full bg-white h-full outline-none rounded-l-full pl-5"
         />
         <button
           type="submit"
@@ -82,28 +78,27 @@ export default function TodoTable() {
       </form>
       {/* 투두 내용 */}
       <div className=" w-[90%] space-y-2 overflow-auto scrollbar-none">
-        {seeMyTodoList.map((todoItem, index) => {
-          const colorIndex = index % todoBgCol.length;
-          const backgroundColor = todoBgCol[colorIndex];
-          return (
+        {seeMyTodoList.map((todoItem, index) => (
+          <div
+            className={`flex justify-between items-center rounded-full mt-2 px-2 h-10 ${
+              todoItem.status ? " bg-color_todo_green" : " bg-color_todo_gray"
+            }`}
+            key={index}
+          >
+            {/* 완료하기 */}
+            <TodoStateBtn todoId={todoItem.id} state={todoItem.status} />
+            {/* 내용 */}
             <div
-              className={`flex justify-between items-center rounded-md mt-2 px-2 h-10 ${
-                todoItem.status ? "bg-opacity-50" : null
+              className={`text-color_todo_text ${
+                todoItem.status && "opacity-50 line-through"
               }`}
-              style={{ backgroundColor: `${backgroundColor}` }}
-              key={index}
             >
-              {/* 완료하기 */}
-              <TodoStateBtn todoId={todoItem.id} state={todoItem.status} />
-              {/* 내용 */}
-              <div className={`${todoItem.status && "opacity-50"}`}>
-                {todoItem.content}
-              </div>
-              {/* 삭제하기 */}
-              <TodoDeleteBtn todoId={todoItem.id} />
+              {todoItem.content}
             </div>
-          );
-        })}
+            {/* 삭제하기 */}
+            <TodoDeleteBtn todoId={todoItem.id} />
+          </div>
+        ))}
       </div>
     </div>
   );

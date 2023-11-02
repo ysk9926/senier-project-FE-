@@ -25,6 +25,10 @@ const config: Config = {
       colors: {
         color_main_black: "#292929",
         color_main_text: "#58644D",
+        color_todo_gray: "#F4F4F4",
+        color_todo_green: "#92BF1F",
+        color_todo_darkGreen: "#008C36",
+        color_todo_text: "#575756",
       },
     },
   },

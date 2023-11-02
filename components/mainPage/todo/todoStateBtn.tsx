@@ -37,10 +37,12 @@ export function TodoStateBtn({
     // 완료버튼
 
     <div
-      className={`w-5 fill-green-500 hover:scale-[1.2] border border-green-500 rounded-full ${
-        state && "bg-green-500 fill-white pointer-events-none"
+      className={`w-5 hover:scale-[1.2] border border-color_todo_darkGreen rounded-full ${
+        state
+          ? "bg-color_todo_darkGreen fill-white pointer-events-none"
+          : "fill-color_todo_darkGreen"
       }
-     hover:bg-green-500 hover:fill-white
+     hover:bg-color_todo_darkGreen hover:fill-white
       `}
       onClick={todoStateHandler}
     >
