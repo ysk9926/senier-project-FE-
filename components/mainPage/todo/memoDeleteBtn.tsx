@@ -28,7 +28,7 @@ export default function MemoDeleteBtn({ memoId }: { memoId: number }) {
   };
   return (
     <div
-      className=" w-5 stroke-red-500 hover:scale-[1.2]"
+      className=" w-5 stroke-gray-400 hover:stroke-red-500 hover:scale-[1.2]"
       onClick={deleteTodoHandler}
     >
       <ITrashCan />
