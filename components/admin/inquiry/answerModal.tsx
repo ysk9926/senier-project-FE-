@@ -130,9 +130,9 @@ export default function AnswerInquiryModal({
                   <div className=" flex justify-start items-center">
                     <span className=" font-semibold mr-2">문의 내용</span>
                     {state ? (
-                      <div className=" rounded-full bg-[#f5a524] w-3 h-3"></div>
+                      <div className=" rounded-full  bg-[#17c964] w-3 h-3"></div>
                     ) : (
-                      <div className=" rounded-full bg-[#17c964] w-3 h-3"></div>
+                      <div className=" rounded-full bg-[#f5a524] w-3 h-3"></div>
                     )}
                   </div>
                   <div className="text-sm mt-2 h-20 overflow-auto scrollbar-none">
